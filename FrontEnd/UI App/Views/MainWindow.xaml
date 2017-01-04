@@ -1,0 +1,28 @@
+﻿<mui:ModernWindow x:Class="SimulationApp.Views.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+  Title="Drone BCI Companion App" IsTitleVisible="True"
+  ContentSource="Views/TrainingView.xaml"
+  Width="1770" Height="920">
+
+
+    <mui:ModernWindow.TitleLinks>
+        <mui:Link DisplayName="Settings" Source="Views/SettingsView.xaml" />
+    </mui:ModernWindow.TitleLinks>
+    
+    <mui:ModernWindow.MenuLinkGroups>
+        <mui:LinkGroup DisplayName="Training" >
+            <mui:LinkGroup.Links>
+                <mui:Link Source="Views/TrainingView.xaml"/>
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        <mui:LinkGroup DisplayName="Visualization" >
+            <mui:LinkGroup.Links>
+                <mui:Link Source="Views/GraphView.xaml"/>
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+    </mui:ModernWindow.MenuLinkGroups>
+
+</mui:ModernWindow>
+    

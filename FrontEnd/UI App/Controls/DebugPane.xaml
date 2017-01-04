@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="SimulationApp.Controls.DebugPane"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" FontWeight="Bold" FontSize="24" Margin="5 0 0 20">Debug</Label>
+
+        <Button Content="Forward"    Grid.Row="1" MouseEnter="MoveForward" MouseLeave="Reset" Margin="5" Focusable="False"/>
+        <Button Content="Back"       Grid.Row="2" MouseEnter="MoveBack"    MouseLeave="Reset" Margin="5" Focusable="False"/>
+        <Button Content="Left"       Grid.Row="3" MouseEnter="MoveLeft"    MouseLeave="Reset" Margin="5" Focusable="False"/>
+        <Button Content="Right"      Grid.Row="4" MouseEnter="MoveRight"   MouseLeave="Reset" Margin="5" Focusable="False"/>
+        <Button Content="Up"         Grid.Row="5" MouseEnter="MoveUp"      MouseLeave="Reset" Margin="5" Focusable="False"/>
+        <Button Content="Down"       Grid.Row="6" MouseEnter="MoveDown"    MouseLeave="Reset" Margin="5" Focusable="False"/>
+        <Button Content="Turn Left"  Grid.Row="7" MouseEnter="TurnLeft"    MouseLeave="Reset" Margin="5" Focusable="False"/>
+        <Button Content="Turn Right" Grid.Row="8" MouseEnter="TurnRight"   MouseLeave="Reset" Margin="5" Focusable="False"/>
+    </Grid>
+</UserControl>

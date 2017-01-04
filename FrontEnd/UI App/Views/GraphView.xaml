@@ -1,0 +1,258 @@
+﻿<UserControl x:Class="SimulationApp.GraphView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <StackPanel>
+        <Label FontWeight="Bold" FontSize="24" Margin="0 0 0 20">EEG Graphs</Label>
+        <GroupBox Header="Raw EEG" Padding="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <lvc:CartesianChart Grid.Row="0" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding AF3ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis MinValue="4160" MaxValue="4120" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="1" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding F7ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="2" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding F3ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="3" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding FC5ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="4" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding T7ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="5" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding P7ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="6" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding O1ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="7" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding O2ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="8" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding P8ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="9" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding T8ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="10" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding FC6ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis  MaxValue="4050" MinValue="4140" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="11" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding F4ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis MinValue="3500" MaxValue="3320"  DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="12" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding F8ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+
+                <lvc:CartesianChart Grid.Row="13" MaxHeight="150" DisableAnimations="True">
+                    <lvc:CartesianChart.Series>
+                        <lvc:LineSeries Values="{Binding AF4ChartValues}" StrokeThickness="1" PointGeometrySize="0" />
+                    </lvc:CartesianChart.Series>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis DisableAnimations="True" MinValue="0" MaxValue="1024">
+                            <lvc:Axis.Separator >
+                                <lvc:Separator IsEnabled="False" Step="128"></lvc:Separator>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+            </Grid>
+        </GroupBox>
+    </StackPanel>
+</UserControl>
