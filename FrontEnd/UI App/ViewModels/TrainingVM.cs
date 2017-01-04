@@ -9,6 +9,12 @@ namespace SimulationApp.ViewModels
 {
     public class TrainingVM : INotifyPropertyChanged
     {
+        public TrainingVM()
+        {
+            var server = new FrontEndServer(this);
+            server.Start();
+        }
+
         #region Events
 
         public event PropertyChangedEventHandler PropertyChanged;
