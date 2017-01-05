@@ -1,46 +1,42 @@
-﻿using System.ComponentModel;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 using SimulationApp.Models;
+using SimulationApp.Services;
+using SimulationApp.Utilities;
 
 
 namespace SimulationApp.ViewModels
 {
-    public class TrainingVM : INotifyPropertyChanged
+    public class TrainingVM : ViewModelBase, IDisposable
     {
         public TrainingVM()
         {
-            var server = new FrontEndServer(this);
-            server.Start();
+            _server = new FrontEndServer(this);
+            _server.Start();
         }
-
-        #region Events
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public delegate void CommandTrigerredHandler(DroneCommand droneCommand);
-        public event CommandTrigerredHandler DroneCommandTriggered;
-
-        #endregion
 
         #region Properties
 
         public bool IsTrainingInProgress
         {
             get { return _isTrainingInProgress; }
-            set
-            {
-                _isTrainingInProgress = value;
-                NotifyPropertyChanged(nameof(IsTrainingInProgress));
-            }
+            set { SetValue(ref _isTrainingInProgress, value); }
         }
 
         #endregion
 
         #region Commands
 
-        public ICommand TrainCommand => new DelegateCommand(StartTraining, null);
+        public ICommand TrainCommand => new DelegateCommand(StartTraining);
+
+        #endregion
+
+        #region Events
+
+        public delegate void CommandTrigerredHandler(DroneCommand droneCommand);
+        public event CommandTrigerredHandler DroneCommandTriggered;
 
         #endregion
 
@@ -51,11 +47,16 @@ namespace SimulationApp.ViewModels
             DroneCommandTriggered?.Invoke(droneCommand);
         }
 
+        public void Dispose()
+        {
+            _server.Stop();
+        }
+
         #endregion
 
         #region Helper Methods
 
-        private void StartTraining(object o)
+        private void StartTraining()
         {
             IsTrainingInProgress = true;
 
@@ -67,17 +68,13 @@ namespace SimulationApp.ViewModels
             IsTrainingInProgress = false;
         }
 
-        private void NotifyPropertyChanged(string prop)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-
         #endregion
 
         #region Private Variables
 
+        private readonly FrontEndServer _server;
         private bool _isTrainingInProgress;
-
+        
         #endregion
     }
 }

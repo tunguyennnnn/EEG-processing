@@ -90,6 +90,7 @@
     <Compile Include="Models\DroneCommand.cs" />
     <Compile Include="Utilities\DelegateCommand.cs" />
     <Compile Include="Models\EEGDataPoint.cs" />
+    <Compile Include="Utilities\ViewModelBase.cs" />
     <Compile Include="Views\GraphView.xaml.cs">
       <DependentUpon>GraphView.xaml</DependentUpon>
     </Compile>

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
+using SimulationApp.ViewModels;
 
-
-namespace SimulationApp
+namespace SimulationApp.Views
 {
     public partial class GraphView : UserControl
     {
@@ -10,7 +10,7 @@ namespace SimulationApp
             InitializeComponent();
 
             var vm = new GraphVM();
-            this.DataContext = vm;
+            DataContext = vm;
 
             vm.SendMockData();
         }

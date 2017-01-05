@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration;
 
-namespace SimulationApp
+namespace SimulationApp.Models
 {
    public class EEGDataPoint
     {
