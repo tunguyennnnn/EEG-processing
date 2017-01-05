@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
-using FrontEnd;
+using Interop;
 using Grpc.Core;
 using SimulationApp.Models;
 using SimulationApp.ViewModels;
@@ -8,9 +8,9 @@ using SimulationApp.ViewModels;
 
 namespace SimulationApp
 {
-    public class FrontEndImpl : FrontEnd.FrontEnd.FrontEndBase
+    public class FrontEndImpl : FrontEnd.FrontEndBase
     {
-        private TrainingVM _vm;
+        private readonly TrainingVM _vm;
 
         public FrontEndImpl(TrainingVM vm)
         {
@@ -36,7 +36,7 @@ namespace SimulationApp
         {
             server = new Server
             {
-                Services = { FrontEnd.FrontEnd.BindService(new FrontEndImpl(vm)) },
+                Services = { FrontEnd.BindService(new FrontEndImpl(vm)) },
                 Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
             };
         }

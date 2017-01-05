@@ -5,9 +5,9 @@ from grpc.tools import protoc
 protoc.main(
     (
 	'',
-	'-I=Interop/protos',
-	'--python_out=Interop',
-	'--grpc_python_out=Interop',
-	'Interop/protos/simulation.proto',
+	'-I=protos',
+	'--python_out=out',
+	'--grpc_python_out=out',
+	'protos/front_end.proto',
     )
 )

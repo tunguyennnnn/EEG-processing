@@ -2,8 +2,8 @@ import grpc
 from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
 
-import simulation_pb2 as simulation__pb2
-import simulation_pb2 as simulation__pb2
+import front_end_pb2 as front__end__pb2
+import front_end_pb2 as front__end__pb2
 
 
 class FrontEndStub(object):
@@ -15,9 +15,9 @@ class FrontEndStub(object):
       channel: A grpc.Channel.
     """
     self.ExecuteMentalCommand = channel.unary_unary(
-        '/front_end.FrontEnd/ExecuteMentalCommand',
-        request_serializer=simulation__pb2.CommandRequest.SerializeToString,
-        response_deserializer=simulation__pb2.StatusReply.FromString,
+        '/interop.FrontEnd/ExecuteMentalCommand',
+        request_serializer=front__end__pb2.CommandRequest.SerializeToString,
+        response_deserializer=front__end__pb2.StatusReply.FromString,
         )
 
 
@@ -33,10 +33,10 @@ def add_FrontEndServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'ExecuteMentalCommand': grpc.unary_unary_rpc_method_handler(
           servicer.ExecuteMentalCommand,
-          request_deserializer=simulation__pb2.CommandRequest.FromString,
-          response_serializer=simulation__pb2.StatusReply.SerializeToString,
+          request_deserializer=front__end__pb2.CommandRequest.FromString,
+          response_serializer=front__end__pb2.StatusReply.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'front_end.FrontEnd', rpc_method_handlers)
+      'interop.FrontEnd', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))

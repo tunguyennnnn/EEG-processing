@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package front_end;
+package interop;
 
 service FrontEnd {
   rpc ExecuteMentalCommand (CommandRequest) returns (StatusReply) {}
