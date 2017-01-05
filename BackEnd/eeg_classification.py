@@ -137,11 +137,15 @@ def channel_selection(list_of_classifers):
     selected_classifiers = []
     for classifier in list_of_classifers:
         average = classifier['accuracy']
+        print average
         take = True
-        for command in classifier['command_detail']:
-            if abs(average - classifier['command_detail'][command]) > 0.15:
-                take = False
-                break
+        if average < 0.7:
+            take = False
+        else:
+            for command in classifier['command_detail']:
+                if abs(average - classifier['command_detail'][command]) > 0.15:
+                    take = False
+                    break
         if take:
             selected_classifiers.append(classifier)
     return selected_classifiers
@@ -163,7 +167,7 @@ def training(id, list_of_commands):
         testing_data.append(command_test_data)
 
     classifiers, selectors = pre_train(training_data, list_of_commands)
-    results = evaluate_classifiers(classifiers, selectors, testing_data, list_of_commands)
+    results = channel_selection(evaluate_classifiers(classifiers, selectors, testing_data, list_of_commands))
     print results
     store_classifier_profiles(id,results)
 

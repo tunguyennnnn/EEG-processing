@@ -25,6 +25,9 @@ import preprocessing as PP
 from sklearn.feature_selection import RFE
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
+import acquisition as AQ
+from front_end_client import *
+
 ''' Check if libEDK exists'''
 try :
     if sys.platform.startswith('win32'):
@@ -83,7 +86,7 @@ option      = c_int(0)
 state     = c_int(0)
 
 
-COMMAND_TABLES = ["UP", "DOWN", "RIGHT", "LEFT", "FORWARD", "BACKWARD"]
+COMMAND_TABLES = ["NEUTRAL", "UP", "DOWN", "RIGHT", "LEFT", "FORWARD", "BACKWARD"]
 
 
 def acquire_data(id, command_name):
@@ -97,6 +100,8 @@ def acquire_data(id, command_name):
 def train(id, list_of_commands):
     list_of_commands=[COMMAND_TABLES.index(command.upper()) for command in list_of_commands]
     CF.training(id, list_of_commands)
+
+
 class EEGStorage:
     def __init__(self):
         self.is_reading = False
@@ -134,12 +139,13 @@ def acquire_data_for_executing():
     while 1:
         while eeg_storage.is_reading:
             pass
+
         state = libEDK.EE_EngineGetNextEvent(eEvent)
         if state == 0:
             eventType = libEDK.EE_EmoEngineEventGetType(eEvent)
             print eventType
             libEDK.EE_EmoEngineEventGetUserId(eEvent, user)
-            if eventType == 16: #libEDK.EE_Event_enum.EE_UserAdded:
+            if eventType == 64: #libEDK.EE_Event_enum.EE_UserAdded:
                 print "User added"
                 libEDK.EE_DataAcquisitionEnable(userID,True)
                 readytocollect = True
@@ -161,33 +167,37 @@ def acquire_data_for_executing():
                             eeg_storage.store_time(arr[sampleIdx])
         time.sleep(0.2)
         eeg_storage.is_reading = True
-    libEDK.EE_DataFree(hData)
-    libEDK.EE_EngineDisconnect()
-    libEDK.EE_EmoStateFree(eState)
-    libEDK.EE_EmoEngineEventFree(eEvent)
+
 
 def executing(clfs):
     global eeg_storage
     header = {'AF3': 0, 'F7': 1, 'F3': 2, 'FC5': 3, 'T7': 4, 'P7': 5,
               'O1': 6, 'O2': 7, 'P8': 8, 'T8': 9, 'FC6': 10, 'F4': 11,
               'F8': 12, 'AF4': 13}
+
+    front_end = FrontEndClient()
+    front_end.connect()
     while 1:
         while not eeg_storage.is_reading:
             pass
         if eeg_storage.get_buffer_size() > 100:
             buffer, time = eeg_storage.buffer, eeg_storage.time_info
             feature_matrix = [FE.compute_feature_vector(channel_data) for channel_data in buffer]
-            print clfs[3]['cf'].predict(feature_matrix[1])
+            command = clfs[3]['cf'].predict(feature_matrix[1])[0]
+            print command
+            if command == 0:
+                front_end.move_up()
+            elif command == 1:
+                front_end.move_down()
+
             eeg_storage.reset_buffer(half=True);
             print 1
         eeg_storage.is_reading = False
 
 
 def recognize(id):
-    if not CF.classifier_exist(id):
-        return None
     classifiers = CF.get_classifiers(id)
-
+    print 333333
     #control variables and buffer
     stop_collecting = False
     acquire_data = Thread(target=acquire_data_for_executing)
