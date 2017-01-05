@@ -47,6 +47,8 @@ namespace SimulationApp.Services
         public override Task<StatusReply> ExecuteMentalCommand(CommandRequest request, ServerCallContext context)
         {
             var command = (DroneCommand) request.CommandType;
+
+            Application.Current?.Dispatcher?.Invoke(() => _vm.ExecuteDroneCommand(DroneCommand.Reset));
             Application.Current?.Dispatcher?.Invoke(() => _vm.ExecuteDroneCommand(command));
 
             return Task.FromResult(new StatusReply() { Code = 0 });
