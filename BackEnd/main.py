@@ -176,7 +176,6 @@ def executing(clfs):
               'F8': 12, 'AF4': 13}
 
     front_end = FrontEndClient()
-    front_end.connect()
     while 1:
         while not eeg_storage.is_reading:
             pass
