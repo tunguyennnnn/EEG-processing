@@ -2,22 +2,18 @@
 using System.Windows.Input;
 
 
-namespace SimulationApp
+namespace SimulationApp.Utilities
 {
     public class DelegateCommand : ICommand
     {
-        private readonly Predicate<object> _canExecute;
-        private readonly Action<object> _execute;
+        private readonly Func<bool> _canExecute;
+        private readonly Action _execute;
 
         public event EventHandler CanExecuteChanged;
 
-        public DelegateCommand(Action<object> execute)
-                       : this(execute, null)
-        {
-        }
+        public DelegateCommand(Action execute) : this(execute, null) {}
 
-        public DelegateCommand(Action<object> execute,
-                       Predicate<object> canExecute)
+        public DelegateCommand(Action execute, Func<bool> canExecute)
         {
             _execute = execute;
             _canExecute = canExecute;
@@ -25,25 +21,50 @@ namespace SimulationApp
 
         public bool CanExecute(object parameter)
         {
-            if (_canExecute == null)
-            {
-                return true;
-            }
-
-            return _canExecute(parameter);
+            return _canExecute == null || _canExecute();
         }
 
         public void Execute(object parameter)
         {
+            _execute();
+        }
+
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public class DelegateCommand<T> : ICommand
+    {
+        private readonly Predicate<T> _canExecute;
+        private readonly Action<T> _execute;
+
+        public event EventHandler CanExecuteChanged;
+
+        public DelegateCommand(Action<T> execute) : this(execute, null) {}
+
+        public DelegateCommand(Action<T> execute, Predicate<T> canExecute)
+        {
+            _execute = execute;
+            _canExecute = canExecute;
+        }
+
+        public bool CanExecute(object o)
+        {
+            var parameter = (T)o;
+            return _canExecute == null || _canExecute(parameter);
+        }
+
+        public void Execute(object o)
+        {
+            var parameter = (T)o;
             _execute(parameter);
         }
 
         public void RaiseCanExecuteChanged()
         {
-            if (CanExecuteChanged != null)
-            {
-                CanExecuteChanged(this, EventArgs.Empty);
-            }
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

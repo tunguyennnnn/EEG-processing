@@ -1,13 +1,16 @@
-﻿using CsvHelper;
-using LiveCharts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Timers;
 using System.Windows;
+using System.Windows.Threading;
+using CsvHelper;
+using LiveCharts;
+using SimulationApp.Models;
 
-namespace SimulationApp
+
+namespace SimulationApp.ViewModels
 {
     public class GraphVM
     {
@@ -15,6 +18,30 @@ namespace SimulationApp
         {
             LoadMockData();
         }
+
+        #region Properties
+
+        public List<EEGDataPoint> Buffer = new List<EEGDataPoint>();
+
+        public ChartValues<double> AF3ChartValues { get; set; }
+        public ChartValues<double> F7ChartValues { get; set; }
+        public ChartValues<double> F3ChartValues { get; set; }
+        public ChartValues<double> FC5ChartValues { get; set; }
+        public ChartValues<double> T7ChartValues { get; set; }
+        public ChartValues<double> P7ChartValues { get; set; }
+        public ChartValues<double> O1ChartValues { get; set; }
+
+        public ChartValues<double> O2ChartValues { get; set; }
+        public ChartValues<double> P8ChartValues { get; set; }
+        public ChartValues<double> T8ChartValues { get; set; }
+        public ChartValues<double> FC6ChartValues { get; set; }
+        public ChartValues<double> F4ChartValues { get; set; }
+        public ChartValues<double> F8ChartValues { get; set; }
+        public ChartValues<double> AF4ChartValues { get; set; }
+
+        #endregion
+
+        #region Public Methods
 
         public void OnGraphPointReceived(EEGDataPoint point)
         {
@@ -30,28 +57,29 @@ namespace SimulationApp
             }
         }
 
+        #endregion
+
+        #region Helper Methods
+
         private void AddPointsToChart()
         {
-           // Application.Current.Dispatcher.Invoke(new Action(() => { }), DispatcherPriority.ContextIdle, null);
+            Application.Current.Dispatcher.Invoke(new Action(() => { }), DispatcherPriority.ContextIdle, null);
 
-            //using (var d = Application.Current.Dispatcher.DisableProcessing())
-            //{
-                AF3ChartValues.AddRange(Buffer.Select(p => p.AF3));
-                F7ChartValues.AddRange(Buffer.Select(p => p.F7));
-                F3ChartValues.AddRange(Buffer.Select(p => p.F3));
-                FC5ChartValues.AddRange(Buffer.Select(p => p.FC5));
-                T7ChartValues.AddRange(Buffer.Select(p => p.T7));
-                P7ChartValues.AddRange(Buffer.Select(p => p.P7));
-                O1ChartValues.AddRange(Buffer.Select(p => p.O1));
+            AF3ChartValues.AddRange(Buffer.Select(p => p.AF3));
+            F7ChartValues.AddRange(Buffer.Select(p => p.F7));
+            F3ChartValues.AddRange(Buffer.Select(p => p.F3));
+            FC5ChartValues.AddRange(Buffer.Select(p => p.FC5));
+            T7ChartValues.AddRange(Buffer.Select(p => p.T7));
+            P7ChartValues.AddRange(Buffer.Select(p => p.P7));
+            O1ChartValues.AddRange(Buffer.Select(p => p.O1));
 
-                O2ChartValues.AddRange(Buffer.Select(p => p.O2));
-                P8ChartValues.AddRange(Buffer.Select(p => p.P8));
-                T8ChartValues.AddRange(Buffer.Select(p => p.T8));
-                FC6ChartValues.AddRange(Buffer.Select(p => p.FC6));
-                F4ChartValues.AddRange(Buffer.Select(p => p.F4));
-                F8ChartValues.AddRange(Buffer.Select(p => p.F8));
-                AF4ChartValues.AddRange(Buffer.Select(p => p.AF4));
-            //}
+            O2ChartValues.AddRange(Buffer.Select(p => p.O2));
+            P8ChartValues.AddRange(Buffer.Select(p => p.P8));
+            T8ChartValues.AddRange(Buffer.Select(p => p.T8));
+            FC6ChartValues.AddRange(Buffer.Select(p => p.FC6));
+            F4ChartValues.AddRange(Buffer.Select(p => p.F4));
+            F8ChartValues.AddRange(Buffer.Select(p => p.F8));
+            AF4ChartValues.AddRange(Buffer.Select(p => p.AF4));
         }
 
         private void CleanUpChart()
@@ -76,26 +104,11 @@ namespace SimulationApp
             }
         }
 
-        public List<EEGDataPoint> Buffer = new List<EEGDataPoint>();
+        #endregion
 
-        public ChartValues<double> AF3ChartValues { get; set; }
-        public ChartValues<double> F7ChartValues { get; set; }
-        public ChartValues<double> F3ChartValues { get; set; }
-        public ChartValues<double> FC5ChartValues { get; set; }
-        public ChartValues<double> T7ChartValues { get; set; }
-        public ChartValues<double> P7ChartValues { get; set; }
-        public ChartValues<double> O1ChartValues { get; set; }
+        #region Data Mocking
 
-        public ChartValues<double> O2ChartValues { get; set; }
-        public ChartValues<double> P8ChartValues { get; set; }
-        public ChartValues<double> T8ChartValues { get; set; }
-        public ChartValues<double> FC6ChartValues { get; set; }
-        public ChartValues<double> F4ChartValues { get; set; }
-        public ChartValues<double> F8ChartValues { get; set; }
-        public ChartValues<double> AF4ChartValues { get; set; }
-
-        // Data Mocking
-        private double _timePeriod = 1000.0/128.0;
+        private const double TimePeriod = 1000.0/128.0;
 
         private void LoadMockData()
         {
@@ -132,7 +145,7 @@ namespace SimulationApp
         {
             Timer = new Timer
             {
-                Interval = _timePeriod
+                Interval = TimePeriod
             };
             Timer.Elapsed += new ElapsedEventHandler(SendNextPoint);
 
@@ -149,7 +162,9 @@ namespace SimulationApp
             }
         }
 
-        public Timer Timer { get; set; }
-        public Queue<EEGDataPoint> MockPoints { get; set; }
+        private Timer Timer { get; set; }
+        private Queue<EEGDataPoint> MockPoints { get; set; }
+
+        #endregion
     }
 }

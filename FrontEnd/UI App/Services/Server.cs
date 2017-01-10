@@ -1,16 +1,43 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
-using FrontEnd;
 using Grpc.Core;
+
+using Interop;
+
 using SimulationApp.Models;
 using SimulationApp.ViewModels;
 
 
-namespace SimulationApp
+namespace SimulationApp.Services
 {
-    public class FrontEndImpl : FrontEnd.FrontEnd.FrontEndBase
+    public class FrontEndServer
     {
-        private TrainingVM _vm;
+        private const int Port = 50051;
+        private readonly Server _server;
+
+        public FrontEndServer(TrainingVM vm)
+        {
+            _server = new Server
+            {
+                Services = { FrontEnd.BindService(new FrontEndImpl(vm)) },
+                Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
+            };
+        }
+
+        public void Start()
+        {
+            _server.Start();
+        }
+
+        public void Stop()
+        {
+            _server.ShutdownAsync().Wait();
+        }
+    }
+
+    public class FrontEndImpl : FrontEnd.FrontEndBase
+    {
+        private readonly TrainingVM _vm;
 
         public FrontEndImpl(TrainingVM vm)
         {
@@ -21,34 +48,10 @@ namespace SimulationApp
         {
             var command = (DroneCommand) request.CommandType;
 
+            Application.Current?.Dispatcher?.Invoke(() => _vm.ExecuteDroneCommand(DroneCommand.Reset));
             Application.Current?.Dispatcher?.Invoke(() => _vm.ExecuteDroneCommand(command));
 
             return Task.FromResult(new StatusReply() { Code = 0 });
-        }
-    }
-
-    public class FrontEndServer
-    {
-        private const int Port = 50051;
-        private Server server;
-
-        public FrontEndServer(TrainingVM vm)
-        {
-            server = new Server
-            {
-                Services = { FrontEnd.FrontEnd.BindService(new FrontEndImpl(vm)) },
-                Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
-            };
-        }
-
-        public void Start()
-        {
-            server.Start();
-        }
-
-        public void Stop()
-        {
-            server.ShutdownAsync().Wait();
         }
     }
 }

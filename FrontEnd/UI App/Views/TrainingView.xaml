@@ -1,9 +1,9 @@
 ﻿<UserControl x:Class="SimulationApp.Views.Simulation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:SimulationApp"
         xmlns:controls="clr-namespace:SimulationApp.Controls"
-        xmlns:viewModels="clr-namespace:SimulationApp.ViewModels">
+        xmlns:viewModels="clr-namespace:SimulationApp.ViewModels"
+        xmlns:utilities="clr-namespace:SimulationApp.Utilities">
     
     <UserControl.DataContext>
         <viewModels:TrainingVM/>
@@ -11,7 +11,7 @@
     
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <local:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+        <utilities:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     </UserControl.Resources>
 
     <Grid IsEnabled="{Binding Path=IsTrainingInProgress, Converter={StaticResource InverseBooleanConverter}}">
@@ -29,14 +29,14 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" FontWeight="Bold" FontSize="24" Margin="0 0 0 20">Preview</Label>
+            <Label Grid.Row="0" Margin="0 0 0 20">Preview</Label>
             <controls:Drone3D Grid.Row="1"/>
         </Grid>
 
         <!-- Command List -->
         <DockPanel Grid.Column="1" Margin="{StaticResource SplitRight}">
 
-            <Label DockPanel.Dock="Top" FontWeight="Bold" FontSize="24">Training</Label>
+            <Label DockPanel.Dock="Top">Training</Label>
             <TextBlock DockPanel.Dock="Top" Margin="0 20" TextWrapping="Wrap">
                 Select a droneCommand to train from the list below. 
                 After successful training, test droneCommand recognition using the simulation pane on the left.

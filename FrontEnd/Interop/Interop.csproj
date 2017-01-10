@@ -55,8 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Simulation.cs" />
-    <Compile Include="SimulationGrpc.cs" />
+    <Compile Include="out\FrontEnd.cs" />
+    <Compile Include="out\FrontEndGrpc.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

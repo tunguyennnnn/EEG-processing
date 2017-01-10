@@ -19,7 +19,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" FontWeight="Bold" FontSize="24" Margin="5 0 0 20">Debug</Label>
+        <Label Grid.Row="0" Margin="5 0 0 20">Debug</Label>
 
         <Button Content="Forward"    Grid.Row="1" MouseEnter="MoveForward" MouseLeave="Reset" Margin="5" Focusable="False"/>
         <Button Content="Back"       Grid.Row="2" MouseEnter="MoveBack"    MouseLeave="Reset" Margin="5" Focusable="False"/>

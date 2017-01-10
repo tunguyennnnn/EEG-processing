@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SimulationApp.GraphView"
+﻿<UserControl x:Class="SimulationApp.Views.GraphView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <StackPanel>
-        <Label FontWeight="Bold" FontSize="24" Margin="0 0 0 20">EEG Graphs</Label>
+        <Label Margin="0 0 0 20">EEG Graphs</Label>
         <GroupBox Header="Raw EEG" Padding="10">
             <Grid>
                 <Grid.RowDefinitions>

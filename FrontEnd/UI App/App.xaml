@@ -8,8 +8,15 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml" />
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Dark.xaml"/>
+                <ResourceDictionary>
+                    <properties:Settings x:Key="Settings" />
+
+                    <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                        <Setter Property="FontSize" Value="24"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <properties:Settings x:Key="Settings" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

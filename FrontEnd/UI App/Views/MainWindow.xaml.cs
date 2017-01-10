@@ -1,5 +1,4 @@
 ﻿using FirstFloor.ModernUI.Windows.Controls;
-using SimulationApp.ViewModels;
 
 namespace SimulationApp.Views
 {
