@@ -96,6 +96,9 @@ def acquire_data(id, command_name):
     if command_name.upper() in COMMAND_TABLES:
         AQ.acquire_data_for_command(id, COMMAND_TABLES.index(command_name.upper()))
 
+def reset(id):
+    import acquisition as AQ
+    AQ.reset_data(id)
 
 def train(id, list_of_commands):
     list_of_commands=[COMMAND_TABLES.index(command.upper()) for command in list_of_commands]
@@ -185,11 +188,10 @@ def executing(clfs):
             feature_matrix = [FE.compute_feature_vector(channel_data) for channel_data in buffer]
             command = clfs[3]['cf'].predict(feature_matrix[1])[0]
             print command
-            if command == 0:
+            if command == 1:
                 front_end.move_up()
-            elif command == 1:
+            elif command == 2:
                 front_end.move_down()
-
             eeg_storage.reset_buffer(half=True);
             print 1
         eeg_storage.is_reading = False
@@ -197,7 +199,6 @@ def executing(clfs):
 
 def recognize(id):
     classifiers = CF.get_classifiers(id)
-    print 333333
     #control variables and buffer
     stop_collecting = False
     acquire_data = Thread(target=acquire_data_for_executing)

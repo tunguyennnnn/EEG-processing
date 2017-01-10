@@ -1,5 +1,5 @@
-# python version >= 2.5
-import sys,os
+
+import sys,os, shutil
 import time
 import ctypes
 
@@ -152,14 +152,17 @@ def acquire_for_training():
 FOLDER_NAME = 'userdata'
 def make_file_name(id, state_number):
     global FOLDER_NAME
-    file_name = ''
+    folder_path = FOLDER_NAME + '/' + id
+    if not os.path.isdir(folder_path):
+        os.makedirs(folder_path)
+    file_path = ''
     i = 0
     while 1:
-        file_name = FOLDER_NAME + '/' + STATE_FILES[state_number] + '_' + id + '_' + str(i) + '.csv'
-        if not os.path.isfile(file_name):
+        file_path = folder_path + '/' + STATE_FILES[state_number] + '_' + id + '_' + str(i) + '.csv'
+        if not os.path.isfile(file_path):
             break
         i += 1
-    return file_name
+    return file_path
 libEDK.EE_DataSetBufferSizeInSec(secs)
 def acquire_data_for_command(id='tu' ,state_number=0):
     file_name = make_file_name(id, state_number)
@@ -228,7 +231,6 @@ def acquire_data_for_executing(buffer, time_info):
                 arr=(ctypes.c_double*nSamplesTaken[0])()
                 ctypes.cast(arr, ctypes.POINTER(ctypes.c_double))
                 for sampleIdx in range(nSamplesTaken[0]):
-                    print "ssssssssssssssssssssssssssssssssss"
                     for i in range(22):
                         libEDK.EE_DataGet(hData,targetChannelList[i],byref(arr), nSam)
                         if i >= 1 and i <= 14:
@@ -238,8 +240,18 @@ def acquire_data_for_executing(buffer, time_info):
 
 
 def get_data(id='tu', state_number=0):
-    data = [read_file(name) for name in glob.glob(FOLDER_NAME+'/'+STATE_FILES[state_number]+'_' + id +'_[0-9]*.csv')]
+    data = [read_file(name) for name in glob.glob(FOLDER_NAME+'/' + id + '/' + STATE_FILES[state_number]+'_' + id +'_[0-9]*.csv')]
     return data
+
+def reset_data(id):
+    folder = "userdata/" + id
+    for the_file in os.listdir(folder):
+        file_path = os.path.join(folder, the_file)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            print e
 
 def split_data_for_training(data_list):
     '''split data for training and testing
