@@ -245,8 +245,16 @@ def get_data(id='tu', state_number=0):
 
 def reset_data(id):
     folder = "userdata/" + id
+    classifier_folder = 'classifier'
     for the_file in os.listdir(folder):
         file_path = os.path.join(folder, the_file)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            print e
+    for the_file in os.listdir(classifier_folder):
+        file_path = os.path.join(classifier_folder, the_file)
         try:
             if os.path.isfile(file_path):
                 os.unlink(file_path)

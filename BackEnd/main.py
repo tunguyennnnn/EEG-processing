@@ -171,6 +171,12 @@ def acquire_data_for_executing():
         time.sleep(0.2)
         eeg_storage.is_reading = True
 
+FRONT_END = FrontEndClient()
+
+def send_command_to_front_end(command):
+    COMMAND_MAP = {0: 'neutral', 1: 'move_up', 2: 'move_down', 3: 'turn_right', 4: 'turn_left', 5: 'move_forward', 6: 'move_backward'}
+    if command in COMMAND_MAP.keys():
+        FRONT_END.call_method(COMMAND_MAP[command])
 
 def executing(clfs):
     global eeg_storage
@@ -178,23 +184,56 @@ def executing(clfs):
               'O1': 6, 'O2': 7, 'P8': 8, 'T8': 9, 'FC6': 10, 'F4': 11,
               'F8': 12, 'AF4': 13}
 
-    front_end = FrontEndClient()
+    accumulator = AccumulatedData(clfs)
     while 1:
         while not eeg_storage.is_reading:
             pass
         if eeg_storage.get_buffer_size() > 100:
-            buffer, time = eeg_storage.buffer, eeg_storage.time_info
-            feature_matrix = [FE.compute_feature_vector(channel_data) for channel_data in buffer]
-            command = clfs[3]['cf'].predict(feature_matrix[1])[0]
-            print command
-            if command == 1:
-                front_end.move_up()
-            elif command == 2:
-                front_end.move_down()
-            eeg_storage.reset_buffer(half=True);
-            print 1
+            accumulator.add_data(eeg_storage.buffer, eeg_storage.time_info)
+            if accumulator.is_enough():
+                command = accumulator.determine_command(accumulator.process())
+                send_command_to_front_end(command)
+            eeg_storage.reset_buffer(half = True)
         eeg_storage.is_reading = False
 
+class AccumulatedData:
+    def __init__(self, classifiers):
+        self.buffer = []
+        self.time_info = []
+        self.clfs = classifiers
+
+    def add_data(self, buffer, time_info):
+        self.buffer.append(buffer)
+        self.time_info.append(time_info)
+
+    def is_enough(self):
+        return len(self.buffer) > 4
+
+    def process(self):
+        accummulated_result = []
+        for data in self.buffer:
+            accummulated_result.append(CF.final_command(self.clfs, data))
+        self.buffer = []
+        self.time_info = []
+        print accummulated_result
+        return accummulated_result
+
+    def determine_command(self, accumulated_results):
+        final_result = {}
+        for command, probability in accumulated_results:
+            if not final_result.has_key(command):
+                final_result[command] = probability
+            else:
+                final_result[command] += probability
+        print final_result
+        cmd = -1
+        result = 0
+        for command in final_result.keys():
+            if final_result[command] > result:
+                result = final_result[command]
+                cmd = command
+        print cmd
+        return cmd
 
 def recognize(id):
     classifiers = CF.get_classifiers(id)
@@ -206,3 +245,6 @@ def recognize(id):
     execu.start()
     acquire_data.join()
     execu.join()
+
+
+recognize("tu")

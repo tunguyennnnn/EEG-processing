@@ -53,3 +53,6 @@ class FrontEndClient:
         command_request = CommandRequest(command_type=command)
         response = self.stub.ExecuteMentalCommand(command_request)
         print("Front End responded with " + str(response.code))
+
+    def call_method(self, name):
+        getattr(self, name)();

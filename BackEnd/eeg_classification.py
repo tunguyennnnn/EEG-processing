@@ -1,5 +1,6 @@
 import os.path
 from sklearn.externals import joblib
+from sklearn import svm
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 import acquisition as AQ
 import feature_extraction as FE
@@ -92,6 +93,23 @@ def pre_train(list_of_data, list_of_commands):
         selectors[index].fit(training_data, target_classes)
     return (classifiers, selectors)
 
+def pre_train_svm(list_of_data, list_of_commands):
+    classifiers = [svm.SVC() for i in range(14)]
+    selectors = [RFE(svm.SVC(), 10, step=1) for i in range(14)]
+    min_len = min([len(data[0]) for data in list_of_data])
+    for index in range(14):
+        for i in xrange(100, min_len -100, 50):
+            sets = []
+            for command, command_data in zip(list_of_commands, list_of_data):
+                try:
+                    sets.append(FE.compute_feature_vector(command_data[index][i: i + 100]))
+                except:
+                    continue
+            if len(sets) == len(list_of_commands):
+                classifiers[index].fit(sets, list_of_commands)
+    return (classifiers, classifiers)
+
+
 def evaluate_classifiers(list_of_classifers, list_of_selectors, list_of_data, list_of_commands):
     CHANNELS = ['AF3', 'F7', 'F3', 'FC5', 'T7', 'P7','O1', 'O2', 'P8', 'T8', 'FC6', 'F4','F8', 'AF4']
     channel_results = []
@@ -175,6 +193,7 @@ def training(id, list_of_commands):
 def store_classifier_profiles(id, clfs):
     channel_info = {}
     for i, clf in zip(range(len(clfs)), clfs):
+        print clf['channel']
         channel_info[clf['channel']] = {}
         channel_info[clf['channel']]['accuracy'] = clf['accuracy']
         channel_info[clf['channel']]['detail'] = clf['command_detail']
@@ -195,5 +214,36 @@ def get_classifiers(id):
         accuracy =  channel_info[channel]['accuracy']
         detail = channel_info[channel]['detail']
         cf = joblib.load(name)
-        classifiers.append({'cf': cf, 'channel': channel, 'accuracy': accuracy, 'detail': detail})
+
+        classifiers.append(ClassifierInfo(accuracy=accuracy, clf=cf, channel_name=channel, detail=detail))
+    classifiers.sort(key=lambda x: x.accuracy, reverse=True)
     return classifiers
+
+class ClassifierInfo:
+    def __init__(self, accuracy=0.0, clf=LinearDiscriminantAnalysis(), channel_name='', detail = {}):
+        self.accuracy = accuracy
+        self.clf = clf
+        self.channel = channel_name
+        self.detail = detail
+
+    def compute_probability(self, data):
+        result = self.clf.predict(FE.compute_feature_vector(data))[0]
+        return (result, self.accuracy * self.detail[str(result)])
+
+def final_command(classifier_infos, channels_data):
+    CHANNELS = ['AF3', 'F7', 'F3', 'FC5', 'T7', 'P7','O1', 'O2', 'P8', 'T8', 'FC6', 'F4','F8', 'AF4']
+    results = {}
+    for c_i in classifier_infos:
+        data = channels_data[CHANNELS.index(c_i.channel)]
+        command, prediction = c_i.compute_probability(data)
+        if results.has_key(command):
+            results[command] += prediction
+        else: results[command] = prediction
+    print results
+    command = -1
+    result = 0
+    for res in results.keys():
+        if result < results[res]:
+            result = results[res]
+            command = res
+    return (command, result)
