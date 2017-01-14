@@ -3,7 +3,7 @@ from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
 
 import front_end_pb2 as front__end__pb2
-import front_end_pb2 as front__end__pb2
+import shared_pb2 as shared__pb2
 
 
 class FrontEndStub(object):
@@ -17,7 +17,7 @@ class FrontEndStub(object):
     self.ExecuteMentalCommand = channel.unary_unary(
         '/interop.FrontEnd/ExecuteMentalCommand',
         request_serializer=front__end__pb2.CommandRequest.SerializeToString,
-        response_deserializer=front__end__pb2.StatusReply.FromString,
+        response_deserializer=shared__pb2.StatusReply.FromString,
         )
 
 
@@ -34,7 +34,7 @@ def add_FrontEndServicer_to_server(servicer, server):
       'ExecuteMentalCommand': grpc.unary_unary_rpc_method_handler(
           servicer.ExecuteMentalCommand,
           request_deserializer=front__end__pb2.CommandRequest.FromString,
-          response_serializer=front__end__pb2.StatusReply.SerializeToString,
+          response_serializer=shared__pb2.StatusReply.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

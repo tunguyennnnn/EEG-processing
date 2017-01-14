@@ -245,6 +245,3 @@ def recognize(id):
     execu.start()
     acquire_data.join()
     execu.join()
-
-
-recognize("tu")

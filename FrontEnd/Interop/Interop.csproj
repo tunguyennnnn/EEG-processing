@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="out\BackEnd.cs" />
+    <Compile Include="out\BackEndGrpc.cs" />
+    <Compile Include="out\Shared.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="out\FrontEnd.cs" />
     <Compile Include="out\FrontEndGrpc.cs" />
@@ -64,7 +67,9 @@
       <Link>generate_protos.bat</Link>
     </None>
     <None Include="packages.config" />
-    <None Include="protos\simulation.proto" />
+    <None Include="protos\back_end.proto" />
+    <None Include="protos\front_end.proto" />
+    <None Include="protos\shared.proto" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Grpc.Core.1.0.1\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.1.0.1\build\net45\Grpc.Core.targets')" />

@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "shared.proto";
+
 package interop;
 
 service FrontEnd {
@@ -7,20 +9,5 @@ service FrontEnd {
 }
 
 message CommandRequest {
-    enum CommandType {
-    MOVE_FORWARD = 0;
-    MOVE_BACK = 1;
-    MOVE_RIGHT = 2;
-    MOVE_LEFT = 3;
-    MOVE_UP = 4;
-    MOVE_DOWN = 5;
-    TURN_RIGHT = 6;
-	TURN_LEFT = 7;
-	RESET = 8;
-  }
   CommandType command_type = 1;
-}
-
-message StatusReply {
-  int32 code = 1;
 }

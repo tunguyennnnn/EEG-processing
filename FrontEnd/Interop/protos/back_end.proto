@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "shared.proto";
+
+package interop;
+
+service BackEnd {
+  rpc AcquireDataForCommand(AquireDataRequest) returns (StatusReply) {}
+  rpc TrainClassifier(TrainClassifierRequest) returns (StatusReply) {}
+  rpc RecognizeCommands(RecognizeCommandsRequest) returns (StatusReply) {}
+}
+
+message AquireDataRequest {
+	string username = 1;
+	CommandType command = 2;
+}
+
+message TrainClassifierRequest {
+	string username = 1;
+	repeated CommandType command_list = 2;
+}
+
+message RecognizeCommandsRequest {
+	string username = 1;
+}
