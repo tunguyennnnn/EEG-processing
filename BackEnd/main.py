@@ -177,6 +177,8 @@ def send_command_to_front_end(command):
     COMMAND_MAP = {0: 'neutral', 1: 'move_up', 2: 'move_down', 3: 'turn_right', 4: 'turn_left', 5: 'move_forward', 6: 'move_backward'}
     if command in COMMAND_MAP.keys():
         FRONT_END.call_method(COMMAND_MAP[command])
+        time.sleep(0.5)
+        FRONT_END.call_method("neutral")
 
 def executing(clfs):
     global eeg_storage
@@ -245,6 +247,5 @@ def recognize(id):
     execu.start()
     acquire_data.join()
     execu.join()
-
 
 recognize("tu")
