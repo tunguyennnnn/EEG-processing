@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -15,6 +16,11 @@ namespace SimulationApp.ViewModels
         {
             _server = new FrontEndServer(this);
             _server.Start();
+
+            _client = new BackEndClient();
+
+            // Create default user proifle
+            ActiveProfile = new UserProfile("tu") {CommandList = new List<DroneCommand>() {DroneCommand.MoveUp, DroneCommand.MoveDown} };
         }
 
         #region Properties
@@ -25,11 +31,18 @@ namespace SimulationApp.ViewModels
             set { SetValue(ref _isTrainingInProgress, value); }
         }
 
+        public UserProfile ActiveProfile
+        {
+            get { return _activeProfile; }
+            set { SetValue(ref _activeProfile, value); }
+        }
+
         #endregion
 
         #region Commands
 
-        public ICommand TrainCommand => new DelegateCommand(StartTraining);
+        public ICommand TrainCommand => new DelegateCommand<DroneCommand>(StartTraining);
+        public ICommand TrainClassifierCommand => new DelegateCommand(TrainClassifier);
 
         #endregion
 
@@ -56,11 +69,15 @@ namespace SimulationApp.ViewModels
 
         #region Helper Methods
 
-        private void StartTraining()
+        private void StartTraining(DroneCommand command)
         {
             IsTrainingInProgress = true;
 
-            Task.Delay(8000).ContinueWith(t => StopTraining());
+            Task.Run(() =>
+            {
+                _client.AcquireDataForCommand(ActiveProfile.Username, command);
+                StopTraining();
+            });
         }
 
         private void StopTraining()
@@ -68,13 +85,28 @@ namespace SimulationApp.ViewModels
             IsTrainingInProgress = false;
         }
 
+        private void TrainClassifier()
+        {
+            IsTrainingInProgress = true;
+
+            Task.Run(() =>
+            {
+                _client.TrainClassifier(ActiveProfile.Username, ActiveProfile.CommandList);
+                StopTraining();
+                _client.RecognizeCommands(ActiveProfile.Username);
+            });
+        }
+
         #endregion
 
         #region Private Variables
 
         private readonly FrontEndServer _server;
+        private readonly BackEndClient _client;
         private bool _isTrainingInProgress;
-        
+
+        private UserProfile _activeProfile;
+
         #endregion
     }
 }

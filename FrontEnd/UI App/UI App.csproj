@@ -46,6 +46,7 @@
       <HintPath>..\packages\ModernUI.WPF.1.0.9\lib\net45\FirstFloor.ModernUI.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Google.Protobuf, Version=3.1.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604" />
     <Reference Include="Grpc.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
       <HintPath>..\packages\Grpc.Core.1.0.1\lib\net45\Grpc.Core.dll</HintPath>
       <Private>True</Private>
@@ -88,6 +89,8 @@
       <DependentUpon>CommandList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DroneCommand.cs" />
+    <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="Services\BackEndClient.cs" />
     <Compile Include="Utilities\DelegateCommand.cs" />
     <Compile Include="Models\EEGDataPoint.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />
@@ -96,7 +99,7 @@
     </Compile>
     <Compile Include="ViewModels\GraphVM.cs" />
     <Compile Include="Utilities\InverseBooleanConverter.cs" />
-    <Compile Include="Services\Server.cs" />
+    <Compile Include="Services\FrontEndServer.cs" />
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>

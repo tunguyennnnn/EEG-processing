@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="SimulationApp.Controls.CommandList"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:SimulationApp.Models">
     
     <GroupBox Header="Drone Commands" VerticalAlignment="Stretch" Padding="10">
         <Grid>
@@ -39,40 +40,40 @@
             </Popup>
 
             <Label Content="Move Forward" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="0" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}"/>
+            <Button Content="Train" Grid.Row="0" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveForward}"/>
             <Button Content="Reset" Grid.Row="0" Grid.Column="2" Margin="5 5"/>
 
 
             <Label Content="Move Back" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="1" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}"/>
+            <Button Content="Train" Grid.Row="1" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveBack}"/>
             <Button Content="Reset" Grid.Row="1" Grid.Column="2" Margin="5 5"/>
 
 
             <Label Content="Move Right" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="2" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}"/>
+            <Button Content="Train" Grid.Row="2" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveRight}"/>
             <Button Content="Reset" Grid.Row="2" Grid.Column="2" Margin="5 5"/>
 
 
             <Label Content="Move Left" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="3" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}"/>
+            <Button Content="Train" Grid.Row="3" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveLeft}"/>
             <Button Content="Reset" Grid.Row="3" Grid.Column="2" Margin="5 5"/>
 
 
             <Label Content="Move Up" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="4" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}"/>
+            <Button Content="Train" Grid.Row="4" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveUp}"/>
             <Button Content="Reset" Grid.Row="4" Grid.Column="2" Margin="5 5"/>
 
             <Label Content="Move Down" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="5" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}"/>
+            <Button Content="Train" Grid.Row="5" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveDown}"/>
             <Button Content="Reset" Grid.Row="5" Grid.Column="2" Margin="5 5"/>
 
 
             <Label Content="Turn Right" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="6" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}"/>
+            <Button Content="Train" Grid.Row="6" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.TurnRight}"/>
             <Button Content="Reset" Grid.Row="6" Grid.Column="2" Margin="5 5"/>
 
             <Label Content="Turn Left" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="7" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}"/>
+            <Button Content="Train" Grid.Row="7" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.TurnLeft}"/>
             <Button Content="Reset" Grid.Row="7" Grid.Column="2" Margin="5 5"/>
             
         </Grid>

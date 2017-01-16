@@ -41,6 +41,7 @@
                 Select a droneCommand to train from the list below. 
                 After successful training, test droneCommand recognition using the simulation pane on the left.
             </TextBlock>
+            <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="10" Command="{Binding TrainClassifierCommand}">Train Classifier</Button>
             <controls:CommandList/>
         </DockPanel>
 

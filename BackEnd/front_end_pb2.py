@@ -13,67 +13,19 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
+import shared_pb2 as shared__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='front_end.proto',
   package='interop',
   syntax='proto3',
-  serialized_pb=_b('\n\x0f\x66ront_end.proto\x12\x07interop\"\xe1\x01\n\x0e\x43ommandRequest\x12\x39\n\x0c\x63ommand_type\x18\x01 \x01(\x0e\x32#.interop.CommandRequest.CommandType\"\x93\x01\n\x0b\x43ommandType\x12\x10\n\x0cMOVE_FORWARD\x10\x00\x12\r\n\tMOVE_BACK\x10\x01\x12\x0e\n\nMOVE_RIGHT\x10\x02\x12\r\n\tMOVE_LEFT\x10\x03\x12\x0b\n\x07MOVE_UP\x10\x04\x12\r\n\tMOVE_DOWN\x10\x05\x12\x0e\n\nTURN_RIGHT\x10\x06\x12\r\n\tTURN_LEFT\x10\x07\x12\t\n\x05RESET\x10\x08\"\x1b\n\x0bStatusReply\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x32S\n\x08\x46rontEnd\x12G\n\x14\x45xecuteMentalCommand\x12\x17.interop.CommandRequest\x1a\x14.interop.StatusReply\"\x00\x62\x06proto3')
-)
+  serialized_pb=_b('\n\x0f\x66ront_end.proto\x12\x07interop\x1a\x0cshared.proto\"<\n\x0e\x43ommandRequest\x12*\n\x0c\x63ommand_type\x18\x01 \x01(\x0e\x32\x14.interop.CommandType2S\n\x08\x46rontEnd\x12G\n\x14\x45xecuteMentalCommand\x12\x17.interop.CommandRequest\x1a\x14.interop.StatusReply\"\x00\x62\x06proto3')
+  ,
+  dependencies=[shared__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
-
-_COMMANDREQUEST_COMMANDTYPE = _descriptor.EnumDescriptor(
-  name='CommandType',
-  full_name='interop.CommandRequest.CommandType',
-  filename=None,
-  file=DESCRIPTOR,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='MOVE_FORWARD', index=0, number=0,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='MOVE_BACK', index=1, number=1,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='MOVE_RIGHT', index=2, number=2,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='MOVE_LEFT', index=3, number=3,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='MOVE_UP', index=4, number=4,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='MOVE_DOWN', index=5, number=5,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='TURN_RIGHT', index=6, number=6,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='TURN_LEFT', index=7, number=7,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='RESET', index=8, number=8,
-      options=None,
-      type=None),
-  ],
-  containing_type=None,
-  options=None,
-  serialized_start=107,
-  serialized_end=254,
-)
-_sym_db.RegisterEnumDescriptor(_COMMANDREQUEST_COMMANDTYPE)
 
 
 _COMMANDREQUEST = _descriptor.Descriptor(
@@ -95,7 +47,6 @@ _COMMANDREQUEST = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
-    _COMMANDREQUEST_COMMANDTYPE,
   ],
   options=None,
   is_extendable=False,
@@ -103,45 +54,12 @@ _COMMANDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29,
-  serialized_end=254,
+  serialized_start=42,
+  serialized_end=102,
 )
 
-
-_STATUSREPLY = _descriptor.Descriptor(
-  name='StatusReply',
-  full_name='interop.StatusReply',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='code', full_name='interop.StatusReply.code', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=256,
-  serialized_end=283,
-)
-
-_COMMANDREQUEST.fields_by_name['command_type'].enum_type = _COMMANDREQUEST_COMMANDTYPE
-_COMMANDREQUEST_COMMANDTYPE.containing_type = _COMMANDREQUEST
+_COMMANDREQUEST.fields_by_name['command_type'].enum_type = shared__pb2._COMMANDTYPE
 DESCRIPTOR.message_types_by_name['CommandRequest'] = _COMMANDREQUEST
-DESCRIPTOR.message_types_by_name['StatusReply'] = _STATUSREPLY
 
 CommandRequest = _reflection.GeneratedProtocolMessageType('CommandRequest', (_message.Message,), dict(
   DESCRIPTOR = _COMMANDREQUEST,
@@ -149,13 +67,6 @@ CommandRequest = _reflection.GeneratedProtocolMessageType('CommandRequest', (_me
   # @@protoc_insertion_point(class_scope:interop.CommandRequest)
   ))
 _sym_db.RegisterMessage(CommandRequest)
-
-StatusReply = _reflection.GeneratedProtocolMessageType('StatusReply', (_message.Message,), dict(
-  DESCRIPTOR = _STATUSREPLY,
-  __module__ = 'front_end_pb2'
-  # @@protoc_insertion_point(class_scope:interop.StatusReply)
-  ))
-_sym_db.RegisterMessage(StatusReply)
 
 
 try:
@@ -179,7 +90,7 @@ try:
       self.ExecuteMentalCommand = channel.unary_unary(
           '/interop.FrontEnd/ExecuteMentalCommand',
           request_serializer=CommandRequest.SerializeToString,
-          response_deserializer=StatusReply.FromString,
+          response_deserializer=shared__pb2.StatusReply.FromString,
           )
 
 
@@ -196,7 +107,7 @@ try:
         'ExecuteMentalCommand': grpc.unary_unary_rpc_method_handler(
             servicer.ExecuteMentalCommand,
             request_deserializer=CommandRequest.FromString,
-            response_serializer=StatusReply.SerializeToString,
+            response_serializer=shared__pb2.StatusReply.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -235,7 +146,7 @@ try:
       ('interop.FrontEnd', 'ExecuteMentalCommand'): CommandRequest.FromString,
     }
     response_serializers = {
-      ('interop.FrontEnd', 'ExecuteMentalCommand'): StatusReply.SerializeToString,
+      ('interop.FrontEnd', 'ExecuteMentalCommand'): shared__pb2.StatusReply.SerializeToString,
     }
     method_implementations = {
       ('interop.FrontEnd', 'ExecuteMentalCommand'): face_utilities.unary_unary_inline(servicer.ExecuteMentalCommand),
@@ -254,7 +165,7 @@ try:
       ('interop.FrontEnd', 'ExecuteMentalCommand'): CommandRequest.SerializeToString,
     }
     response_deserializers = {
-      ('interop.FrontEnd', 'ExecuteMentalCommand'): StatusReply.FromString,
+      ('interop.FrontEnd', 'ExecuteMentalCommand'): shared__pb2.StatusReply.FromString,
     }
     cardinalities = {
       'ExecuteMentalCommand': cardinality.Cardinality.UNARY_UNARY,
