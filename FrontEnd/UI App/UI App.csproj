@@ -88,11 +88,18 @@
     <Compile Include="Controls\CommandList.xaml.cs">
       <DependentUpon>CommandList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProfileCreationDialog.xaml.cs">
+      <DependentUpon>ProfileCreationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProfileSelector.xaml.cs">
+      <DependentUpon>ProfileSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\DroneCommand.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Services\BackEndClient.cs" />
     <Compile Include="Utilities\DelegateCommand.cs" />
     <Compile Include="Models\EEGDataPoint.cs" />
+    <Compile Include="Utilities\Dialog.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />
     <Compile Include="Views\GraphView.xaml.cs">
       <DependentUpon>GraphView.xaml</DependentUpon>
@@ -120,6 +127,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Assets\DroneModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProfileCreationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProfileSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

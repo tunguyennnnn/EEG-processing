@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
-
+using FirstFloor.ModernUI.Windows.Controls;
+using SimulationApp.Controls;
 using SimulationApp.Models;
 using SimulationApp.Services;
 using SimulationApp.Utilities;
@@ -18,9 +22,22 @@ namespace SimulationApp.ViewModels
             _server.Start();
 
             _client = new BackEndClient();
+            
+            MockUserProfiles();
+        }
 
-            // Create default user proifle
-            ActiveProfile = new UserProfile("tu") {CommandList = new List<DroneCommand>() {DroneCommand.MoveUp, DroneCommand.MoveDown} };
+        // TODO: Remove mocking as soon as the actual API is built
+        public void MockUserProfiles()
+        {
+            var tu = new UserProfile("tu")   { CommandList = new List<DroneCommand>() { DroneCommand.MoveUp, DroneCommand.MoveDown } };
+            var jin = new UserProfile("jin") { CommandList = new List<DroneCommand>() { DroneCommand.MoveForward, DroneCommand.MoveBack } };
+            var katherine = new UserProfile("katherine") { CommandList = new List<DroneCommand>() { DroneCommand.TurnRight, DroneCommand.TurnLeft } };
+
+            UserProfiles.Add(tu);
+            UserProfiles.Add(jin);
+            UserProfiles.Add(katherine);
+
+            ActiveProfile = UserProfiles[0];
         }
 
         #region Properties
@@ -30,6 +47,8 @@ namespace SimulationApp.ViewModels
             get { return _isTrainingInProgress; }
             set { SetValue(ref _isTrainingInProgress, value); }
         }
+
+        public ObservableCollection<UserProfile> UserProfiles { get; } = new ObservableCollection<UserProfile>();
 
         public UserProfile ActiveProfile
         {
@@ -43,6 +62,9 @@ namespace SimulationApp.ViewModels
 
         public ICommand TrainCommand => new DelegateCommand<DroneCommand>(StartTraining);
         public ICommand TrainClassifierCommand => new DelegateCommand(TrainClassifier);
+
+        public ICommand AddUserProfileCommand => new DelegateCommand(AddUserProfile);
+        public ICommand DeleteActiveProfileCommand => new DelegateCommand(DeleteActiveProfile);
 
         #endregion
 
@@ -95,6 +117,33 @@ namespace SimulationApp.ViewModels
                 StopTraining();
                 _client.RecognizeCommands(ActiveProfile.Username);
             });
+        }
+
+        private void AddUserProfile()
+        {
+            var profileCreationDialog = new ProfileCreationDialog();
+          
+            if (Dialog.ShowDialog("New Profile", profileCreationDialog))
+            {
+                var username = profileCreationDialog.Username;
+
+                if (!string.IsNullOrEmpty(username))
+                {
+                    var profile = new UserProfile(username);
+                    UserProfiles.Add(profile);
+                    ActiveProfile = profile;
+                }
+                else
+                {
+                    Dialog.ShowMessageBox("Error", "Username cannot be empty");
+                }
+            }
+        }
+
+        private void DeleteActiveProfile()
+        {
+            UserProfiles.Remove(ActiveProfile);
+            ActiveProfile = UserProfiles[0];
         }
 
         #endregion

@@ -36,7 +36,10 @@
         <!-- Command List -->
         <DockPanel Grid.Column="1" Margin="{StaticResource SplitRight}">
 
-            <Label DockPanel.Dock="Top">Training</Label>
+            <DockPanel DockPanel.Dock="Top">
+                <Label DockPanel.Dock="Left">Training</Label>
+                <controls:ProfileSelector DockPanel.Dock="Right" HorizontalAlignment="Right"/>
+            </DockPanel>
             <TextBlock DockPanel.Dock="Top" Margin="0 20" TextWrapping="Wrap">
                 Select a droneCommand to train from the list below. 
                 After successful training, test droneCommand recognition using the simulation pane on the left.

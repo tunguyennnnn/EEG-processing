@@ -25,6 +25,7 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -39,42 +40,45 @@
                 </Border>
             </Popup>
 
-            <Label Content="Move Forward" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="0" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveForward}"/>
-            <Button Content="Reset" Grid.Row="0" Grid.Column="2" Margin="5 5"/>
+            <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="True"/>
+            <Label Content="Move Forward" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
+            <Button Content="Train" Grid.Row="0" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveForward}"/>
+            <Button Content="Reset" Grid.Row="0" Grid.Column="3" Margin="5 5"/>
 
+            <CheckBox Grid.Row="1" Grid.Column="0" IsChecked="True"/>
+            <Label Content="Move Back" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+            <Button Content="Train" Grid.Row="1" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveBack}"/>
+            <Button Content="Reset" Grid.Row="1" Grid.Column="3" Margin="5 5"/>
 
-            <Label Content="Move Back" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="1" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveBack}"/>
-            <Button Content="Reset" Grid.Row="1" Grid.Column="2" Margin="5 5"/>
+            <CheckBox Grid.Row="2" Grid.Column="0" IsChecked="True"/>
+            <Label Content="Move Right" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+            <Button Content="Train" Grid.Row="2" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveRight}"/>
+            <Button Content="Reset" Grid.Row="2" Grid.Column="3" Margin="5 5"/>
 
+            <CheckBox Grid.Row="3" Grid.Column="0" IsChecked="True"/>
+            <Label Content="Move Left" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
+            <Button Content="Train" Grid.Row="3" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveLeft}"/>
+            <Button Content="Reset" Grid.Row="3" Grid.Column="3" Margin="5 5"/>
 
-            <Label Content="Move Right" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="2" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveRight}"/>
-            <Button Content="Reset" Grid.Row="2" Grid.Column="2" Margin="5 5"/>
+            <CheckBox Grid.Row="4" Grid.Column="0" IsChecked="True"/>
+            <Label Content="Move Up" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
+            <Button Content="Train" Grid.Row="4" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveUp}"/>
+            <Button Content="Reset" Grid.Row="4" Grid.Column="3" Margin="5 5"/>
 
+            <CheckBox Grid.Row="5" Grid.Column="0" IsChecked="True"/>
+            <Label Content="Move Down" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"/>
+            <Button Content="Train" Grid.Row="5" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveDown}"/>
+            <Button Content="Reset" Grid.Row="5" Grid.Column="3" Margin="5 5"/>
 
-            <Label Content="Move Left" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="3" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveLeft}"/>
-            <Button Content="Reset" Grid.Row="3" Grid.Column="2" Margin="5 5"/>
+            <CheckBox Grid.Row="6" Grid.Column="0" IsChecked="True"/>
+            <Label Content="Turn Right" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>
+            <Button Content="Train" Grid.Row="6" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.TurnRight}"/>
+            <Button Content="Reset" Grid.Row="6" Grid.Column="3" Margin="5 5"/>
 
-
-            <Label Content="Move Up" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="4" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveUp}"/>
-            <Button Content="Reset" Grid.Row="4" Grid.Column="2" Margin="5 5"/>
-
-            <Label Content="Move Down" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="5" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveDown}"/>
-            <Button Content="Reset" Grid.Row="5" Grid.Column="2" Margin="5 5"/>
-
-
-            <Label Content="Turn Right" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="6" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.TurnRight}"/>
-            <Button Content="Reset" Grid.Row="6" Grid.Column="2" Margin="5 5"/>
-
-            <Label Content="Turn Left" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center"/>
-            <Button Content="Train" Grid.Row="7" Grid.Column="1" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.TurnLeft}"/>
-            <Button Content="Reset" Grid.Row="7" Grid.Column="2" Margin="5 5"/>
+            <CheckBox Grid.Row="7" Grid.Column="0" IsChecked="True"/>
+            <Label Content="Turn Left" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center"/>
+            <Button Content="Train" Grid.Row="7" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.TurnLeft}"/>
+            <Button Content="Reset" Grid.Row="7" Grid.Column="3" Margin="5 5"/>
             
         </Grid>
     </GroupBox>

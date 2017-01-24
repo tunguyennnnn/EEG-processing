@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
+
 using Grpc.Core;
 
 using Interop;
 using Client = Interop.BackEnd.BackEndClient;
 
 using SimulationApp.Models;
+using SimulationApp.Utilities;
 
 namespace SimulationApp.Services
 {
@@ -34,7 +34,7 @@ namespace SimulationApp.Services
             }
             catch (Grpc.Core.RpcException e)
             {
-                MessageBox.Show("Exception on the callee side: " + e.Message);
+                Dialog.ShowMessageBox("Error", "Exception on the callee side: " + e.Message);
             }
         }
 
@@ -49,7 +49,7 @@ namespace SimulationApp.Services
             }
             catch (Grpc.Core.RpcException e)
             {
-                MessageBox.Show("Exception on the callee side: " + e.Message);
+                Dialog.ShowMessageBox("Error", "Exception on the callee side: " + e.Message);
             }
         }
 
@@ -63,7 +63,7 @@ namespace SimulationApp.Services
             }
             catch (Grpc.Core.RpcException e)
             {
-                MessageBox.Show("Exception on the callee side: " + e.Message);
+                Dialog.ShowMessageBox("Error", "Exception on the callee side: " + e.Message);
             }
         }
 
