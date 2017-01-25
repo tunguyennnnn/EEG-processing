@@ -95,7 +95,7 @@ STATE6 = 'BACKWARD'
 
 STATE_FILES = [STATE0, STATE1, STATE2, STATE3, STATE4, STATE5, STATE6]
 
-TRARINING_TIME_FOR_A_STATE = 10.0
+TRARINING_TIME_FOR_A_STATE = 100.0
 def acquire_for_training():
     hData = libEDK.EE_DataCreate()
     libEDK.EE_DataSetBufferSizeInSec(secs)
