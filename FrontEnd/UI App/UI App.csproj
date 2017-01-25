@@ -95,7 +95,7 @@
       <DependentUpon>ProfileSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DroneCommand.cs" />
-    <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="ViewModels\UserProfileVM.cs" />
     <Compile Include="Services\BackEndClient.cs" />
     <Compile Include="Utilities\DelegateCommand.cs" />
     <Compile Include="Models\EEGDataPoint.cs" />

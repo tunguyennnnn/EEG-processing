@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using FirstFloor.ModernUI.Windows.Controls;
+
 using SimulationApp.Controls;
 using SimulationApp.Models;
 using SimulationApp.Services;
@@ -29,9 +27,9 @@ namespace SimulationApp.ViewModels
         // TODO: Remove mocking as soon as the actual API is built
         public void MockUserProfiles()
         {
-            var tu = new UserProfile("tu")   { CommandList = new List<DroneCommand>() { DroneCommand.MoveUp, DroneCommand.MoveDown } };
-            var jin = new UserProfile("jin") { CommandList = new List<DroneCommand>() { DroneCommand.MoveForward, DroneCommand.MoveBack } };
-            var katherine = new UserProfile("katherine") { CommandList = new List<DroneCommand>() { DroneCommand.TurnRight, DroneCommand.TurnLeft } };
+            var tu = new UserProfileVM("tu", new List<DroneCommand>() { DroneCommand.MoveUp, DroneCommand.MoveDown });
+            var jin = new UserProfileVM("jin", new List<DroneCommand>() { DroneCommand.MoveForward, DroneCommand.MoveBack });
+            var katherine = new UserProfileVM("katherine", new List<DroneCommand>() { DroneCommand.TurnRight, DroneCommand.TurnLeft });
 
             UserProfiles.Add(tu);
             UserProfiles.Add(jin);
@@ -48,12 +46,12 @@ namespace SimulationApp.ViewModels
             set { SetValue(ref _isTrainingInProgress, value); }
         }
 
-        public ObservableCollection<UserProfile> UserProfiles { get; } = new ObservableCollection<UserProfile>();
+        public ObservableCollection<UserProfileVM> UserProfiles { get; } = new ObservableCollection<UserProfileVM>();
 
-        public UserProfile ActiveProfile
+        public UserProfileVM ActiveProfile
         {
-            get { return _activeProfile; }
-            set { SetValue(ref _activeProfile, value); }
+            get { return _activeProfileVM; }
+            set { SetValue(ref _activeProfileVM, value); }
         }
 
         #endregion
@@ -113,7 +111,7 @@ namespace SimulationApp.ViewModels
 
             Task.Run(() =>
             {
-                _client.TrainClassifier(ActiveProfile.Username, ActiveProfile.CommandList);
+                _client.TrainClassifier(ActiveProfile.Username, ActiveProfile.ActiveCommands);
                 StopTraining();
                 _client.RecognizeCommands(ActiveProfile.Username);
             });
@@ -129,7 +127,7 @@ namespace SimulationApp.ViewModels
 
                 if (!string.IsNullOrEmpty(username))
                 {
-                    var profile = new UserProfile(username);
+                    var profile = new UserProfileVM(username);
                     UserProfiles.Add(profile);
                     ActiveProfile = profile;
                 }
@@ -142,8 +140,15 @@ namespace SimulationApp.ViewModels
 
         private void DeleteActiveProfile()
         {
-            UserProfiles.Remove(ActiveProfile);
-            ActiveProfile = UserProfiles[0];
+            if (UserProfiles.Count > 1)
+            {
+                UserProfiles.Remove(ActiveProfile);
+                ActiveProfile = UserProfiles[0];
+            }
+            else
+            {
+                Dialog.ShowMessageBox("Error", "Cannot delete last profile");
+            }
         }
 
         #endregion
@@ -154,7 +159,7 @@ namespace SimulationApp.ViewModels
         private readonly BackEndClient _client;
         private bool _isTrainingInProgress;
 
-        private UserProfile _activeProfile;
+        private UserProfileVM _activeProfileVM;
 
         #endregion
     }
