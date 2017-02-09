@@ -4,6 +4,7 @@ Provides an API for calling procedures on the front end through RPC.
 import grpc
 
 from front_end_pb2 import FrontEndStub, CommandRequest
+import shared_pb2
 
 class FrontEndClient:
 
@@ -14,39 +15,39 @@ class FrontEndClient:
         self.stub = FrontEndStub(channel)
 
     def move_forward(self):
-        move_forward_command = CommandRequest.MOVE_FORWARD
+        move_forward_command = shared_pb2.MOVE_FORWARD
         self.execute_command(move_forward_command)
 
     def move_backward(self):
-        move_forward_command = CommandRequest.MOVE_BACK
+        move_forward_command = shared_pb2.MOVE_BACK
         self.execute_command(move_forward_command)
 
     def move_right(self):
-        move_forward_command = CommandRequest.MOVE_RIGHT
+        move_forward_command = shared_pb2.MOVE_RIGHT
         self.execute_command(move_forward_command)
 
     def move_left(self):
-        move_forward_command = CommandRequest.MOVE_LEFT
+        move_forward_command = shared_pb2.MOVE_LEFT
         self.execute_command(move_forward_command)
 
     def move_up(self):
-        move_forward_command = CommandRequest.MOVE_UP
+        move_forward_command = shared_pb2.MOVE_UP
         self.execute_command(move_forward_command)
 
     def move_down(self):
-        move_forward_command = CommandRequest.MOVE_DOWN
+        move_forward_command = shared_pb2.MOVE_DOWN
         self.execute_command(move_forward_command)
 
     def turn_right(self):
-        move_forward_command = CommandRequest.TURN_RIGHT
+        move_forward_command = shared_pb2.TURN_RIGHT
         self.execute_command(move_forward_command)
 
     def turn_left(self):
-        move_forward_command = CommandRequest.TURN_LEFT
+        move_forward_command = shared_pb2.TURN_LEFT
         self.execute_command(move_forward_command)
 
     def neutral(self):
-        move_forward_command = CommandRequest.RESET
+        move_forward_command = shared_pb2.RESET
         self.execute_command(move_forward_command)
 
     def execute_command(self, command):

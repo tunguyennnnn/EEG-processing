@@ -1,82 +1,8 @@
 
 import sys,os, shutil
 import time
-import ctypes
-
-from ctypes import cdll
-from ctypes import CDLL
-from ctypes import c_int
-from ctypes import c_uint
-from ctypes import pointer
-from ctypes import c_char_p
-from ctypes import c_float
-from ctypes import c_double
-from ctypes import byref
-
 import glob
 
-try :
-    if sys.platform.startswith('win32'):
-        libEDK = cdll.LoadLibrary("edk.dll")
-    if sys.platform.startswith('linux'):
-        srcDir = os.getcwd()
-        libPath = srcDir + "/libedk.so.1.0.0"
-        libEDK = CDLL(libPath)
-except :
-    print 'Error : cannot load dll lib'
-
-ED_COUNTER = 0
-ED_INTERPOLATED=1
-ED_RAW_CQ=2
-ED_AF3=3
-ED_F7=4
-ED_F3=5
-ED_FC5=6
-ED_T7=7
-ED_P7=8
-ED_O1=9
-ED_O2=10
-ED_P8=11
-ED_T8=12
-ED_FC6=13
-ED_F4=14
-ED_F8=15
-ED_AF4=16
-ED_GYROX=17
-ED_GYROY=18
-ED_TIMESTAMP=19
-ED_ES_TIMESTAMP=20
-ED_FUNC_ID=21
-ED_FUNC_VALUE=22
-ED_MARKER=23
-ED_SYNC_SIGNAL=24
-
-targetChannelList = [ED_COUNTER,ED_AF3, ED_F7, ED_F3, ED_FC5, ED_T7,ED_P7, ED_O1, ED_O2, ED_P8, ED_T8,ED_FC6, ED_F4, ED_F8, ED_AF4, ED_GYROX, ED_GYROY, ED_TIMESTAMP, ED_FUNC_ID, ED_FUNC_VALUE, ED_MARKER, ED_SYNC_SIGNAL]
-header = ['COUNTER','AF3','F7','F3', 'FC5', 'T7', 'P7', 'O1', 'O2','P8', 'T8', 'FC6', 'F4','F8', 'AF4','GYROX', 'GYROY', 'TIMESTAMP','FUNC_ID', 'FUNC_VALUE', 'MARKER', 'SYNC_SIGNAL']
-write = sys.stdout.write
-eEvent      = libEDK.EE_EmoEngineEventCreate()
-eState      = libEDK.EE_EmoStateCreate()
-userID            = c_uint(0)
-nSamples   = c_uint(0)
-nSam       = c_uint(0)
-nSamplesTaken  = pointer(nSamples)
-#da = zeros(128,double)
-data     = pointer(c_double(0))
-user                    = pointer(userID)
-composerPort          = c_uint(1726)
-secs      = c_float(1)
-datarate    = c_uint(0)
-readytocollect    = False
-option      = c_int(0)
-state     = c_int(0)
-
-
-print libEDK.EE_EngineConnect("Emotiv Systems-5")
-if libEDK.EE_EngineConnect("Emotiv Systems-5") != 0:
-    print "Emotiv Engine start up failed."
-
-MAX_NUMBER_OF_STATES = 6
-MIN_NUMBER_OF_STATES = 2
 
 STATE0 = 'NEUTRAL'
 
@@ -95,61 +21,10 @@ STATE6 = 'BACKWARD'
 
 STATE_FILES = [STATE0, STATE1, STATE2, STATE3, STATE4, STATE5, STATE6]
 
-TRARINING_TIME_FOR_A_STATE = 100.0
-def acquire_for_training():
-    hData = libEDK.EE_DataCreate()
-    libEDK.EE_DataSetBufferSizeInSec(secs)
-    print "Enter number of states (legal number is 2 to 6): "
-    while 1:
-        number_of_states = int(raw_input())
-        print number_of_states
-        if number_of_states < MAX_NUMBER_OF_STATES or number_of_states > MIN_NUMBER_OF_STATES:
-            break
-        else:
-            print "Please re-enter the number of states"
-    for i, file_name in zip(range(number_of_states), STATE_FILES):
-        f = open(file_name, 'w')
-        print >> f, header
-        start = time.time()
-        print "Training for state %d will start in 5 second. Please prepare" %(i+1)
-        print "Training will take 20 seconds"
-        print "Input any key to start training"
-        raw_input()
-        while time.time() - start < 5.0:
-            pass
-        start = time.time()
-        while time.time() - start < TRARINING_TIME_FOR_A_STATE:
-            state = libEDK.EE_EngineGetNextEvent(eEvent)
-            if state == 0:
-                eventType = libEDK.EE_EmoEngineEventGetType(eEvent)
-                libEDK.EE_EmoEngineEventGetUserId(eEvent, user)
-                if eventType == 16: #libEDK.EE_Event_enum.EE_UserAdded:
-                    print "User added"
-                    libEDK.EE_DataAcquisitionEnable(userID,True)
-                    readytocollect = True
-
-            if readytocollect==True:
-                libEDK.EE_DataUpdateHandle(0, hData)
-                libEDK.EE_DataGetNumberOfSample(hData,nSamplesTaken)
-                print "Updated :",nSamplesTaken[0]
-                if nSamplesTaken[0] != 0:
-                    nSam=nSamplesTaken[0]
-                    arr=(ctypes.c_double*nSamplesTaken[0])()
-                    ctypes.cast(arr, ctypes.POINTER(ctypes.c_double))
-                    for sampleIdx in range(nSamplesTaken[0]):
-                        for i in range(22):
-                            libEDK.EE_DataGet(hData,targetChannelList[i],byref(arr), nSam)
-                            print arr[sampleIdx]
-                            print >>f,arr[sampleIdx],",",
-                        print >>f,'\n'
-            time.sleep(0.2)
-    libEDK.EE_DataFree(hData)
-    libEDK.EE_EngineDisconnect()
-    libEDK.EE_EmoStateFree(eState)
-    libEDK.EE_EmoEngineEventFree(eEvent)
-
 
 FOLDER_NAME = 'userdata'
+
+
 def make_file_name(id, state_number):
     global FOLDER_NAME
     folder_path = FOLDER_NAME + '/' + id
@@ -163,80 +38,15 @@ def make_file_name(id, state_number):
             break
         i += 1
     return file_path
-libEDK.EE_DataSetBufferSizeInSec(secs)
-def acquire_data_for_command(id='tu' ,state_number=0):
-    file_name = make_file_name(id, state_number)
-    file(file_name, 'w')
-    f = open(file_name , 'w')
-    print >> f, header
-    hData = libEDK.EE_DataCreate()
-    start = time.time()
-    print "Training for state %d will start in 5 second. Please prepare" % state_number
-    print "Training will take 20 seconds"
-    while time.time() - start < 5.0:
-        pass
-    start = time.time()
-    while time.time() - start < TRARINING_TIME_FOR_A_STATE:
-        state = libEDK.EE_EngineGetNextEvent(eEvent)
-        if state == 0:
-            eventType = libEDK.EE_EmoEngineEventGetType(eEvent)
-            libEDK.EE_EmoEngineEventGetUserId(eEvent, user)
-            if eventType == 16: #libEDK.EE_Event_enum.EE_UserAdded:
-                print "User added"
-                libEDK.EE_DataAcquisitionEnable(userID,True)
-                readytocollect = True
 
-        if readytocollect==True:
-            libEDK.EE_DataUpdateHandle(0, hData)
-            libEDK.EE_DataGetNumberOfSample(hData,nSamplesTaken)
-            print "Updated :",nSamplesTaken[0]
-            if nSamplesTaken[0] != 0:
-                nSam=nSamplesTaken[0]
-                arr=(ctypes.c_double*nSamplesTaken[0])()
-                ctypes.cast(arr, ctypes.POINTER(ctypes.c_double))
-                for sampleIdx in range(nSamplesTaken[0]):
-                    for i in range(22):
-                        libEDK.EE_DataGet(hData,targetChannelList[i],byref(arr), nSam)
-                        print arr[sampleIdx]
-                        print >>f,arr[sampleIdx],",",
-                    print >>f,'\n'
-        time.sleep(0.2)
+
+
+
+def disconect_BCI():
     libEDK.EE_DataFree(hData)
     libEDK.EE_EngineDisconnect()
     libEDK.EE_EmoStateFree(eState)
     libEDK.EE_EmoEngineEventFree(eEvent)
-
-
-def acquire_data_for_executing(buffer, time_info):
-    hData = libEDK.EE_DataCreate()
-    libEDK.EE_DataSetBufferSizeInSec(secs)
-    readytocollect = False
-    state = libEDK.EE_EngineGetNextEvent(eEvent)
-    while not stop_collecting:
-        state = libEDK.EE_EngineGetNextEvent(eEvent)
-        if state == 0:
-            eventType = libEDK.EE_EmoEngineEventGetType(eEvent)
-            libEDK.EE_EmoEngineEventGetUserId(eEvent, user)
-            if eventType == 16: #libEDK.EE_Event_enum.EE_UserAdded:
-                print "User added"
-                libEDK.EE_DataAcquisitionEnable(userID,True)
-                readytocollect = True
-
-        if readytocollect==True:
-            libEDK.EE_DataUpdateHandle(0, hData)
-            libEDK.EE_DataGetNumberOfSample(hData,nSamplesTaken)
-            print "Updated :",nSamplesTaken[0]
-            if nSamplesTaken[0] != 0:
-                nSam=nSamplesTaken[0]
-                arr=(ctypes.c_double*nSamplesTaken[0])()
-                ctypes.cast(arr, ctypes.POINTER(ctypes.c_double))
-                for sampleIdx in range(nSamplesTaken[0]):
-                    for i in range(22):
-                        libEDK.EE_DataGet(hData,targetChannelList[i],byref(arr), nSam)
-                        if i >= 1 and i <= 14:
-                            buffer[i-1].append(arr[sampleIdx])
-                        if i == 17:
-                            time_info.append(arr[sampleIdx])
 
 
 def get_data(id='tu', state_number=0):

@@ -19,4 +19,4 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
 
 def filter_noise(signals, num_of_components = 14):
     ica = FastICA(n_components= num_of_components)
-    return ica.fit_transform(signals).T
+    return ica.fit_transform(signals).T, ica.mixing_
