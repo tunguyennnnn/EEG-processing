@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 using SimulationApp.Controls;
@@ -21,21 +22,7 @@ namespace SimulationApp.ViewModels
 
             _client = new BackEndClient();
             
-            MockUserProfiles();
-        }
-
-        // TODO: Remove mocking as soon as the actual API is built
-        public void MockUserProfiles()
-        {
-            var tu = new UserProfileVM("tu", new List<DroneCommand>() { DroneCommand.MoveUp, DroneCommand.MoveDown });
-            var jin = new UserProfileVM("jin", new List<DroneCommand>() { DroneCommand.MoveForward, DroneCommand.MoveBack });
-            var katherine = new UserProfileVM("katherine", new List<DroneCommand>() { DroneCommand.TurnRight, DroneCommand.TurnLeft });
-
-            UserProfiles.Add(tu);
-            UserProfiles.Add(jin);
-            UserProfiles.Add(katherine);
-
-            ActiveProfile = UserProfiles[0];
+            LoadUserProfiles();
         }
 
         #region Properties
@@ -59,6 +46,7 @@ namespace SimulationApp.ViewModels
         #region Commands
 
         public ICommand TrainCommand => new DelegateCommand<DroneCommand>(StartTraining);
+        public ICommand ResetCommand => new DelegateCommand<DroneCommand>(ResetCommandData);
         public ICommand TrainClassifierCommand => new DelegateCommand(TrainClassifier);
 
         public ICommand AddUserProfileCommand => new DelegateCommand(AddUserProfile);
@@ -89,15 +77,52 @@ namespace SimulationApp.ViewModels
 
         #region Helper Methods
 
+        private void LoadUserProfiles()
+        {
+            UserProfiles.Clear();
+
+            var profiles = _client.GetUserProfiles();
+
+            foreach (var profile in profiles)
+            {
+                var p = new UserProfileVM(profile.Key, profile.Value);
+                UserProfiles.Add(p);
+            }
+
+            if (UserProfiles.Count > 0)
+            {
+                ActiveProfile = UserProfiles[0];
+            }
+        }
+
         private void StartTraining(DroneCommand command)
         {
             IsTrainingInProgress = true;
 
             Task.Run(() =>
             {
+                _client.StopRecognition();
+
                 _client.AcquireDataForCommand(ActiveProfile.Username, command);
+
+                var updatedProfileData = _client.GetUserProfile(ActiveProfile.Username);
+                var updatedProfile = new UserProfileVM(ActiveProfile.Username, updatedProfileData);
+
+               Application.Current?.Dispatcher?.Invoke(() =>
+               {
+                   UserProfiles.Remove(ActiveProfile);
+                   UserProfiles.Add(updatedProfile);
+
+                   ActiveProfile = updatedProfile;
+               });
+
                 StopTraining();
             });
+        }
+
+        private void ResetCommandData(DroneCommand command)
+        {
+            _client.ResetDataForCommand(ActiveProfile.Username, command);
         }
 
         private void StopTraining()
@@ -127,9 +152,12 @@ namespace SimulationApp.ViewModels
 
                 if (!string.IsNullOrEmpty(username))
                 {
-                    var profile = new UserProfileVM(username);
-                    UserProfiles.Add(profile);
-                    ActiveProfile = profile;
+                    // Create profile on the back-end
+                    _client.CreateUserProfile(username);
+                    // Reload profile list
+                    LoadUserProfiles();
+                    // Select newly created profile
+                    ActiveProfile = UserProfiles.First(p => p.Username == username);
                 }
                 else
                 {
@@ -142,8 +170,10 @@ namespace SimulationApp.ViewModels
         {
             if (UserProfiles.Count > 1)
             {
-                UserProfiles.Remove(ActiveProfile);
-                ActiveProfile = UserProfiles[0];
+                // Delete profile on the back-end
+                _client.DeleteUserProfile(ActiveProfile.Username);
+                // Reload profile list
+               LoadUserProfiles();
             }
             else
             {

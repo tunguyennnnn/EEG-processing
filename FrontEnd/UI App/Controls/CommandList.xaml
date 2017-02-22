@@ -40,45 +40,45 @@
                 </Border>
             </Popup>
 
-            <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding ActiveProfile.MoveForwardEnabled}"/>
+            <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding ActiveProfile.MoveForwardChecked}" IsEnabled="{Binding ActiveProfile.MoveForwardEnabled}" ToolTip="{Binding ActiveProfile.MoveForwardTooltip}" ToolTipService.ShowOnDisabled="True"/>
             <Label Content="Move Forward" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
             <Button Content="Train" Grid.Row="0" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveForward}"/>
-            <Button Content="Reset" Grid.Row="0" Grid.Column="3" Margin="5 5"/>
+            <Button Content="Reset" Grid.Row="0" Grid.Column="3" Margin="5 5" Command="{Binding ResetCommand}" CommandParameter="{x:Static models:DroneCommand.MoveForward}"/>
 
-            <CheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding ActiveProfile.MoveBackEnabled}"/>
+            <CheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding ActiveProfile.MoveBackChecked}" IsEnabled="{Binding ActiveProfile.MoveBackEnabled}" ToolTip="{Binding ActiveProfile.MoveBackTooltip}" ToolTipService.ShowOnDisabled="True"/>
             <Label Content="Move Back" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
             <Button Content="Train" Grid.Row="1" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveBack}"/>
-            <Button Content="Reset" Grid.Row="1" Grid.Column="3" Margin="5 5"/>
+            <Button Content="Reset" Grid.Row="1" Grid.Column="3" Margin="5 5" Command="{Binding ResetCommand}" CommandParameter="{x:Static models:DroneCommand.MoveBack}"/>
 
-            <CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding ActiveProfile.MoveRightEnabled}"/>
+            <CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding ActiveProfile.MoveRightChecked}" IsEnabled="{Binding ActiveProfile.MoveRightEnabled}" ToolTip="{Binding ActiveProfile.MoveRightTooltip}" ToolTipService.ShowOnDisabled="True"/>
             <Label Content="Move Right" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
             <Button Content="Train" Grid.Row="2" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveRight}"/>
-            <Button Content="Reset" Grid.Row="2" Grid.Column="3" Margin="5 5"/>
+            <Button Content="Reset" Grid.Row="2" Grid.Column="3" Margin="5 5" Command="{Binding ResetCommand}" CommandParameter="{x:Static models:DroneCommand.MoveRight}"/>
 
-            <CheckBox Grid.Row="3" Grid.Column="0" IsChecked="{Binding ActiveProfile.MoveLeftEnabled}"/>
+            <CheckBox Grid.Row="3" Grid.Column="0" IsChecked="{Binding ActiveProfile.MoveLeftChecked}" IsEnabled="{Binding ActiveProfile.MoveLeftEnabled}" ToolTip="{Binding ActiveProfile.MoveLeftTooltip}" ToolTipService.ShowOnDisabled="True"/>
             <Label Content="Move Left" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
             <Button Content="Train" Grid.Row="3" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveLeft}"/>
-            <Button Content="Reset" Grid.Row="3" Grid.Column="3" Margin="5 5"/>
+            <Button Content="Reset" Grid.Row="3" Grid.Column="3" Margin="5 5" Command="{Binding ResetCommand}" CommandParameter="{x:Static models:DroneCommand.MoveLeft}"/>
 
-            <CheckBox Grid.Row="4" Grid.Column="0" IsChecked="{Binding ActiveProfile.MoveUpEnabled}"/>
+            <CheckBox Grid.Row="4" Grid.Column="0" IsChecked="{Binding ActiveProfile.MoveUpChecked}" IsEnabled="{Binding ActiveProfile.MoveUpEnabled}" ToolTip="{Binding ActiveProfile.MoveUpTooltip}" ToolTipService.ShowOnDisabled="True"/>
             <Label Content="Move Up" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
             <Button Content="Train" Grid.Row="4" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveUp}"/>
-            <Button Content="Reset" Grid.Row="4" Grid.Column="3" Margin="5 5"/>
+            <Button Content="Reset" Grid.Row="4" Grid.Column="3" Margin="5 5" Command="{Binding ResetCommand}" CommandParameter="{x:Static models:DroneCommand.MoveUp}"/>
 
-            <CheckBox Grid.Row="5" Grid.Column="0" IsChecked="{Binding ActiveProfile.MoveDownEnabled}"/>
+            <CheckBox Grid.Row="5" Grid.Column="0" IsChecked="{Binding ActiveProfile.MoveDownChecked}" IsEnabled="{Binding ActiveProfile.MoveDownEnabled}" ToolTip="{Binding ActiveProfile.MoveDownTooltip}" ToolTipService.ShowOnDisabled="True"/>
             <Label Content="Move Down" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"/>
             <Button Content="Train" Grid.Row="5" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.MoveDown}"/>
-            <Button Content="Reset" Grid.Row="5" Grid.Column="3" Margin="5 5"/>
+            <Button Content="Reset" Grid.Row="5" Grid.Column="3" Margin="5 5" Command="{Binding ResetCommand}" CommandParameter="{x:Static models:DroneCommand.MoveDown}"/>
 
-            <CheckBox Grid.Row="6" Grid.Column="0" IsChecked="{Binding ActiveProfile.TurnRightEnabled}"/>
+            <CheckBox Grid.Row="6" Grid.Column="0" IsChecked="{Binding ActiveProfile.TurnRightChecked}" IsEnabled="{Binding ActiveProfile.TurnRightEnabled}" ToolTip="{Binding ActiveProfile.TurnRightTooltip}" ToolTipService.ShowOnDisabled="True"/>
             <Label Content="Turn Right" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>
             <Button Content="Train" Grid.Row="6" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.TurnRight}"/>
-            <Button Content="Reset" Grid.Row="6" Grid.Column="3" Margin="5 5"/>
+            <Button Content="Reset" Grid.Row="6" Grid.Column="3" Margin="5 5" Command="{Binding ResetCommand}" CommandParameter="{x:Static models:DroneCommand.MoveRight}"/>
 
-            <CheckBox Grid.Row="7" Grid.Column="0" IsChecked="{Binding ActiveProfile.TurnLeftEnabled}"/>
+            <CheckBox Grid.Row="7" Grid.Column="0" IsChecked="{Binding ActiveProfile.TurnLeftChecked}" IsEnabled="{Binding ActiveProfile.TurnLeftEnabled}" ToolTip="{Binding ActiveProfile.TurnLeftTooltip}" ToolTipService.ShowOnDisabled="True"/>
             <Label Content="Turn Left" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center"/>
             <Button Content="Train" Grid.Row="7" Grid.Column="2" Margin="5 5" Command="{Binding TrainCommand}" CommandParameter="{x:Static models:DroneCommand.TurnLeft}"/>
-            <Button Content="Reset" Grid.Row="7" Grid.Column="3" Margin="5 5"/>
+            <Button Content="Reset" Grid.Row="7" Grid.Column="3" Margin="5 5" Command="{Binding ResetCommand}" CommandParameter="{x:Static models:DroneCommand.MoveLeft}"/>
             
         </Grid>
     </GroupBox>

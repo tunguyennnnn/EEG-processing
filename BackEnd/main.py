@@ -441,7 +441,7 @@ def get_user_profiles():
                 profiles[sub_folder][command] += 1
             else:
                 profiles[sub_folder][command] = 1
-    return json.dumps(profiles)
+    return profiles
 
 
 
@@ -462,4 +462,4 @@ def get_user_profile(username):
                 profile[command] = 1
     else:
         create_user_profile(username)
-    return json.dumps(profile)
+    return profile

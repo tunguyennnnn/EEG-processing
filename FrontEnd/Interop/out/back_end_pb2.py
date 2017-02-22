@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='back_end.proto',
   package='interop',
   syntax='proto3',
-  serialized_pb=_b('\n\x0e\x62\x61\x63k_end.proto\x12\x07interop\x1a\x0cshared.proto\"L\n\x11\x41quireDataRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12%\n\x07\x63ommand\x18\x02 \x01(\x0e\x32\x14.interop.CommandType\"V\n\x16TrainClassifierRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12*\n\x0c\x63ommand_list\x18\x02 \x03(\x0e\x32\x14.interop.CommandType\",\n\x18RecognizeCommandsRequest\x12\x10\n\x08username\x18\x01 \x01(\t2\xf2\x01\n\x07\x42\x61\x63kEnd\x12K\n\x15\x41\x63quireDataForCommand\x12\x1a.interop.AquireDataRequest\x1a\x14.interop.StatusReply\"\x00\x12J\n\x0fTrainClassifier\x12\x1f.interop.TrainClassifierRequest\x1a\x14.interop.StatusReply\"\x00\x12N\n\x11RecognizeCommands\x12!.interop.RecognizeCommandsRequest\x1a\x14.interop.StatusReply\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0e\x62\x61\x63k_end.proto\x12\x07interop\x1a\x0cshared.proto\"L\n\x11\x41quireDataRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12%\n\x07\x63ommand\x18\x02 \x01(\x0e\x32\x14.interop.CommandType\"K\n\x10ResetDataRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12%\n\x07\x63ommand\x18\x02 \x01(\x0e\x32\x14.interop.CommandType\"V\n\x16TrainClassifierRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12*\n\x0c\x63ommand_list\x18\x02 \x03(\x0e\x32\x14.interop.CommandType\",\n\x18RecognizeCommandsRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"/\n\x1bUserProfileOperationRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"\x0e\n\x0c\x45mptyRequest\"\x88\x01\n\x10ProfileDataReply\x12@\n\x0cprofile_data\x18\x01 \x03(\x0b\x32*.interop.ProfileDataReply.ProfileDataEntry\x1a\x32\n\x10ProfileDataEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"\xa3\x01\n\x10ProfileListReply\x12@\n\x0cprofile_list\x18\x01 \x03(\x0b\x32*.interop.ProfileListReply.ProfileListEntry\x1aM\n\x10ProfileListEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12(\n\x05value\x18\x02 \x01(\x0b\x32\x19.interop.ProfileDataReply:\x02\x38\x01\x32\xc0\x05\n\x07\x42\x61\x63kEnd\x12K\n\x15\x41\x63quireDataForCommand\x12\x1a.interop.AquireDataRequest\x1a\x14.interop.StatusReply\"\x00\x12H\n\x13ResetDataForCommand\x12\x19.interop.ResetDataRequest\x1a\x14.interop.StatusReply\"\x00\x12J\n\x0fTrainClassifier\x12\x1f.interop.TrainClassifierRequest\x1a\x14.interop.StatusReply\"\x00\x12N\n\x11RecognizeCommands\x12!.interop.RecognizeCommandsRequest\x1a\x14.interop.StatusReply\"\x00\x12@\n\x0fStopRecognizion\x12\x15.interop.EmptyRequest\x1a\x14.interop.StatusReply\"\x00\x12Q\n\x11\x43reateUserProfile\x12$.interop.UserProfileOperationRequest\x1a\x14.interop.StatusReply\"\x00\x12Q\n\x11\x44\x65leteUserProfile\x12$.interop.UserProfileOperationRequest\x1a\x14.interop.StatusReply\"\x00\x12S\n\x0eGetUserProfile\x12$.interop.UserProfileOperationRequest\x1a\x19.interop.ProfileDataReply\"\x00\x12\x45\n\x0fGetUserProfiles\x12\x15.interop.EmptyRequest\x1a\x19.interop.ProfileListReply\"\x00\x62\x06proto3')
   ,
   dependencies=[shared__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -66,6 +66,44 @@ _AQUIREDATAREQUEST = _descriptor.Descriptor(
 )
 
 
+_RESETDATAREQUEST = _descriptor.Descriptor(
+  name='ResetDataRequest',
+  full_name='interop.ResetDataRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='username', full_name='interop.ResetDataRequest.username', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='command', full_name='interop.ResetDataRequest.command', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=119,
+  serialized_end=194,
+)
+
+
 _TRAINCLASSIFIERREQUEST = _descriptor.Descriptor(
   name='TrainClassifierRequest',
   full_name='interop.TrainClassifierRequest',
@@ -99,8 +137,8 @@ _TRAINCLASSIFIERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=119,
-  serialized_end=205,
+  serialized_start=196,
+  serialized_end=282,
 )
 
 
@@ -130,15 +168,217 @@ _RECOGNIZECOMMANDSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=207,
-  serialized_end=251,
+  serialized_start=284,
+  serialized_end=328,
+)
+
+
+_USERPROFILEOPERATIONREQUEST = _descriptor.Descriptor(
+  name='UserProfileOperationRequest',
+  full_name='interop.UserProfileOperationRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='username', full_name='interop.UserProfileOperationRequest.username', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=330,
+  serialized_end=377,
+)
+
+
+_EMPTYREQUEST = _descriptor.Descriptor(
+  name='EmptyRequest',
+  full_name='interop.EmptyRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=379,
+  serialized_end=393,
+)
+
+
+_PROFILEDATAREPLY_PROFILEDATAENTRY = _descriptor.Descriptor(
+  name='ProfileDataEntry',
+  full_name='interop.ProfileDataReply.ProfileDataEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='interop.ProfileDataReply.ProfileDataEntry.key', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='interop.ProfileDataReply.ProfileDataEntry.value', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001')),
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=482,
+  serialized_end=532,
+)
+
+_PROFILEDATAREPLY = _descriptor.Descriptor(
+  name='ProfileDataReply',
+  full_name='interop.ProfileDataReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='profile_data', full_name='interop.ProfileDataReply.profile_data', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[_PROFILEDATAREPLY_PROFILEDATAENTRY, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=396,
+  serialized_end=532,
+)
+
+
+_PROFILELISTREPLY_PROFILELISTENTRY = _descriptor.Descriptor(
+  name='ProfileListEntry',
+  full_name='interop.ProfileListReply.ProfileListEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='interop.ProfileListReply.ProfileListEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='interop.ProfileListReply.ProfileListEntry.value', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=_descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001')),
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=621,
+  serialized_end=698,
+)
+
+_PROFILELISTREPLY = _descriptor.Descriptor(
+  name='ProfileListReply',
+  full_name='interop.ProfileListReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='profile_list', full_name='interop.ProfileListReply.profile_list', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[_PROFILELISTREPLY_PROFILELISTENTRY, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=535,
+  serialized_end=698,
 )
 
 _AQUIREDATAREQUEST.fields_by_name['command'].enum_type = shared__pb2._COMMANDTYPE
+_RESETDATAREQUEST.fields_by_name['command'].enum_type = shared__pb2._COMMANDTYPE
 _TRAINCLASSIFIERREQUEST.fields_by_name['command_list'].enum_type = shared__pb2._COMMANDTYPE
+_PROFILEDATAREPLY_PROFILEDATAENTRY.containing_type = _PROFILEDATAREPLY
+_PROFILEDATAREPLY.fields_by_name['profile_data'].message_type = _PROFILEDATAREPLY_PROFILEDATAENTRY
+_PROFILELISTREPLY_PROFILELISTENTRY.fields_by_name['value'].message_type = _PROFILEDATAREPLY
+_PROFILELISTREPLY_PROFILELISTENTRY.containing_type = _PROFILELISTREPLY
+_PROFILELISTREPLY.fields_by_name['profile_list'].message_type = _PROFILELISTREPLY_PROFILELISTENTRY
 DESCRIPTOR.message_types_by_name['AquireDataRequest'] = _AQUIREDATAREQUEST
+DESCRIPTOR.message_types_by_name['ResetDataRequest'] = _RESETDATAREQUEST
 DESCRIPTOR.message_types_by_name['TrainClassifierRequest'] = _TRAINCLASSIFIERREQUEST
 DESCRIPTOR.message_types_by_name['RecognizeCommandsRequest'] = _RECOGNIZECOMMANDSREQUEST
+DESCRIPTOR.message_types_by_name['UserProfileOperationRequest'] = _USERPROFILEOPERATIONREQUEST
+DESCRIPTOR.message_types_by_name['EmptyRequest'] = _EMPTYREQUEST
+DESCRIPTOR.message_types_by_name['ProfileDataReply'] = _PROFILEDATAREPLY
+DESCRIPTOR.message_types_by_name['ProfileListReply'] = _PROFILELISTREPLY
 
 AquireDataRequest = _reflection.GeneratedProtocolMessageType('AquireDataRequest', (_message.Message,), dict(
   DESCRIPTOR = _AQUIREDATAREQUEST,
@@ -146,6 +386,13 @@ AquireDataRequest = _reflection.GeneratedProtocolMessageType('AquireDataRequest'
   # @@protoc_insertion_point(class_scope:interop.AquireDataRequest)
   ))
 _sym_db.RegisterMessage(AquireDataRequest)
+
+ResetDataRequest = _reflection.GeneratedProtocolMessageType('ResetDataRequest', (_message.Message,), dict(
+  DESCRIPTOR = _RESETDATAREQUEST,
+  __module__ = 'back_end_pb2'
+  # @@protoc_insertion_point(class_scope:interop.ResetDataRequest)
+  ))
+_sym_db.RegisterMessage(ResetDataRequest)
 
 TrainClassifierRequest = _reflection.GeneratedProtocolMessageType('TrainClassifierRequest', (_message.Message,), dict(
   DESCRIPTOR = _TRAINCLASSIFIERREQUEST,
@@ -161,7 +408,55 @@ RecognizeCommandsRequest = _reflection.GeneratedProtocolMessageType('RecognizeCo
   ))
 _sym_db.RegisterMessage(RecognizeCommandsRequest)
 
+UserProfileOperationRequest = _reflection.GeneratedProtocolMessageType('UserProfileOperationRequest', (_message.Message,), dict(
+  DESCRIPTOR = _USERPROFILEOPERATIONREQUEST,
+  __module__ = 'back_end_pb2'
+  # @@protoc_insertion_point(class_scope:interop.UserProfileOperationRequest)
+  ))
+_sym_db.RegisterMessage(UserProfileOperationRequest)
 
+EmptyRequest = _reflection.GeneratedProtocolMessageType('EmptyRequest', (_message.Message,), dict(
+  DESCRIPTOR = _EMPTYREQUEST,
+  __module__ = 'back_end_pb2'
+  # @@protoc_insertion_point(class_scope:interop.EmptyRequest)
+  ))
+_sym_db.RegisterMessage(EmptyRequest)
+
+ProfileDataReply = _reflection.GeneratedProtocolMessageType('ProfileDataReply', (_message.Message,), dict(
+
+  ProfileDataEntry = _reflection.GeneratedProtocolMessageType('ProfileDataEntry', (_message.Message,), dict(
+    DESCRIPTOR = _PROFILEDATAREPLY_PROFILEDATAENTRY,
+    __module__ = 'back_end_pb2'
+    # @@protoc_insertion_point(class_scope:interop.ProfileDataReply.ProfileDataEntry)
+    ))
+  ,
+  DESCRIPTOR = _PROFILEDATAREPLY,
+  __module__ = 'back_end_pb2'
+  # @@protoc_insertion_point(class_scope:interop.ProfileDataReply)
+  ))
+_sym_db.RegisterMessage(ProfileDataReply)
+_sym_db.RegisterMessage(ProfileDataReply.ProfileDataEntry)
+
+ProfileListReply = _reflection.GeneratedProtocolMessageType('ProfileListReply', (_message.Message,), dict(
+
+  ProfileListEntry = _reflection.GeneratedProtocolMessageType('ProfileListEntry', (_message.Message,), dict(
+    DESCRIPTOR = _PROFILELISTREPLY_PROFILELISTENTRY,
+    __module__ = 'back_end_pb2'
+    # @@protoc_insertion_point(class_scope:interop.ProfileListReply.ProfileListEntry)
+    ))
+  ,
+  DESCRIPTOR = _PROFILELISTREPLY,
+  __module__ = 'back_end_pb2'
+  # @@protoc_insertion_point(class_scope:interop.ProfileListReply)
+  ))
+_sym_db.RegisterMessage(ProfileListReply)
+_sym_db.RegisterMessage(ProfileListReply.ProfileListEntry)
+
+
+_PROFILEDATAREPLY_PROFILEDATAENTRY.has_options = True
+_PROFILEDATAREPLY_PROFILEDATAENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
+_PROFILELISTREPLY_PROFILELISTENTRY.has_options = True
+_PROFILELISTREPLY_PROFILELISTENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
 try:
   # THESE ELEMENTS WILL BE DEPRECATED.
   # Please use the generated *_pb2_grpc.py files instead.
@@ -185,6 +480,11 @@ try:
           request_serializer=AquireDataRequest.SerializeToString,
           response_deserializer=shared__pb2.StatusReply.FromString,
           )
+      self.ResetDataForCommand = channel.unary_unary(
+          '/interop.BackEnd/ResetDataForCommand',
+          request_serializer=ResetDataRequest.SerializeToString,
+          response_deserializer=shared__pb2.StatusReply.FromString,
+          )
       self.TrainClassifier = channel.unary_unary(
           '/interop.BackEnd/TrainClassifier',
           request_serializer=TrainClassifierRequest.SerializeToString,
@@ -195,11 +495,41 @@ try:
           request_serializer=RecognizeCommandsRequest.SerializeToString,
           response_deserializer=shared__pb2.StatusReply.FromString,
           )
+      self.StopRecognizion = channel.unary_unary(
+          '/interop.BackEnd/StopRecognizion',
+          request_serializer=EmptyRequest.SerializeToString,
+          response_deserializer=shared__pb2.StatusReply.FromString,
+          )
+      self.CreateUserProfile = channel.unary_unary(
+          '/interop.BackEnd/CreateUserProfile',
+          request_serializer=UserProfileOperationRequest.SerializeToString,
+          response_deserializer=shared__pb2.StatusReply.FromString,
+          )
+      self.DeleteUserProfile = channel.unary_unary(
+          '/interop.BackEnd/DeleteUserProfile',
+          request_serializer=UserProfileOperationRequest.SerializeToString,
+          response_deserializer=shared__pb2.StatusReply.FromString,
+          )
+      self.GetUserProfile = channel.unary_unary(
+          '/interop.BackEnd/GetUserProfile',
+          request_serializer=UserProfileOperationRequest.SerializeToString,
+          response_deserializer=ProfileDataReply.FromString,
+          )
+      self.GetUserProfiles = channel.unary_unary(
+          '/interop.BackEnd/GetUserProfiles',
+          request_serializer=EmptyRequest.SerializeToString,
+          response_deserializer=ProfileListReply.FromString,
+          )
 
 
   class BackEndServicer(object):
 
     def AcquireDataForCommand(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def ResetDataForCommand(self, request, context):
       context.set_code(grpc.StatusCode.UNIMPLEMENTED)
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
@@ -214,12 +544,42 @@ try:
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
 
+    def StopRecognizion(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def CreateUserProfile(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def DeleteUserProfile(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetUserProfile(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def GetUserProfiles(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
 
   def add_BackEndServicer_to_server(servicer, server):
     rpc_method_handlers = {
         'AcquireDataForCommand': grpc.unary_unary_rpc_method_handler(
             servicer.AcquireDataForCommand,
             request_deserializer=AquireDataRequest.FromString,
+            response_serializer=shared__pb2.StatusReply.SerializeToString,
+        ),
+        'ResetDataForCommand': grpc.unary_unary_rpc_method_handler(
+            servicer.ResetDataForCommand,
+            request_deserializer=ResetDataRequest.FromString,
             response_serializer=shared__pb2.StatusReply.SerializeToString,
         ),
         'TrainClassifier': grpc.unary_unary_rpc_method_handler(
@@ -231,6 +591,31 @@ try:
             servicer.RecognizeCommands,
             request_deserializer=RecognizeCommandsRequest.FromString,
             response_serializer=shared__pb2.StatusReply.SerializeToString,
+        ),
+        'StopRecognizion': grpc.unary_unary_rpc_method_handler(
+            servicer.StopRecognizion,
+            request_deserializer=EmptyRequest.FromString,
+            response_serializer=shared__pb2.StatusReply.SerializeToString,
+        ),
+        'CreateUserProfile': grpc.unary_unary_rpc_method_handler(
+            servicer.CreateUserProfile,
+            request_deserializer=UserProfileOperationRequest.FromString,
+            response_serializer=shared__pb2.StatusReply.SerializeToString,
+        ),
+        'DeleteUserProfile': grpc.unary_unary_rpc_method_handler(
+            servicer.DeleteUserProfile,
+            request_deserializer=UserProfileOperationRequest.FromString,
+            response_serializer=shared__pb2.StatusReply.SerializeToString,
+        ),
+        'GetUserProfile': grpc.unary_unary_rpc_method_handler(
+            servicer.GetUserProfile,
+            request_deserializer=UserProfileOperationRequest.FromString,
+            response_serializer=ProfileDataReply.SerializeToString,
+        ),
+        'GetUserProfiles': grpc.unary_unary_rpc_method_handler(
+            servicer.GetUserProfiles,
+            request_deserializer=EmptyRequest.FromString,
+            response_serializer=ProfileListReply.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -246,9 +631,21 @@ try:
     only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
     def AcquireDataForCommand(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def ResetDataForCommand(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def TrainClassifier(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def RecognizeCommands(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def StopRecognizion(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def CreateUserProfile(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def DeleteUserProfile(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetUserProfile(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def GetUserProfiles(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
@@ -261,12 +658,30 @@ try:
     def AcquireDataForCommand(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
     AcquireDataForCommand.future = None
+    def ResetDataForCommand(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    ResetDataForCommand.future = None
     def TrainClassifier(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
     TrainClassifier.future = None
     def RecognizeCommands(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
     RecognizeCommands.future = None
+    def StopRecognizion(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    StopRecognizion.future = None
+    def CreateUserProfile(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    CreateUserProfile.future = None
+    def DeleteUserProfile(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    DeleteUserProfile.future = None
+    def GetUserProfile(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetUserProfile.future = None
+    def GetUserProfiles(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    GetUserProfiles.future = None
 
 
   def beta_create_BackEnd_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
@@ -277,17 +692,35 @@ try:
     generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
     request_deserializers = {
       ('interop.BackEnd', 'AcquireDataForCommand'): AquireDataRequest.FromString,
+      ('interop.BackEnd', 'CreateUserProfile'): UserProfileOperationRequest.FromString,
+      ('interop.BackEnd', 'DeleteUserProfile'): UserProfileOperationRequest.FromString,
+      ('interop.BackEnd', 'GetUserProfile'): UserProfileOperationRequest.FromString,
+      ('interop.BackEnd', 'GetUserProfiles'): EmptyRequest.FromString,
       ('interop.BackEnd', 'RecognizeCommands'): RecognizeCommandsRequest.FromString,
+      ('interop.BackEnd', 'ResetDataForCommand'): ResetDataRequest.FromString,
+      ('interop.BackEnd', 'StopRecognizion'): EmptyRequest.FromString,
       ('interop.BackEnd', 'TrainClassifier'): TrainClassifierRequest.FromString,
     }
     response_serializers = {
       ('interop.BackEnd', 'AcquireDataForCommand'): shared__pb2.StatusReply.SerializeToString,
+      ('interop.BackEnd', 'CreateUserProfile'): shared__pb2.StatusReply.SerializeToString,
+      ('interop.BackEnd', 'DeleteUserProfile'): shared__pb2.StatusReply.SerializeToString,
+      ('interop.BackEnd', 'GetUserProfile'): ProfileDataReply.SerializeToString,
+      ('interop.BackEnd', 'GetUserProfiles'): ProfileListReply.SerializeToString,
       ('interop.BackEnd', 'RecognizeCommands'): shared__pb2.StatusReply.SerializeToString,
+      ('interop.BackEnd', 'ResetDataForCommand'): shared__pb2.StatusReply.SerializeToString,
+      ('interop.BackEnd', 'StopRecognizion'): shared__pb2.StatusReply.SerializeToString,
       ('interop.BackEnd', 'TrainClassifier'): shared__pb2.StatusReply.SerializeToString,
     }
     method_implementations = {
       ('interop.BackEnd', 'AcquireDataForCommand'): face_utilities.unary_unary_inline(servicer.AcquireDataForCommand),
+      ('interop.BackEnd', 'CreateUserProfile'): face_utilities.unary_unary_inline(servicer.CreateUserProfile),
+      ('interop.BackEnd', 'DeleteUserProfile'): face_utilities.unary_unary_inline(servicer.DeleteUserProfile),
+      ('interop.BackEnd', 'GetUserProfile'): face_utilities.unary_unary_inline(servicer.GetUserProfile),
+      ('interop.BackEnd', 'GetUserProfiles'): face_utilities.unary_unary_inline(servicer.GetUserProfiles),
       ('interop.BackEnd', 'RecognizeCommands'): face_utilities.unary_unary_inline(servicer.RecognizeCommands),
+      ('interop.BackEnd', 'ResetDataForCommand'): face_utilities.unary_unary_inline(servicer.ResetDataForCommand),
+      ('interop.BackEnd', 'StopRecognizion'): face_utilities.unary_unary_inline(servicer.StopRecognizion),
       ('interop.BackEnd', 'TrainClassifier'): face_utilities.unary_unary_inline(servicer.TrainClassifier),
     }
     server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
@@ -302,17 +735,35 @@ try:
     generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
     request_serializers = {
       ('interop.BackEnd', 'AcquireDataForCommand'): AquireDataRequest.SerializeToString,
+      ('interop.BackEnd', 'CreateUserProfile'): UserProfileOperationRequest.SerializeToString,
+      ('interop.BackEnd', 'DeleteUserProfile'): UserProfileOperationRequest.SerializeToString,
+      ('interop.BackEnd', 'GetUserProfile'): UserProfileOperationRequest.SerializeToString,
+      ('interop.BackEnd', 'GetUserProfiles'): EmptyRequest.SerializeToString,
       ('interop.BackEnd', 'RecognizeCommands'): RecognizeCommandsRequest.SerializeToString,
+      ('interop.BackEnd', 'ResetDataForCommand'): ResetDataRequest.SerializeToString,
+      ('interop.BackEnd', 'StopRecognizion'): EmptyRequest.SerializeToString,
       ('interop.BackEnd', 'TrainClassifier'): TrainClassifierRequest.SerializeToString,
     }
     response_deserializers = {
       ('interop.BackEnd', 'AcquireDataForCommand'): shared__pb2.StatusReply.FromString,
+      ('interop.BackEnd', 'CreateUserProfile'): shared__pb2.StatusReply.FromString,
+      ('interop.BackEnd', 'DeleteUserProfile'): shared__pb2.StatusReply.FromString,
+      ('interop.BackEnd', 'GetUserProfile'): ProfileDataReply.FromString,
+      ('interop.BackEnd', 'GetUserProfiles'): ProfileListReply.FromString,
       ('interop.BackEnd', 'RecognizeCommands'): shared__pb2.StatusReply.FromString,
+      ('interop.BackEnd', 'ResetDataForCommand'): shared__pb2.StatusReply.FromString,
+      ('interop.BackEnd', 'StopRecognizion'): shared__pb2.StatusReply.FromString,
       ('interop.BackEnd', 'TrainClassifier'): shared__pb2.StatusReply.FromString,
     }
     cardinalities = {
       'AcquireDataForCommand': cardinality.Cardinality.UNARY_UNARY,
+      'CreateUserProfile': cardinality.Cardinality.UNARY_UNARY,
+      'DeleteUserProfile': cardinality.Cardinality.UNARY_UNARY,
+      'GetUserProfile': cardinality.Cardinality.UNARY_UNARY,
+      'GetUserProfiles': cardinality.Cardinality.UNARY_UNARY,
       'RecognizeCommands': cardinality.Cardinality.UNARY_UNARY,
+      'ResetDataForCommand': cardinality.Cardinality.UNARY_UNARY,
+      'StopRecognizion': cardinality.Cardinality.UNARY_UNARY,
       'TrainClassifier': cardinality.Cardinality.UNARY_UNARY,
     }
     stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)

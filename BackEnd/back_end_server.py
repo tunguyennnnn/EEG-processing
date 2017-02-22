@@ -3,18 +3,30 @@ Provides an API for calling procedures on the front end through RPC.
 """
 from concurrent import futures
 
+import time
+
 import grpc
 
 import shared_pb2
 import back_end_pb2
-from main import acquire_data, train, recognize
-import time
+
+from main import acquire_data, reset, train, recognize, stop_recognition
+from main import create_user_profile, delete_user_profile, get_user_profile, get_user_profiles
+
 
 class BackEndServicer(back_end_pb2.BackEndServicer):
 
   def AcquireDataForCommand(self, request, context):
     command = COMMAND_MAP[request.command]
     acquire_data(request.username, command)
+
+    status = shared_pb2.StatusReply(code=0)
+    return status
+
+  def ResetDataForCommand(self, request, context):
+    command = COMMAND_MAP[request.command]
+   
+    # TODO: Implement command reset
 
     status = shared_pb2.StatusReply(code=0)
     return status
@@ -32,6 +44,43 @@ class BackEndServicer(back_end_pb2.BackEndServicer):
 
     status = shared_pb2.StatusReply(code=0)
     return status
+
+  def StopRecognizion(self, request, context):
+    stop_recognition()
+
+    status = shared_pb2.StatusReply(code=0)
+    return status
+
+  def CreateUserProfile(self, request, context):
+    create_user_profile(request.username)
+
+    status = shared_pb2.StatusReply(code=0)
+    return status
+
+  def DeleteUserProfile(self, request, context):
+    delete_user_profile(request.username)
+
+    status = shared_pb2.StatusReply(code=0)
+    return status
+
+  def GetUserProfile(self, request, context):
+    profile_data = get_user_profile(request.username)
+
+    # Convert command strings to enum values
+    profile_data = {COMMAND_MAP_INV[command_string]: num_samples for command_string, num_samples in profile_data.items()}
+
+    profile_data_reply = back_end_pb2.ProfileDataReply(profile_data = profile_data)
+    return profile_data_reply
+
+  def GetUserProfiles(self, request, context):
+    profiles = get_user_profiles()
+
+    # Convert command strings to enum values
+    profiles = {username: back_end_pb2.ProfileDataReply(profile_data = 
+      {COMMAND_MAP_INV[command_string]: num_samples for command_string, num_samples in profile_data.items()}) for username, profile_data in profiles.items()}
+
+    profile_list_reply = back_end_pb2.ProfileListReply(profile_list = profiles)
+    return profile_list_reply
 
   
 def serve():
@@ -59,3 +108,6 @@ COMMAND_MAP = {
   shared_pb2.MOVE_FORWARD: 'FORWARD',
   shared_pb2.MOVE_BACK: 'BACKWARD'
 }
+
+# Inverted COMMAND_MAP
+COMMAND_MAP_INV = {v: k for k, v in COMMAND_MAP.items()}

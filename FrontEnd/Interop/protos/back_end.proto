@@ -6,11 +6,26 @@ package interop;
 
 service BackEnd {
   rpc AcquireDataForCommand(AquireDataRequest) returns (StatusReply) {}
+  rpc ResetDataForCommand(ResetDataRequest)    returns (StatusReply) {}
+
   rpc TrainClassifier(TrainClassifierRequest) returns (StatusReply) {}
+
   rpc RecognizeCommands(RecognizeCommandsRequest) returns (StatusReply) {}
+  rpc StopRecognizion(EmptyRequest) returns (StatusReply) {}
+
+  rpc CreateUserProfile(UserProfileOperationRequest) returns (StatusReply) {}
+  rpc DeleteUserProfile(UserProfileOperationRequest) returns (StatusReply) {}
+
+  rpc GetUserProfile(UserProfileOperationRequest) returns (ProfileDataReply) {}
+  rpc GetUserProfiles(EmptyRequest) returns (ProfileListReply) {}
 }
 
 message AquireDataRequest {
+	string username = 1;
+	CommandType command = 2;
+}
+
+message ResetDataRequest {
 	string username = 1;
 	CommandType command = 2;
 }
@@ -22,4 +37,18 @@ message TrainClassifierRequest {
 
 message RecognizeCommandsRequest {
 	string username = 1;
+}
+
+message UserProfileOperationRequest {
+	string username = 1;
+}
+
+message EmptyRequest {}
+
+message ProfileDataReply {
+	map<int32, int32>  profile_data = 1;
+}
+
+message ProfileListReply {
+	map<string, ProfileDataReply> profile_list = 1;
 }
