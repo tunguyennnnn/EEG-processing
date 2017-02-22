@@ -197,7 +197,7 @@ def evaluate_classifiers(list_of_classifers, list_of_selectors, list_of_data, li
     return channel_results
 
 def generate_new_classifiers(selected_classifiers, training_data, testing_data, list_of_commands):
-    CHANNELS = ['AF3', 'F7', 'F3', 'FC5', 'T7', 'P7','O1', 'O2', 'P8', 'T8', 'FC6', 'F4','F8', 'AF4', 'COMBINED']
+    CHANNELS = ['AF3', 'F7', 'F3', 'FC5', 'T7', 'P7','O1', 'O2', 'P8', 'T8', 'FC6', 'F4','F8', 'AF4']
     sum_classifier = LinearDiscriminantAnalysis()
     channels = [CHANNELS.index(clf_info['channel']) for clf_info in selected_classifiers]
     name = "-".join([clf_info['channel'] for clf_info in selected_classifiers])
@@ -239,7 +239,7 @@ def channel_selection(list_of_classifers):
         print classifier['channel']
         print average
         take = True
-        if average < 0.7:
+        if average < 0.7 or classifier['channel'] == 'COMBINED':
             take = False
         else:
             for command in classifier['command_detail']:
