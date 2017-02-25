@@ -13,7 +13,7 @@ from ctypes import byref
 from threading import Thread
 import shutil
 import json
-
+import glob
 
 ''' Modules for processing
     FE provides functions for feature extraction
@@ -356,10 +356,14 @@ class CommandOnData:
 
 
 def recognize(id, list_of_commands=["up", "down"]):
+    print "Start running"
     header = {'AF3': 0, 'F7': 1, 'F3': 2, 'FC5': 3, 'T7': 4, 'P7': 5,
               'O1': 6, 'O2': 7, 'P8': 8, 'T8': 9, 'FC6': 10, 'F4': 11,
               'F8': 12, 'AF4': 13}
     CHANNELS = ['AF3', 'F7', 'F3', 'FC5', 'T7', 'P7','O1', 'O2', 'P8', 'T8', 'FC6', 'F4','F8', 'AF4', 'COMBINED']
+
+    global recognition_state
+    recognition_state.stop = False
     classifiers = CF.get_classifiers(id)
     clf_info = None
     for cf in classifiers:
@@ -426,6 +430,14 @@ def delete_user_profile(username):
     '''
     shutil.rmtree('./userdata/' + username)
     shutil.rmtree('./classifier/' + username)
+
+def delete_user_data(username, command):
+    username = username.lower()
+    command = command.upper()
+    if command in COMMAND_TABLES:
+        for name in glob.glob('userdata/' + username + '/' + command + "_" + username + '_' +"[0-9]*.csv"):
+            print name
+            os.remove(name)
 
 def get_user_profiles():
     ''' API
