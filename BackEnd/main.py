@@ -31,6 +31,8 @@ import numpy as np
 import acquisition as AQ
 from front_end_client import *
 
+import sensor_fusion as SF
+
 ''' Check if libEDK exists'''
 try :
     if sys.platform.startswith('win32'):
@@ -153,6 +155,8 @@ def acquire_data_for_command(id='tu' ,state_number=0):
 COMMAND_TABLES = ["NEUTRAL", "UP", "DOWN", "RIGHT", "LEFT", "FORWARD", "BACKWARD"]
 
 
+FINAL_COMMAND = SF.SensorFusion()
+
 def acquire_data(id, command_name):
     command_name = command_name.upper()
     if command_name.upper() in COMMAND_TABLES:
@@ -270,7 +274,7 @@ def executing(clfs, test_features, command_classes,  training_mode = None):
             if accumulator.is_enough():
                 accum_data = accumulator.process()
                 command = accumulator.determine_command(accum_data)
-                send_command_to_front_end(command)
+                FINAL_COMMAND.drone_command.update_command(command-1)
                 print "xxxxxxxxxxxxxxxx"
                 print command
                 if training_mode:
@@ -454,6 +458,10 @@ def get_user_profiles():
             else:
                 profiles[sub_folder][command] = 1
     return profiles
+
+def update_sensor_data(sensor_data):
+    'expect a list of 4 sensor data, enumerate: 1 2 3 4'
+    FINAL_COMMAND.update_sensor_data(sensor_data)
 
 
 
