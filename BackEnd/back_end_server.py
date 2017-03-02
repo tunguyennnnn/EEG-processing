@@ -12,6 +12,7 @@ import back_end_pb2
 
 from main import acquire_data, reset, train, recognize, stop_recognition
 from main import create_user_profile, delete_user_profile, get_user_profile, get_user_profiles
+from main import update_sensor_data
 
 
 class BackEndServicer(back_end_pb2.BackEndServicer):
@@ -81,6 +82,15 @@ class BackEndServicer(back_end_pb2.BackEndServicer):
 
     profile_list_reply = back_end_pb2.ProfileListReply(profile_list = profiles)
     return profile_list_reply
+
+  def UpdateSensorData(self, request, context):
+    sensor_data = request.sensor_data
+    update_sensor_data(sensor_data)
+
+    print(sensor_data)
+
+    status = shared_pb2.StatusReply(code=0)
+    return status
 
   
 def serve():

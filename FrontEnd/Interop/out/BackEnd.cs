@@ -37,23 +37,26 @@ namespace Interop {
             "ZmlsZUxpc3RSZXBseRJACgxwcm9maWxlX2xpc3QYASADKAsyKi5pbnRlcm9w",
             "LlByb2ZpbGVMaXN0UmVwbHkuUHJvZmlsZUxpc3RFbnRyeRpNChBQcm9maWxl",
             "TGlzdEVudHJ5EgsKA2tleRgBIAEoCRIoCgV2YWx1ZRgCIAEoCzIZLmludGVy",
-            "b3AuUHJvZmlsZURhdGFSZXBseToCOAEywAUKB0JhY2tFbmQSSwoVQWNxdWly",
-            "ZURhdGFGb3JDb21tYW5kEhouaW50ZXJvcC5BcXVpcmVEYXRhUmVxdWVzdBoU",
-            "LmludGVyb3AuU3RhdHVzUmVwbHkiABJIChNSZXNldERhdGFGb3JDb21tYW5k",
-            "EhkuaW50ZXJvcC5SZXNldERhdGFSZXF1ZXN0GhQuaW50ZXJvcC5TdGF0dXNS",
-            "ZXBseSIAEkoKD1RyYWluQ2xhc3NpZmllchIfLmludGVyb3AuVHJhaW5DbGFz",
-            "c2lmaWVyUmVxdWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHkiABJOChFSZWNv",
-            "Z25pemVDb21tYW5kcxIhLmludGVyb3AuUmVjb2duaXplQ29tbWFuZHNSZXF1",
-            "ZXN0GhQuaW50ZXJvcC5TdGF0dXNSZXBseSIAEkAKD1N0b3BSZWNvZ25pemlv",
-            "bhIVLmludGVyb3AuRW1wdHlSZXF1ZXN0GhQuaW50ZXJvcC5TdGF0dXNSZXBs",
-            "eSIAElEKEUNyZWF0ZVVzZXJQcm9maWxlEiQuaW50ZXJvcC5Vc2VyUHJvZmls",
-            "ZU9wZXJhdGlvblJlcXVlc3QaFC5pbnRlcm9wLlN0YXR1c1JlcGx5IgASUQoR",
-            "RGVsZXRlVXNlclByb2ZpbGUSJC5pbnRlcm9wLlVzZXJQcm9maWxlT3BlcmF0",
-            "aW9uUmVxdWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHkiABJTCg5HZXRVc2Vy",
-            "UHJvZmlsZRIkLmludGVyb3AuVXNlclByb2ZpbGVPcGVyYXRpb25SZXF1ZXN0",
-            "GhkuaW50ZXJvcC5Qcm9maWxlRGF0YVJlcGx5IgASRQoPR2V0VXNlclByb2Zp",
-            "bGVzEhUuaW50ZXJvcC5FbXB0eVJlcXVlc3QaGS5pbnRlcm9wLlByb2ZpbGVM",
-            "aXN0UmVwbHkiAGIGcHJvdG8z"));
+            "b3AuUHJvZmlsZURhdGFSZXBseToCOAEiLgoXVXBkYXRlU2Vuc29yRGF0YVJl",
+            "cXVlc3QSEwoLc2Vuc29yX2RhdGEYASADKAUyjgYKB0JhY2tFbmQSSwoVQWNx",
+            "dWlyZURhdGFGb3JDb21tYW5kEhouaW50ZXJvcC5BcXVpcmVEYXRhUmVxdWVz",
+            "dBoULmludGVyb3AuU3RhdHVzUmVwbHkiABJIChNSZXNldERhdGFGb3JDb21t",
+            "YW5kEhkuaW50ZXJvcC5SZXNldERhdGFSZXF1ZXN0GhQuaW50ZXJvcC5TdGF0",
+            "dXNSZXBseSIAEkoKD1RyYWluQ2xhc3NpZmllchIfLmludGVyb3AuVHJhaW5D",
+            "bGFzc2lmaWVyUmVxdWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHkiABJOChFS",
+            "ZWNvZ25pemVDb21tYW5kcxIhLmludGVyb3AuUmVjb2duaXplQ29tbWFuZHNS",
+            "ZXF1ZXN0GhQuaW50ZXJvcC5TdGF0dXNSZXBseSIAEkAKD1N0b3BSZWNvZ25p",
+            "emlvbhIVLmludGVyb3AuRW1wdHlSZXF1ZXN0GhQuaW50ZXJvcC5TdGF0dXNS",
+            "ZXBseSIAElEKEUNyZWF0ZVVzZXJQcm9maWxlEiQuaW50ZXJvcC5Vc2VyUHJv",
+            "ZmlsZU9wZXJhdGlvblJlcXVlc3QaFC5pbnRlcm9wLlN0YXR1c1JlcGx5IgAS",
+            "UQoRRGVsZXRlVXNlclByb2ZpbGUSJC5pbnRlcm9wLlVzZXJQcm9maWxlT3Bl",
+            "cmF0aW9uUmVxdWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHkiABJTCg5HZXRV",
+            "c2VyUHJvZmlsZRIkLmludGVyb3AuVXNlclByb2ZpbGVPcGVyYXRpb25SZXF1",
+            "ZXN0GhkuaW50ZXJvcC5Qcm9maWxlRGF0YVJlcGx5IgASRQoPR2V0VXNlclBy",
+            "b2ZpbGVzEhUuaW50ZXJvcC5FbXB0eVJlcXVlc3QaGS5pbnRlcm9wLlByb2Zp",
+            "bGVMaXN0UmVwbHkiABJMChBVcGRhdGVTZW5zb3JEYXRhEiAuaW50ZXJvcC5V",
+            "cGRhdGVTZW5zb3JEYXRhUmVxdWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHki",
+            "AGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Interop.SharedReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -64,7 +67,8 @@ namespace Interop {
             new pbr::GeneratedClrTypeInfo(typeof(global::Interop.UserProfileOperationRequest), global::Interop.UserProfileOperationRequest.Parser, new[]{ "Username" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Interop.EmptyRequest), global::Interop.EmptyRequest.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Interop.ProfileDataReply), global::Interop.ProfileDataReply.Parser, new[]{ "ProfileData" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Interop.ProfileListReply), global::Interop.ProfileListReply.Parser, new[]{ "ProfileList" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
+            new pbr::GeneratedClrTypeInfo(typeof(global::Interop.ProfileListReply), global::Interop.ProfileListReply.Parser, new[]{ "ProfileList" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Interop.UpdateSensorDataRequest), global::Interop.UpdateSensorDataRequest.Parser, new[]{ "SensorData" }, null, null, null)
           }));
     }
     #endregion
@@ -1032,6 +1036,116 @@ namespace Interop {
             break;
           case 10: {
             profileList_.AddEntriesFrom(input, _map_profileList_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class UpdateSensorDataRequest : pb::IMessage<UpdateSensorDataRequest> {
+    private static readonly pb::MessageParser<UpdateSensorDataRequest> _parser = new pb::MessageParser<UpdateSensorDataRequest>(() => new UpdateSensorDataRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<UpdateSensorDataRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Interop.BackEndReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpdateSensorDataRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpdateSensorDataRequest(UpdateSensorDataRequest other) : this() {
+      sensorData_ = other.sensorData_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpdateSensorDataRequest Clone() {
+      return new UpdateSensorDataRequest(this);
+    }
+
+    /// <summary>Field number for the "sensor_data" field.</summary>
+    public const int SensorDataFieldNumber = 1;
+    private static readonly pb::FieldCodec<int> _repeated_sensorData_codec
+        = pb::FieldCodec.ForInt32(10);
+    private readonly pbc::RepeatedField<int> sensorData_ = new pbc::RepeatedField<int>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<int> SensorData {
+      get { return sensorData_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as UpdateSensorDataRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(UpdateSensorDataRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!sensorData_.Equals(other.sensorData_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= sensorData_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      sensorData_.WriteTo(output, _repeated_sensorData_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += sensorData_.CalculateSize(_repeated_sensorData_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(UpdateSensorDataRequest other) {
+      if (other == null) {
+        return;
+      }
+      sensorData_.Add(other.sensorData_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10:
+          case 8: {
+            sensorData_.AddEntriesFrom(input, _repeated_sensorData_codec);
             break;
           }
         }

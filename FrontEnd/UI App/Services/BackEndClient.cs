@@ -183,6 +183,21 @@ namespace SimulationApp.Services
             }
         }
 
+        public void UpdateSensorData(int[] sensorData)
+        {
+            var request = new UpdateSensorDataRequest();
+            request.SensorData.AddRange(sensorData);
+
+            try
+            {
+                var status = _client.UpdateSensorData(request);
+            }
+            catch (Grpc.Core.RpcException e)
+            {
+                Dialog.ShowMessageBox("Error", "Exception on the callee side: " + e.Message);
+            }
+        }
+
         private readonly Channel _channel;
         private readonly Client _client;
     }

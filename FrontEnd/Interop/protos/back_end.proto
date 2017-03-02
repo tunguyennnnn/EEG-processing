@@ -18,6 +18,8 @@ service BackEnd {
 
   rpc GetUserProfile(UserProfileOperationRequest) returns (ProfileDataReply) {}
   rpc GetUserProfiles(EmptyRequest) returns (ProfileListReply) {}
+
+  rpc UpdateSensorData(UpdateSensorDataRequest) returns (StatusReply) {}
 }
 
 message AquireDataRequest {
@@ -51,4 +53,8 @@ message ProfileDataReply {
 
 message ProfileListReply {
 	map<string, ProfileDataReply> profile_list = 1;
+}
+
+message UpdateSensorDataRequest {
+	repeated int32 sensor_data = 1;
 }

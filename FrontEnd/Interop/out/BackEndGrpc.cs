@@ -21,6 +21,7 @@ namespace Interop {
     static readonly Marshaller<global::Interop.UserProfileOperationRequest> __Marshaller_UserProfileOperationRequest = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Interop.UserProfileOperationRequest.Parser.ParseFrom);
     static readonly Marshaller<global::Interop.ProfileDataReply> __Marshaller_ProfileDataReply = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Interop.ProfileDataReply.Parser.ParseFrom);
     static readonly Marshaller<global::Interop.ProfileListReply> __Marshaller_ProfileListReply = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Interop.ProfileListReply.Parser.ParseFrom);
+    static readonly Marshaller<global::Interop.UpdateSensorDataRequest> __Marshaller_UpdateSensorDataRequest = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Interop.UpdateSensorDataRequest.Parser.ParseFrom);
 
     static readonly Method<global::Interop.AquireDataRequest, global::Interop.StatusReply> __Method_AcquireDataForCommand = new Method<global::Interop.AquireDataRequest, global::Interop.StatusReply>(
         MethodType.Unary,
@@ -84,6 +85,13 @@ namespace Interop {
         "GetUserProfiles",
         __Marshaller_EmptyRequest,
         __Marshaller_ProfileListReply);
+
+    static readonly Method<global::Interop.UpdateSensorDataRequest, global::Interop.StatusReply> __Method_UpdateSensorData = new Method<global::Interop.UpdateSensorDataRequest, global::Interop.StatusReply>(
+        MethodType.Unary,
+        __ServiceName,
+        "UpdateSensorData",
+        __Marshaller_UpdateSensorDataRequest,
+        __Marshaller_StatusReply);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -257,6 +265,22 @@ namespace Interop {
       public virtual AsyncUnaryCall<global::Interop.ProfileListReply> GetUserProfilesAsync(global::Interop.EmptyRequest request, CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetUserProfiles, null, options, request);
+      }
+      public virtual global::Interop.StatusReply UpdateSensorData(global::Interop.UpdateSensorDataRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateSensorData(request, new CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Interop.StatusReply UpdateSensorData(global::Interop.UpdateSensorDataRequest request, CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateSensorData, null, options, request);
+      }
+      public virtual AsyncUnaryCall<global::Interop.StatusReply> UpdateSensorDataAsync(global::Interop.UpdateSensorDataRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return UpdateSensorDataAsync(request, new CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual AsyncUnaryCall<global::Interop.StatusReply> UpdateSensorDataAsync(global::Interop.UpdateSensorDataRequest request, CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateSensorData, null, options, request);
       }
       protected override BackEndClient NewInstance(ClientBaseConfiguration configuration)
       {

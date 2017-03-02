@@ -10,7 +10,6 @@ using SimulationApp.Models;
 using SimulationApp.Services;
 using SimulationApp.Utilities;
 
-
 namespace SimulationApp.ViewModels
 {
     public class TrainingVM : ViewModelBase, IDisposable
@@ -21,6 +20,8 @@ namespace SimulationApp.ViewModels
             _server.Start();
 
             _client = new BackEndClient();
+
+            _sensorListener = new SensorListener(_client);
             
             LoadUserProfiles();
         }
@@ -188,6 +189,8 @@ namespace SimulationApp.ViewModels
         private readonly FrontEndServer _server;
         private readonly BackEndClient _client;
         private bool _isTrainingInProgress;
+
+        private SensorListener _sensorListener;
 
         private UserProfileVM _activeProfileVM;
 

@@ -20,6 +20,8 @@ import back_end_pb2 as back__end__pb2
 import back_end_pb2 as back__end__pb2
 import back_end_pb2 as back__end__pb2
 import back_end_pb2 as back__end__pb2
+import back_end_pb2 as back__end__pb2
+import shared_pb2 as shared__pb2
 
 
 class BackEndStub(object):
@@ -75,6 +77,11 @@ class BackEndStub(object):
         request_serializer=back__end__pb2.EmptyRequest.SerializeToString,
         response_deserializer=back__end__pb2.ProfileListReply.FromString,
         )
+    self.UpdateSensorData = channel.unary_unary(
+        '/interop.BackEnd/UpdateSensorData',
+        request_serializer=back__end__pb2.UpdateSensorDataRequest.SerializeToString,
+        response_deserializer=shared__pb2.StatusReply.FromString,
+        )
 
 
 class BackEndServicer(object):
@@ -120,6 +127,11 @@ class BackEndServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def GetUserProfiles(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def UpdateSensorData(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -171,6 +183,11 @@ def add_BackEndServicer_to_server(servicer, server):
           servicer.GetUserProfiles,
           request_deserializer=back__end__pb2.EmptyRequest.FromString,
           response_serializer=back__end__pb2.ProfileListReply.SerializeToString,
+      ),
+      'UpdateSensorData': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateSensorData,
+          request_deserializer=back__end__pb2.UpdateSensorDataRequest.FromString,
+          response_serializer=shared__pb2.StatusReply.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
