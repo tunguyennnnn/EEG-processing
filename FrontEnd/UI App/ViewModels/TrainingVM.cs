@@ -22,6 +22,7 @@ namespace SimulationApp.ViewModels
             _client = new BackEndClient();
 
             _sensorListener = new SensorListener(_client);
+            _sensorListener.TryConnectToSensor();
             
             LoadUserProfiles();
         }
@@ -103,6 +104,7 @@ namespace SimulationApp.ViewModels
             Task.Run(() =>
             {
                 _client.StopRecognition();
+                _sensorListener.SensorNotificationEnabled = false;
 
                 _client.AcquireDataForCommand(ActiveProfile.Username, command);
 
@@ -139,7 +141,9 @@ namespace SimulationApp.ViewModels
             {
                 _client.TrainClassifier(ActiveProfile.Username, ActiveProfile.ActiveCommands);
                 StopTraining();
+
                 _client.RecognizeCommands(ActiveProfile.Username);
+                _sensorListener.SensorNotificationEnabled = true;
             });
         }
 

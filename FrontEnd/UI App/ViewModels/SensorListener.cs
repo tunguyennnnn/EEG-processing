@@ -1,6 +1,7 @@
 ﻿using SimulationApp.Services;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
 using Windows.Storage.Streams;
@@ -14,10 +15,9 @@ namespace SimulationApp.ViewModels
         public SensorListener(BackEndClient client)
         {
             _client = client;
-            ConnectToSensor();
         }
 
-        public async void ConnectToSensor()
+        public async Task<bool> TryConnectToSensor()
         {
             var service_guid = new Guid("0000ffe0-0000-1000-8000-00805f9b34fb");
             var gatt_devices = await DeviceInformation.FindAllAsync(GattDeviceService.GetDeviceSelectorFromUuid(service_guid), null);
@@ -37,19 +37,28 @@ namespace SimulationApp.ViewModels
 
                 var descriptorValue = GattClientCharacteristicConfigurationDescriptorValue.Notify;
                 await characteristic.WriteClientCharacteristicConfigurationDescriptorAsync(descriptorValue);
+
+                return true;
             }
+
+            return false;
         }
 
         private GattCharacteristic _characteristic = null;
 
+        public bool SensorNotificationEnabled { get; set; } = false;
+
         public void OnReceive(GattCharacteristic sender, GattValueChangedEventArgs eventArgs)
         {
-            byte[] bArray = new byte[eventArgs.CharacteristicValue.Length];
-            DataReader.FromBuffer(eventArgs.CharacteristicValue).ReadBytes(bArray);
+            if (SensorNotificationEnabled)
+            {
+                byte[] bArray = new byte[eventArgs.CharacteristicValue.Length];
+                DataReader.FromBuffer(eventArgs.CharacteristicValue).ReadBytes(bArray);
 
-            int[] bytesAsInts = bArray.Select(x => (int)x).ToArray();
+                int[] bytesAsInts = bArray.Select(x => (int)x).ToArray();
 
-            _client.UpdateSensorData(bytesAsInts);
+                _client.UpdateSensorData(bytesAsInts);
+            }
         }
     }
 }
