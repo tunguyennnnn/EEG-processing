@@ -1,5 +1,7 @@
 
 from front_end_client import *
+import time
+import os
 
 class CommandToDrone:
     def __init__(self, start_states="up-down", to_drone = False):
@@ -10,6 +12,7 @@ class CommandToDrone:
         self.front_end = FrontEndClient()
         self.to_drone = to_drone
         self.command = 0
+        self.final_command = self.command
         if to_drone:
             # process = sb.Popen(['node', 'drone_input.js'], stdin=sb.PIPE, stdout=sb.PIPE)
             # host = socket.
@@ -21,19 +24,50 @@ class CommandToDrone:
         state_index = self.state_set.index(self.state)
         next_index = (len(self.state_set) + state_index + 1) % len(self.state_set)
         self.state = self.state_set[next_index]
+        if self.state == "move_forward-move_backward":
+            os.system('cmdmp3 mp3/mode_forward_backward.mp3');
+        elif self.state == "move_up-move_down":
+            os.system('cmdmp3 mp3/mode_up_down.mp3');
+        elif self.state == 'move_left-move_right':
+            os.system('cmdmp3 mp3/mode_left_right.mp3')
+        elif self.state == 'turn_left-turn_right':
+            os.system('cmdmp3 mp3/mode_turn_left_right.mp3')
 
     def update_command(self, command):
         self.command = command
 
     def execute_command(self):
         if self.allowed_to_execute:
-            command = self.state.split("-")[self.command]
+            command = self.state.split("-")[self.final_command]
             self.send(command, self.command_mapping[command])
         else:
             self.send("neutral", self.command_mapping["neutral"])
 
+    def update_final_command(self):
+        self.final_command = self.command
+        if self.final_command == 0:
+            if self.state == "move_forward-move_backward":
+                os.system('cmdmp3 mp3/mode_go_forward.mp3');
+            elif self.state == "move_up-move_down":
+                os.system('cmdmp3 mp3/mode_go_up.mp3');
+            elif self.state == 'move_left-move_right':
+                os.system('cmdmp3 mp3/mode_go_left.mp3')
+            elif self.state == 'turn_left-turn_right':
+                os.system('cmdmp3 mp3/mode_turn_left.mp3')
+        elif self.final_command == 1:
+            if self.state == "move_forward-move_backward":
+                os.system('cmdmp3 mp3/mode_go_backward.mp3');
+            elif self.state == "move_up-move_down":
+                os.system('cmdmp3 mp3/mode_go_down.mp3');
+            elif self.state == 'move_left-move_right':
+                os.system('cmdmp3 mp3/mode_go_right.mp3')
+            elif self.state == 'turn_left-turn_right':
+                os.system('cmdmp3 mp3/mode_turn_right.mp3')
+
     def send(self, command_to_ui, command_to_drone):
         self.front_end.call_method(command_to_ui)
+        time.sleep(0.5)
+        self.front_end.call_method("neutral")
         if self.to_drone:
             process = sb.Popen(self.drone_program, stdin=sb.PIPE, stdout=sb.PIPE)
 
@@ -56,6 +90,8 @@ class SensorFusion:
         self.sensor_2 = Sensor(self.sensor_2_callback)
         self.sensor_3 = Sensor(self.sensor_3_callback)
         self.sensor_4 = Sensor(self.sensor_4_callback)
+        self.sensor_5 = Sensor(self.sensor_5_callback) # 1 and 2 combined
+        self.sensor_6 = Sensor(self.sensor_6_callback)
 
 
     def check_valid_input(self, sensor_data):
@@ -70,10 +106,15 @@ class SensorFusion:
             return False
         if counter == 1:
             return pairs[0]
+        if counter == 2:
+            if pairs[0][0] == 0 and pairs[1][0] == 1:
+                return (4, 4)
+            else:
+                return False
         else: return False
 
     def update_sensor_data(self, sensor_data):
-        list_of_sensors = [self.sensor_1, self.sensor_2, self.sensor_3, self.sensor_4]
+        list_of_sensors = [self.sensor_1, self.sensor_2, self.sensor_3, self.sensor_4, self.sensor_5, self.sensor_6]
         valid_result = self.check_valid_input(sensor_data)
         if valid_result:
             index, value = valid_result
@@ -87,7 +128,7 @@ class SensorFusion:
         else:
             self.drone_command.allowed_to_execute = True
         self.drone_command.execute_command()
-        
+
     def sensor_2_callback(self, signal_type):
         pass
 
@@ -97,3 +138,10 @@ class SensorFusion:
     def sensor_4_callback(self, signal_type):
         if signal_type == 'high-signal':
             self.drone_command.next_state()
+
+    def sensor_5_callback(self, signal_type):
+        if signal_type == 'high-signal':
+            self.drone_command.update_final_command()
+
+    def sensor_6_callback(self, signal_type):
+        pass

@@ -412,8 +412,8 @@ def recognize(id, list_of_commands=["up", "down"]):
     execu = Thread(target=executing, args=(classifiers, test_features, list_of_commands, ))
     acquire_data.start()
     execu.start()
-    acquire_data.join()
-    execu.join()
+    # acquire_data.join()
+    # execu.join()
 
 
 
