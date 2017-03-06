@@ -14,8 +14,7 @@ class CommandToDrone:
         self.command = 0
         self.final_command = self.command
         if to_drone:
-            # process = sb.Popen(['node', 'drone_input.js'], stdin=sb.PIPE, stdout=sb.PIPE)
-            # host = socket.
+            self.drone_process = sb.Popen(['node', 'drone_input.js'], stdin=sb.PIPE, stdout=sb.PIPE)
             pass
         if not self.state in self.state_set:
             self.state = self.state_set[0]
@@ -69,7 +68,7 @@ class CommandToDrone:
         time.sleep(0.5)
         self.front_end.call_method("neutral")
         if self.to_drone:
-            process = sb.Popen(self.drone_program, stdin=sb.PIPE, stdout=sb.PIPE)
+            self.drone_process.stdin.write("1")
 
 
 
