@@ -239,7 +239,7 @@ def channel_selection(list_of_classifers):
         print classifier['channel']
         print average
         take = True
-        if average < 0.7 or classifier['channel'] == 'COMBINED':
+        if average < 0.9 or classifier['channel'] == 'COMBINED':
             take = False
         else:
             for command in classifier['command_detail']:

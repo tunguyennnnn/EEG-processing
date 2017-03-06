@@ -323,7 +323,7 @@ class CommandOnData:
         cmd = -1
         result = 0
         for command in final_result.keys():
-            if final_result[command] > result:
+            if final_result[command] >= result:
                 result = final_result[command]
                 cmd = command
         print cmd
