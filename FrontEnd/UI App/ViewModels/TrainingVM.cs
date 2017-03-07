@@ -231,15 +231,15 @@ namespace SimulationApp.ViewModels
            if(_isRecognizing)
             {
                 _client.StopRecognition();
-                ToggleRecognitionLabel = "Stop Recognition";
-                _sensorListener.SensorNotificationEnabled = true;
+                ToggleRecognitionLabel = "Start Recognition";
+                _sensorListener.SensorNotificationEnabled = false;
                 _isRecognizing = false;
             }
             else
             {
                 _client.RecognizeCommands(ActiveProfile.Username);
-                ToggleRecognitionLabel = "Start Recognition";
-                _sensorListener.SensorNotificationEnabled = false;
+                ToggleRecognitionLabel = "Stop Recognition";
+                _sensorListener.SensorNotificationEnabled = true;
                 _isRecognizing = true;
             }
         }
