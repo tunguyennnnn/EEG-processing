@@ -124,7 +124,7 @@ namespace SimulationApp.ViewModels
 
             if (modeActive)
             {
-                ModeSensor = (ModeSensor)%3 + 1;
+                ModeSensor = (ModeSensor)%4 + 1;
             }
         }
 
