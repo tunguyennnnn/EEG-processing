@@ -21,7 +21,7 @@ namespace SimulationApp.ViewModels
 
             _client = new BackEndClient();
 
-            _sensorListener = new SensorListener(_client);
+            _sensorListener = new SensorListener(this, _client);
             _sensorListener.TryConnectToSensor();
             
             LoadUserProfiles();
@@ -43,6 +43,28 @@ namespace SimulationApp.ViewModels
             set { SetValue(ref _activeProfileVM, value); }
         }
 
+        public string EnableSensor
+        {
+            get { return _enableSensor; }
+            set { SetValue(ref _enableSensor, value); }
+        }
+
+        public string LockSensor
+        {
+            get { return _lockSensor; }
+            set { SetValue(ref _lockSensor, value); }
+        }
+
+        public int ModeSensor
+        {
+            get { return _modeSensor; }
+            set { SetValue(ref _modeSensor, value); }
+        }
+
+        private string _enableSensor = "Off";
+        private string _lockSensor = "Off";
+        private int _modeSensor = 1;
+        
         #endregion
 
         #region Commands
@@ -73,6 +95,37 @@ namespace SimulationApp.ViewModels
         public void Dispose()
         {
             _server.Stop();
+        }
+
+        public void UpdateSensorData(int[] bytesAsInts)
+        {
+            var enableActive = bytesAsInts[0] > 2;
+            var lockActive = bytesAsInts[1] > 2;
+            var utilActive = bytesAsInts[2] > 2;
+            var modeActive = bytesAsInts[3] > 2;
+
+            if (enableActive)
+            {
+                EnableSensor = "On";
+            }
+            else
+            {
+                EnableSensor = "Off";
+            }
+
+            if (lockActive)
+            {
+                LockSensor = "On";
+            }
+            else
+            {
+                LockSensor = "Off";
+            }
+
+            if (modeActive)
+            {
+                ModeSensor = (ModeSensor)%3 + 1;
+            }
         }
 
         #endregion

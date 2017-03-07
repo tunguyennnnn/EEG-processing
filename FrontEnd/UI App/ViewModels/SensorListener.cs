@@ -10,11 +10,13 @@ namespace SimulationApp.ViewModels
 {
     class SensorListener
     {
-        BackEndClient _client;
+        private BackEndClient _client;
+        private TrainingVM _vm;
 
-        public SensorListener(BackEndClient client)
+        public SensorListener(TrainingVM vm, BackEndClient client)
         {
             _client = client;
+            _vm = vm;
         }
 
         public async Task<bool> TryConnectToSensor()
@@ -50,15 +52,13 @@ namespace SimulationApp.ViewModels
 
         public void OnReceive(GattCharacteristic sender, GattValueChangedEventArgs eventArgs)
         {
-            if (SensorNotificationEnabled)
-            {
                 byte[] bArray = new byte[eventArgs.CharacteristicValue.Length];
                 DataReader.FromBuffer(eventArgs.CharacteristicValue).ReadBytes(bArray);
 
                 int[] bytesAsInts = bArray.Select(x => (int)x).ToArray();
 
-                _client.UpdateSensorData(bytesAsInts);
-            }
+                if (SensorNotificationEnabled) _client.UpdateSensorData(bytesAsInts);
+                _vm.UpdateSensorData(bytesAsInts);
         }
     }
 }

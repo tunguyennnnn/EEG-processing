@@ -36,6 +36,29 @@
         <!-- Command List -->
         <DockPanel Grid.Column="1" Margin="{StaticResource SplitRight}">
 
+            <Label DockPanel.Dock="Top">Sensor</Label>
+            <GroupBox Header="Sensor Data" DockPanel.Dock="Top">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0">Enable Sensor: </Label>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding EnableSensor}"/>
+                    
+                    <Label Grid.Column="0" Grid.Row="1">Lock Sensor: </Label>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding LockSensor}"/>
+
+                    <Label Grid.Column="0" Grid.Row="2">Current mode: </Label>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding ModeSensor}"/>
+                </Grid>
+            </GroupBox>
             <DockPanel DockPanel.Dock="Top">
                 <Label DockPanel.Dock="Left">Training</Label>
                 <controls:ProfileSelector DockPanel.Dock="Right" HorizontalAlignment="Right"/>
