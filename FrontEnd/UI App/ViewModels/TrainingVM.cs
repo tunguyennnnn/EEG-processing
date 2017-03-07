@@ -55,7 +55,7 @@ namespace SimulationApp.ViewModels
             set { SetValue(ref _lockSensor, value); }
         }
 
-        public int ModeSensor
+        public string ModeSensor
         {
             get { return _modeSensor; }
             set { SetValue(ref _modeSensor, value); }
@@ -63,8 +63,16 @@ namespace SimulationApp.ViewModels
 
         private string _enableSensor = "Off";
         private string _lockSensor = "Off";
-        private int _modeSensor = 1;
-        
+        private string _modeSensor = "Up/Down";
+
+        public string ToggleRecognitionLabel
+        {
+            get { return _toggleRecognitionLabel; }
+            set { SetValue(ref _toggleRecognitionLabel, value); }
+        }
+
+        private string _toggleRecognitionLabel = "Start Recognition";
+
         #endregion
 
         #region Commands
@@ -72,6 +80,7 @@ namespace SimulationApp.ViewModels
         public ICommand TrainCommand => new DelegateCommand<DroneCommand>(StartTraining);
         public ICommand ResetCommand => new DelegateCommand<DroneCommand>(ResetCommandData);
         public ICommand TrainClassifierCommand => new DelegateCommand(TrainClassifier);
+        public ICommand ToggleRecognitionCommand => new DelegateCommand(ToggleRecognition);
 
         public ICommand AddUserProfileCommand => new DelegateCommand(AddUserProfile);
         public ICommand DeleteActiveProfileCommand => new DelegateCommand(DeleteActiveProfile);
@@ -124,7 +133,26 @@ namespace SimulationApp.ViewModels
 
             if (modeActive)
             {
-                ModeSensor = (ModeSensor)%4 + 1;
+                if(ModeSensor == "Up/Down")
+                {
+                    ModeSensor = "Forward/Backward";
+                }
+                else if(ModeSensor == "Forward/Backward")
+                {
+                    ModeSensor = "Left/Right";
+                }
+                else if (ModeSensor == "Left/Right")
+                {
+                    ModeSensor = "Turn Left/Right";
+                }
+                else if (ModeSensor == "Turn Left/Right")
+                {
+                    ModeSensor = "Up/Down";
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
             }
         }
 
@@ -194,10 +222,26 @@ namespace SimulationApp.ViewModels
             {
                 _client.TrainClassifier(ActiveProfile.Username, ActiveProfile.ActiveCommands);
                 StopTraining();
-
-                _client.RecognizeCommands(ActiveProfile.Username);
-                _sensorListener.SensorNotificationEnabled = true;
             });
+        }
+
+        bool _isRecognizing = false;
+        private void ToggleRecognition()
+        {
+           if(_isRecognizing)
+            {
+                _client.StopRecognition();
+                ToggleRecognitionLabel = "Stop Recognition";
+                _sensorListener.SensorNotificationEnabled = true;
+                _isRecognizing = false;
+            }
+            else
+            {
+                _client.RecognizeCommands(ActiveProfile.Username);
+                ToggleRecognitionLabel = "Start Recognition";
+                _sensorListener.SensorNotificationEnabled = false;
+                _isRecognizing = true;
+            }
         }
 
         private void AddUserProfile()

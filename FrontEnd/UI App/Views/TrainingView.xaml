@@ -34,10 +34,10 @@
         </Grid>
 
         <!-- Command List -->
-        <DockPanel Grid.Column="1" Margin="{StaticResource SplitRight}">
+        <DockPanel Grid.Column="1" Margin="{StaticResource SplitRight}" VerticalAlignment="Top">
 
             <Label DockPanel.Dock="Top">Sensor</Label>
-            <GroupBox Header="Sensor Data" DockPanel.Dock="Top">
+            <GroupBox Header="Sensor Data" DockPanel.Dock="Top" Margin="0 10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -59,7 +59,7 @@
                     <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding ModeSensor}"/>
                 </Grid>
             </GroupBox>
-            <DockPanel DockPanel.Dock="Top">
+            <DockPanel DockPanel.Dock="Top" Margin="0 20">
                 <Label DockPanel.Dock="Left">Training</Label>
                 <controls:ProfileSelector DockPanel.Dock="Right" HorizontalAlignment="Right"/>
             </DockPanel>
@@ -68,6 +68,7 @@
                 After successful training, test droneCommand recognition using the simulation pane on the left.
             </TextBlock>
             <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="10" Command="{Binding TrainClassifierCommand}">Train Classifier</Button>
+            <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="10" Command="{Binding ToggleRecognitionCommand}" Content="{Binding ToggleRecognitionLabel}"/>
             <controls:CommandList/>
         </DockPanel>
 

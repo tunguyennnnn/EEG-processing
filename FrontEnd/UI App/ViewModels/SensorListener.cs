@@ -52,13 +52,13 @@ namespace SimulationApp.ViewModels
 
         public void OnReceive(GattCharacteristic sender, GattValueChangedEventArgs eventArgs)
         {
-                byte[] bArray = new byte[eventArgs.CharacteristicValue.Length];
-                DataReader.FromBuffer(eventArgs.CharacteristicValue).ReadBytes(bArray);
+            byte[] bArray = new byte[eventArgs.CharacteristicValue.Length];
+            DataReader.FromBuffer(eventArgs.CharacteristicValue).ReadBytes(bArray);
 
-                int[] bytesAsInts = bArray.Select(x => (int)x).ToArray();
+            int[] bytesAsInts = bArray.Select(x => (int)x).ToArray();
 
-                if (SensorNotificationEnabled) _client.UpdateSensorData(bytesAsInts);
-                _vm.UpdateSensorData(bytesAsInts);
+            _vm.UpdateSensorData(bytesAsInts);
+            if (SensorNotificationEnabled) _client.UpdateSensorData(bytesAsInts);
         }
     }
 }
