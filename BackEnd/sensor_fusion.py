@@ -2,6 +2,7 @@
 from front_end_client import *
 import time
 import os
+from threading import Thread
 
 class CommandToDrone:
     def __init__(self, start_states="up-down", to_drone = False):
@@ -13,6 +14,7 @@ class CommandToDrone:
         self.to_drone = to_drone
         self.command = 0
         self.final_command = self.command
+        self.speak_state = 'recognizing'
         if to_drone:
             self.drone_process = sb.Popen(['node', 'drone_input.js'], stdin=sb.PIPE, stdout=sb.PIPE)
             pass
@@ -34,6 +36,47 @@ class CommandToDrone:
 
     def update_command(self, command):
         self.command = command
+        Thread(target=self.speak_the_command, args=(command, self.final_command)).start()
+
+    def speak_the_command(self, command, final_command):
+        if self.speak_state == 'recognizing':
+            if command == 0:
+                if self.state == "move_forward-move_backward":
+                    os.system('cmdmp3 mp3/move_forward.mp3');
+                elif self.state == "move_up-move_down":
+                    os.system('cmdmp3 mp3/move_up.mp3');
+                elif self.state == 'move_left-move_right':
+                    os.system('cmdmp3 mp3/move_left.mp3')
+                elif self.state == 'turn_left-turn_right':
+                    os.system('cmdmp3 mp3/turn_left.mp3')
+            elif command == 1:
+                if self.state == "move_forward-move_backward":
+                    os.system('cmdmp3 mp3/move_backward.mp3');
+                elif self.state == "move_up-move_down":
+                    os.system('cmdmp3 mp3/move_down.mp3');
+                elif self.state == 'move_left-move_right':
+                    os.system('cmdmp3 mp3/move_right.mp3')
+                elif self.state == 'turn_left-turn_right':
+                    os.system('cmdmp3 mp3/turn_right.mp3')
+        elif self.speak_state == 'selecting':
+            if final_command == 0:
+                if self.state == "move_forward-move_backward":
+                    os.system('cmdmp3 mp3/mode_go_forward.mp3');
+                elif self.state == "move_up-move_down":
+                    os.system('cmdmp3 mp3/mode_go_up.mp3');
+                elif self.state == 'move_left-move_right':
+                    os.system('cmdmp3 mp3/mode_go_left.mp3')
+                elif self.state == 'turn_left-turn_right':
+                    os.system('cmdmp3 mp3/mode_turn_left.mp3')
+            elif final_command == 1:
+                if self.state == "move_forward-move_backward":
+                    os.system('cmdmp3 mp3/mode_go_backward.mp3');
+                elif self.state == "move_up-move_down":
+                    os.system('cmdmp3 mp3/mode_go_down.mp3');
+                elif self.state == 'move_left-move_right':
+                    os.system('cmdmp3 mp3/mode_go_right.mp3')
+                elif self.state == 'turn_left-turn_right':
+                    os.system('cmdmp3 mp3/mode_turn_right.mp3')
 
     def execute_command(self):
         if self.allowed_to_execute:
@@ -43,32 +86,37 @@ class CommandToDrone:
             self.send("neutral", self.command_mapping["neutral"])
 
     def update_final_command(self):
-        self.final_command = self.command
-        if self.final_command == 0:
-            if self.state == "move_forward-move_backward":
-                os.system('cmdmp3 mp3/mode_go_forward.mp3');
-            elif self.state == "move_up-move_down":
-                os.system('cmdmp3 mp3/mode_go_up.mp3');
-            elif self.state == 'move_left-move_right':
-                os.system('cmdmp3 mp3/mode_go_left.mp3')
-            elif self.state == 'turn_left-turn_right':
-                os.system('cmdmp3 mp3/mode_turn_left.mp3')
-        elif self.final_command == 1:
-            if self.state == "move_forward-move_backward":
-                os.system('cmdmp3 mp3/mode_go_backward.mp3');
-            elif self.state == "move_up-move_down":
-                os.system('cmdmp3 mp3/mode_go_down.mp3');
-            elif self.state == 'move_left-move_right':
-                os.system('cmdmp3 mp3/mode_go_right.mp3')
-            elif self.state == 'turn_left-turn_right':
-                os.system('cmdmp3 mp3/mode_turn_right.mp3')
+        if self.speak_state == 'selecting':
+            self.speak_state = 'recognizing'
+        else:
+            self.speak_state = 'selecting'
+            self.final_command = self.command
+            if self.final_command == 0:
+                if self.state == "move_forward-move_backward":
+                    os.system('cmdmp3 mp3/mode_go_forward.mp3');
+                elif self.state == "move_up-move_down":
+                    os.system('cmdmp3 mp3/mode_go_up.mp3');
+                elif self.state == 'move_left-move_right':
+                    os.system('cmdmp3 mp3/mode_go_left.mp3')
+                elif self.state == 'turn_left-turn_right':
+                    os.system('cmdmp3 mp3/mode_turn_left.mp3')
+            elif self.final_command == 1:
+                if self.state == "move_forward-move_backward":
+                    os.system('cmdmp3 mp3/mode_go_backward.mp3');
+                elif self.state == "move_up-move_down":
+                    os.system('cmdmp3 mp3/mode_go_down.mp3');
+                elif self.state == 'move_left-move_right':
+                    os.system('cmdmp3 mp3/mode_go_right.mp3')
+                elif self.state == 'turn_left-turn_right':
+                    os.system('cmdmp3 mp3/mode_turn_right.mp3')
+
 
     def send(self, command_to_ui, command_to_drone):
         self.front_end.call_method(command_to_ui)
         time.sleep(0.5)
         self.front_end.call_method("neutral")
         if self.to_drone:
-            self.drone_process.stdin.write("1")
+            self.drone_process.stdin.write(str(command_to_drone))
 
 
 
@@ -129,7 +177,8 @@ class SensorFusion:
         self.drone_command.execute_command()
 
     def sensor_2_callback(self, signal_type):
-        pass
+        if signal_type == 'high-signal':
+            self.drone_command.update_final_command()
 
     def sensor_3_callback(self, signal_type):
         pass
