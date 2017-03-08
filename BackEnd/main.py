@@ -407,6 +407,8 @@ def recognize(id, list_of_commands=["up", "down"]):
     #             classes[index].append(command)
     # print classes
     #control variables and buffer
+    # os.system('node drone_startup.js')
+    # time.sleep(4)
     stop_collecting = False
     acquire_data = Thread(target=acquire_data_for_executing)
     execu = Thread(target=executing, args=(classifiers, test_features, list_of_commands, ))
