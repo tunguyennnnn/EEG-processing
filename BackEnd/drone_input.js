@@ -58,7 +58,7 @@ process.stdin.on('data', function (command) {
   //commandMapper[droneCommand](speed);
   client.after(500, function(){
     this.stop();
-
+    console.log('done');
   })
   // quit is to stop connecting to the drone. This should land the drone safely.
   if (droneCommand === 'quit'){

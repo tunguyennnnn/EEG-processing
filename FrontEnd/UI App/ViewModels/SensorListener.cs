@@ -57,8 +57,17 @@ namespace SimulationApp.ViewModels
 
             int[] bytesAsInts = bArray.Select(x => (int)x).ToArray();
 
-            _vm.UpdateSensorData(bytesAsInts);
-            if (SensorNotificationEnabled) _client.UpdateSensorData(bytesAsInts);
+            try
+            {
+                _vm.UpdateSensorData(bytesAsInts);
+                if (SensorNotificationEnabled) _client.UpdateSensorData(bytesAsInts);
+            }
+            catch
+            {
+                bytesAsInts = new int[] {0,0,0,0};
+                _vm.UpdateSensorData(bytesAsInts);
+                if (SensorNotificationEnabled) _client.UpdateSensorData(bytesAsInts);
+            }
         }
     }
 }

@@ -63,7 +63,7 @@ namespace SimulationApp.ViewModels
 
         private string _enableSensor = "Off";
         private string _lockSensor = "Off";
-        private string _modeSensor = "Up/Down";
+        private string _modeSensor = "Forward/Backward";
 
         public string ToggleRecognitionLabel
         {
@@ -107,7 +107,7 @@ namespace SimulationApp.ViewModels
         }
 
         public void UpdateSensorData(int[] bytesAsInts)
-        {
+        { 
             var enableActive = bytesAsInts[0] > 2;
             var lockActive = bytesAsInts[1] > 2;
             var utilActive = bytesAsInts[2] > 2;
@@ -133,11 +133,7 @@ namespace SimulationApp.ViewModels
 
             if (modeActive)
             {
-                if(ModeSensor == "Up/Down")
-                {
-                    ModeSensor = "Forward/Backward";
-                }
-                else if(ModeSensor == "Forward/Backward")
+                if(ModeSensor == "Forward/Backward")
                 {
                     ModeSensor = "Left/Right";
                 }
@@ -147,7 +143,7 @@ namespace SimulationApp.ViewModels
                 }
                 else if (ModeSensor == "Turn Left/Right")
                 {
-                    ModeSensor = "Up/Down";
+                    ModeSensor = "Forward/Backward";
                 }
                 else
                 {

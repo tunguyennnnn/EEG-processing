@@ -15,6 +15,7 @@ class CommandToDrone:
         self.command = 0
         self.final_command = self.command
         self.speak_state = 'recognizing'
+        self.is_executing = False
         if to_drone:
             self.drone_process = sb.Popen(['node', 'drone_input.js'], stdin=sb.PIPE, stdout=sb.PIPE)
         if not self.state in self.state_set:
@@ -112,9 +113,15 @@ class CommandToDrone:
         self.front_end.call_method(command_to_ui)
         time.sleep(0.5)
         self.front_end.call_method("neutral")
-        if self.to_drone:
+        if self.to_drone and (not self.is_executing):
+            self.is_executing = True
             self.drone_process.stdin.write(str(command_to_drone))
-
+            time.sleep(0.5)
+            if "done" in self.drone_process.stdout.readline():
+                self.is_executing = False
+            else:
+                time.sleep(0.5)
+                self.is_executing = False
 
 
 
