@@ -11,7 +11,7 @@ import shared_pb2
 import back_end_pb2
 
 from main import acquire_data, reset, train, recognize, stop_recognition
-from main import create_user_profile, delete_user_profile, get_user_profile, get_user_profiles
+from main import create_user_profile, delete_user_profile, get_user_profile, get_user_profiles, delete_user_data
 from main import update_sensor_data
 
 
@@ -27,7 +27,7 @@ class BackEndServicer(back_end_pb2.BackEndServicer):
   def ResetDataForCommand(self, request, context):
     command = COMMAND_MAP[request.command]
    
-    # TODO: Implement command reset
+    delete_user_data(request.username, request.command)
 
     status = shared_pb2.StatusReply(code=0)
     return status
