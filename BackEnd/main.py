@@ -485,3 +485,7 @@ def get_user_profile(username):
     else:
         create_user_profile(username)
     return profile
+
+def launch_the_drone:
+    ''' launch the drone '''
+    FINAL_COMMAND.lanch_the_drone()
