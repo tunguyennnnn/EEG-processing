@@ -489,3 +489,7 @@ def get_user_profile(username):
 def launch_the_drone:
     ''' launch the drone '''
     FINAL_COMMAND.lanch_the_drone()
+
+def emergency_landing():
+    ''' land the drone '''
+    FINAL_COMMAND.land_the_drone()
