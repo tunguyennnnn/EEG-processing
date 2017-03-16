@@ -21,6 +21,12 @@ namespace SimulationApp.ViewModels
 
         public async Task<bool> TryConnectToSensor()
         {
+            // Disconnect if already connected
+            if(_characteristic != null)
+            {
+                _characteristic.ValueChanged -= OnReceive;
+            }
+
             var service_guid = new Guid("0000ffe0-0000-1000-8000-00805f9b34fb");
             var gatt_devices = await DeviceInformation.FindAllAsync(GattDeviceService.GetDeviceSelectorFromUuid(service_guid), null);
             var gatt_devicesConverted = gatt_devices.ToList();
@@ -32,7 +38,6 @@ namespace SimulationApp.ViewModels
                 var characteristics = service.GetAllCharacteristics().ToList();
 
                 var characteristic = characteristics.First();
-
                 characteristic.ValueChanged += OnReceive;
 
                 _characteristic = characteristic;
