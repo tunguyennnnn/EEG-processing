@@ -20,6 +20,9 @@ service BackEnd {
   rpc GetUserProfiles(EmptyRequest) returns (ProfileListReply) {}
 
   rpc UpdateSensorData(UpdateSensorDataRequest) returns (StatusReply) {}
+
+  rpc DroneTakeoff(EmptyRequest) returns (StatusReply) {}
+  rpc DroneLand(EmptyRequest) returns (StatusReply) {}
 }
 
 message AquireDataRequest {

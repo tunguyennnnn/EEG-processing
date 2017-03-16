@@ -12,7 +12,7 @@ import back_end_pb2
 
 from main import acquire_data, reset, train, recognize, stop_recognition
 from main import create_user_profile, delete_user_profile, get_user_profile, get_user_profiles, delete_user_data
-from main import update_sensor_data
+from main import update_sensor_data, launch_the_drone, emergency_landing
 
 
 class BackEndServicer(back_end_pb2.BackEndServicer):
@@ -92,6 +92,17 @@ class BackEndServicer(back_end_pb2.BackEndServicer):
     status = shared_pb2.StatusReply(code=0)
     return status
 
+  def DroneTakeoff(self, request, context):
+    launch_the_drone()
+
+    status = shared_pb2.StatusReply(code=0)
+    return status
+
+  def DroneLand(self, request, context):
+    emergency_landing()
+
+    status = shared_pb2.StatusReply(code=0)
+    return status
   
 def serve():
   server = grpc.server(futures.ThreadPoolExecutor(max_workers=1))

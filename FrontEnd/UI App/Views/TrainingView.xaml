@@ -59,6 +59,7 @@
                     <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding ModeSensor}"/>
                 </Grid>
             </GroupBox>
+            
             <DockPanel DockPanel.Dock="Top" Margin="0 20">
                 <Label DockPanel.Dock="Left">Training</Label>
                 <controls:ProfileSelector DockPanel.Dock="Right" HorizontalAlignment="Right"/>
@@ -67,9 +68,33 @@
                 Select a droneCommand to train from the list below. 
                 After successful training, test droneCommand recognition using the simulation pane on the left.
             </TextBlock>
-            <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="10" Command="{Binding TrainClassifierCommand}">Train Classifier</Button>
+
+            <GroupBox Header="Controls" DockPanel.Dock="Bottom" Margin="0 10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Grid.Row="0" Margin="10" Command="{Binding DroneTakeoffCommand}">Takeoff drone</Button>
+                    <Button Grid.Column="1" Grid.Row="0" Margin="10" Command="{Binding DroneLandCommand}">Land drone</Button>
+
+                    <Button Grid.Column="0" Grid.Row="1" Margin="10" Command="{Binding ReconnectSensorCommand}">Connect to sensor</Button>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="10" Command="{Binding ReloadUserProfilesCommand}">Reload user profiles</Button>
+                </Grid>
+            </GroupBox>
+            <Label DockPanel.Dock="Bottom" Margin="0 20">Utilities</Label>
+
             <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="10" Command="{Binding ToggleRecognitionCommand}" Content="{Binding ToggleRecognitionLabel}"/>
+            <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="10" Command="{Binding TrainClassifierCommand}">Train Classifier</Button>
+
             <controls:CommandList/>
+
+
         </DockPanel>
 
         <!-- Debug Pane -->

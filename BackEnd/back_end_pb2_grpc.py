@@ -22,6 +22,10 @@ import back_end_pb2 as back__end__pb2
 import back_end_pb2 as back__end__pb2
 import back_end_pb2 as back__end__pb2
 import shared_pb2 as shared__pb2
+import back_end_pb2 as back__end__pb2
+import shared_pb2 as shared__pb2
+import back_end_pb2 as back__end__pb2
+import shared_pb2 as shared__pb2
 
 
 class BackEndStub(object):
@@ -82,6 +86,16 @@ class BackEndStub(object):
         request_serializer=back__end__pb2.UpdateSensorDataRequest.SerializeToString,
         response_deserializer=shared__pb2.StatusReply.FromString,
         )
+    self.DroneTakeoff = channel.unary_unary(
+        '/interop.BackEnd/DroneTakeoff',
+        request_serializer=back__end__pb2.EmptyRequest.SerializeToString,
+        response_deserializer=shared__pb2.StatusReply.FromString,
+        )
+    self.DroneLand = channel.unary_unary(
+        '/interop.BackEnd/DroneLand',
+        request_serializer=back__end__pb2.EmptyRequest.SerializeToString,
+        response_deserializer=shared__pb2.StatusReply.FromString,
+        )
 
 
 class BackEndServicer(object):
@@ -132,6 +146,16 @@ class BackEndServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def UpdateSensorData(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def DroneTakeoff(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def DroneLand(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -187,6 +211,16 @@ def add_BackEndServicer_to_server(servicer, server):
       'UpdateSensorData': grpc.unary_unary_rpc_method_handler(
           servicer.UpdateSensorData,
           request_deserializer=back__end__pb2.UpdateSensorDataRequest.FromString,
+          response_serializer=shared__pb2.StatusReply.SerializeToString,
+      ),
+      'DroneTakeoff': grpc.unary_unary_rpc_method_handler(
+          servicer.DroneTakeoff,
+          request_deserializer=back__end__pb2.EmptyRequest.FromString,
+          response_serializer=shared__pb2.StatusReply.SerializeToString,
+      ),
+      'DroneLand': grpc.unary_unary_rpc_method_handler(
+          servicer.DroneLand,
+          request_deserializer=back__end__pb2.EmptyRequest.FromString,
           response_serializer=shared__pb2.StatusReply.SerializeToString,
       ),
   }

@@ -178,7 +178,15 @@ namespace SimulationApp.Services
             }
             catch (Grpc.Core.RpcException e)
             {
-                Dialog.ShowMessageBox("Error", "Exception on the callee side: " + e.Message);
+                if (e.Message.Contains("StatusCode=Unavailable"))
+                {
+                    Dialog.ShowMessageBox("Error", "BackEnd Unavailable");
+                }
+                else
+                {
+                    Dialog.ShowMessageBox("Error", "Exception on the callee side: " + e.Message);
+                }
+               
                 return new Dictionary< string, Dictionary <DroneCommand, int>> ();
             }
         }
@@ -191,6 +199,34 @@ namespace SimulationApp.Services
             try
             {
                 var status = _client.UpdateSensorData(request);
+            }
+            catch (Grpc.Core.RpcException e)
+            {
+                Dialog.ShowMessageBox("Error", "Exception on the callee side: " + e.Message);
+            }
+        }
+
+        public void DroneTakeoff()
+        {
+            var request = new EmptyRequest();
+
+            try
+            {
+                var status = _client.DroneTakeoff(request);
+            }
+            catch (Grpc.Core.RpcException e)
+            {
+                Dialog.ShowMessageBox("Error", "Exception on the callee side: " + e.Message);
+            }
+        }
+
+        public void DroneLand()
+        {
+            var request = new EmptyRequest();
+
+            try
+            {
+                var status = _client.DroneLand(request);
             }
             catch (Grpc.Core.RpcException e)
             {

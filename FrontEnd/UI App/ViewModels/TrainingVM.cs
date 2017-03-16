@@ -85,6 +85,12 @@ namespace SimulationApp.ViewModels
         public ICommand AddUserProfileCommand => new DelegateCommand(AddUserProfile);
         public ICommand DeleteActiveProfileCommand => new DelegateCommand(DeleteActiveProfile);
 
+        public ICommand DroneTakeoffCommand => new DelegateCommand(DroneTakeoff);
+        public ICommand DroneLandCommand => new DelegateCommand(DroneLand);
+
+        public ICommand ReconnectSensorCommand => new DelegateCommand(ReconnectSensor);
+        public ICommand ReloadUserProfilesCommand => new DelegateCommand(LoadUserProfiles);
+
         #endregion
 
         #region Events
@@ -277,6 +283,22 @@ namespace SimulationApp.ViewModels
             {
                 Dialog.ShowMessageBox("Error", "Cannot delete last profile");
             }
+        }
+
+        private async void ReconnectSensor()
+        {
+            var sensorConnected = await _sensorListener.TryConnectToSensor();
+            Dialog.ShowMessageBox("Info", sensorConnected ? "Sensor connected!" : "Sensor connection failed! Make sure that sensor is paired.");
+        }
+
+        private void DroneTakeoff()
+        {
+            _client.DroneTakeoff();
+        }
+
+        private void DroneLand()
+        {
+            _client.DroneLand();
         }
 
         #endregion

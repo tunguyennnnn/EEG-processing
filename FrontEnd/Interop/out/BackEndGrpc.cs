@@ -93,6 +93,20 @@ namespace Interop {
         __Marshaller_UpdateSensorDataRequest,
         __Marshaller_StatusReply);
 
+    static readonly Method<global::Interop.EmptyRequest, global::Interop.StatusReply> __Method_DroneTakeoff = new Method<global::Interop.EmptyRequest, global::Interop.StatusReply>(
+        MethodType.Unary,
+        __ServiceName,
+        "DroneTakeoff",
+        __Marshaller_EmptyRequest,
+        __Marshaller_StatusReply);
+
+    static readonly Method<global::Interop.EmptyRequest, global::Interop.StatusReply> __Method_DroneLand = new Method<global::Interop.EmptyRequest, global::Interop.StatusReply>(
+        MethodType.Unary,
+        __ServiceName,
+        "DroneLand",
+        __Marshaller_EmptyRequest,
+        __Marshaller_StatusReply);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -281,6 +295,38 @@ namespace Interop {
       public virtual AsyncUnaryCall<global::Interop.StatusReply> UpdateSensorDataAsync(global::Interop.UpdateSensorDataRequest request, CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_UpdateSensorData, null, options, request);
+      }
+      public virtual global::Interop.StatusReply DroneTakeoff(global::Interop.EmptyRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DroneTakeoff(request, new CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Interop.StatusReply DroneTakeoff(global::Interop.EmptyRequest request, CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DroneTakeoff, null, options, request);
+      }
+      public virtual AsyncUnaryCall<global::Interop.StatusReply> DroneTakeoffAsync(global::Interop.EmptyRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DroneTakeoffAsync(request, new CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual AsyncUnaryCall<global::Interop.StatusReply> DroneTakeoffAsync(global::Interop.EmptyRequest request, CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DroneTakeoff, null, options, request);
+      }
+      public virtual global::Interop.StatusReply DroneLand(global::Interop.EmptyRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DroneLand(request, new CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Interop.StatusReply DroneLand(global::Interop.EmptyRequest request, CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DroneLand, null, options, request);
+      }
+      public virtual AsyncUnaryCall<global::Interop.StatusReply> DroneLandAsync(global::Interop.EmptyRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DroneLandAsync(request, new CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual AsyncUnaryCall<global::Interop.StatusReply> DroneLandAsync(global::Interop.EmptyRequest request, CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DroneLand, null, options, request);
       }
       protected override BackEndClient NewInstance(ClientBaseConfiguration configuration)
       {

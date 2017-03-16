@@ -38,7 +38,7 @@ namespace Interop {
             "LlByb2ZpbGVMaXN0UmVwbHkuUHJvZmlsZUxpc3RFbnRyeRpNChBQcm9maWxl",
             "TGlzdEVudHJ5EgsKA2tleRgBIAEoCRIoCgV2YWx1ZRgCIAEoCzIZLmludGVy",
             "b3AuUHJvZmlsZURhdGFSZXBseToCOAEiLgoXVXBkYXRlU2Vuc29yRGF0YVJl",
-            "cXVlc3QSEwoLc2Vuc29yX2RhdGEYASADKAUyjgYKB0JhY2tFbmQSSwoVQWNx",
+            "cXVlc3QSEwoLc2Vuc29yX2RhdGEYASADKAUyiQcKB0JhY2tFbmQSSwoVQWNx",
             "dWlyZURhdGFGb3JDb21tYW5kEhouaW50ZXJvcC5BcXVpcmVEYXRhUmVxdWVz",
             "dBoULmludGVyb3AuU3RhdHVzUmVwbHkiABJIChNSZXNldERhdGFGb3JDb21t",
             "YW5kEhkuaW50ZXJvcC5SZXNldERhdGFSZXF1ZXN0GhQuaW50ZXJvcC5TdGF0",
@@ -56,7 +56,9 @@ namespace Interop {
             "b2ZpbGVzEhUuaW50ZXJvcC5FbXB0eVJlcXVlc3QaGS5pbnRlcm9wLlByb2Zp",
             "bGVMaXN0UmVwbHkiABJMChBVcGRhdGVTZW5zb3JEYXRhEiAuaW50ZXJvcC5V",
             "cGRhdGVTZW5zb3JEYXRhUmVxdWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHki",
-            "AGIGcHJvdG8z"));
+            "ABI9CgxEcm9uZVRha2VvZmYSFS5pbnRlcm9wLkVtcHR5UmVxdWVzdBoULmlu",
+            "dGVyb3AuU3RhdHVzUmVwbHkiABI6CglEcm9uZUxhbmQSFS5pbnRlcm9wLkVt",
+            "cHR5UmVxdWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHkiAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Interop.SharedReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
