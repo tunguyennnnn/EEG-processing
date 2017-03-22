@@ -6,8 +6,18 @@ package interop;
 
 service FrontEnd {
   rpc ExecuteMentalCommand (CommandRequest) returns (StatusReply) {}
+
+  rpc UpdateBCIData (BCIDataRequest) returns (StatusReply) {}
 }
 
 message CommandRequest {
   CommandType command_type = 1;
+}
+
+message BCIDataRequest {
+  repeated ChannelData BCIData = 1; 	
+}
+
+message ChannelData {
+  repeated float values = 1;
 }

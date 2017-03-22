@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='shared.proto',
   package='interop',
   syntax='proto3',
-  serialized_pb=_b('\n\x0cshared.proto\x12\x07interop\"\x1b\n\x0bStatusReply\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05*\x93\x01\n\x0b\x43ommandType\x12\x10\n\x0cMOVE_FORWARD\x10\x00\x12\r\n\tMOVE_BACK\x10\x01\x12\x0e\n\nMOVE_RIGHT\x10\x02\x12\r\n\tMOVE_LEFT\x10\x03\x12\x0b\n\x07MOVE_UP\x10\x04\x12\r\n\tMOVE_DOWN\x10\x05\x12\x0e\n\nTURN_RIGHT\x10\x06\x12\r\n\tTURN_LEFT\x10\x07\x12\t\n\x05RESET\x10\x08\x62\x06proto3')
+  serialized_pb=_b('\n\x0cshared.proto\x12\x07interop\"\x1b\n\x0bStatusReply\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\"\x0e\n\x0c\x45mptyRequest*\x93\x01\n\x0b\x43ommandType\x12\x10\n\x0cMOVE_FORWARD\x10\x00\x12\r\n\tMOVE_BACK\x10\x01\x12\x0e\n\nMOVE_RIGHT\x10\x02\x12\r\n\tMOVE_LEFT\x10\x03\x12\x0b\n\x07MOVE_UP\x10\x04\x12\r\n\tMOVE_DOWN\x10\x05\x12\x0e\n\nTURN_RIGHT\x10\x06\x12\r\n\tTURN_LEFT\x10\x07\x12\t\n\x05RESET\x10\x08\x62\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -69,8 +69,8 @@ _COMMANDTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=55,
-  serialized_end=202,
+  serialized_start=71,
+  serialized_end=218,
 )
 _sym_db.RegisterEnumDescriptor(_COMMANDTYPE)
 
@@ -117,7 +117,32 @@ _STATUSREPLY = _descriptor.Descriptor(
   serialized_end=52,
 )
 
+
+_EMPTYREQUEST = _descriptor.Descriptor(
+  name='EmptyRequest',
+  full_name='interop.EmptyRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=54,
+  serialized_end=68,
+)
+
 DESCRIPTOR.message_types_by_name['StatusReply'] = _STATUSREPLY
+DESCRIPTOR.message_types_by_name['EmptyRequest'] = _EMPTYREQUEST
 DESCRIPTOR.enum_types_by_name['CommandType'] = _COMMANDTYPE
 
 StatusReply = _reflection.GeneratedProtocolMessageType('StatusReply', (_message.Message,), dict(
@@ -126,6 +151,13 @@ StatusReply = _reflection.GeneratedProtocolMessageType('StatusReply', (_message.
   # @@protoc_insertion_point(class_scope:interop.StatusReply)
   ))
 _sym_db.RegisterMessage(StatusReply)
+
+EmptyRequest = _reflection.GeneratedProtocolMessageType('EmptyRequest', (_message.Message,), dict(
+  DESCRIPTOR = _EMPTYREQUEST,
+  __module__ = 'shared_pb2'
+  # @@protoc_insertion_point(class_scope:interop.EmptyRequest)
+  ))
+_sym_db.RegisterMessage(EmptyRequest)
 
 
 try:

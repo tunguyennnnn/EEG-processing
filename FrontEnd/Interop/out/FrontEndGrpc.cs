@@ -14,12 +14,20 @@ namespace Interop {
 
     static readonly Marshaller<global::Interop.CommandRequest> __Marshaller_CommandRequest = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Interop.CommandRequest.Parser.ParseFrom);
     static readonly Marshaller<global::Interop.StatusReply> __Marshaller_StatusReply = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Interop.StatusReply.Parser.ParseFrom);
+    static readonly Marshaller<global::Interop.BCIDataRequest> __Marshaller_BCIDataRequest = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Interop.BCIDataRequest.Parser.ParseFrom);
 
     static readonly Method<global::Interop.CommandRequest, global::Interop.StatusReply> __Method_ExecuteMentalCommand = new Method<global::Interop.CommandRequest, global::Interop.StatusReply>(
         MethodType.Unary,
         __ServiceName,
         "ExecuteMentalCommand",
         __Marshaller_CommandRequest,
+        __Marshaller_StatusReply);
+
+    static readonly Method<global::Interop.BCIDataRequest, global::Interop.StatusReply> __Method_UpdateBCIData = new Method<global::Interop.BCIDataRequest, global::Interop.StatusReply>(
+        MethodType.Unary,
+        __ServiceName,
+        "UpdateBCIData",
+        __Marshaller_BCIDataRequest,
         __Marshaller_StatusReply);
 
     /// <summary>Service descriptor</summary>
@@ -36,13 +44,19 @@ namespace Interop {
         throw new RpcException(new Status(StatusCode.Unimplemented, ""));
       }
 
+      public virtual global::System.Threading.Tasks.Task<global::Interop.StatusReply> UpdateBCIData(global::Interop.BCIDataRequest request, ServerCallContext context)
+      {
+        throw new RpcException(new Status(StatusCode.Unimplemented, ""));
+      }
+
     }
 
     /// <summary>Creates service definition that can be registered with a server</summary>
     public static ServerServiceDefinition BindService(FrontEndBase serviceImpl)
     {
       return ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_ExecuteMentalCommand, serviceImpl.ExecuteMentalCommand).Build();
+          .AddMethod(__Method_ExecuteMentalCommand, serviceImpl.ExecuteMentalCommand)
+          .AddMethod(__Method_UpdateBCIData, serviceImpl.UpdateBCIData).Build();
     }
 
   }

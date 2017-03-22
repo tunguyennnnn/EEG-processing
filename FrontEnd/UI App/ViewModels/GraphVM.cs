@@ -1,85 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
-using CsvHelper;
 using LiveCharts;
-using SimulationApp.Models;
-
 
 namespace SimulationApp.ViewModels
 {
     public class GraphVM
     {
-        public GraphVM()
-        {
-            LoadMockData();
-        }
-
         #region Properties
 
-        public List<EEGDataPoint> Buffer = new List<EEGDataPoint>();
+        public ChartValues<double> AF3ChartValues { get; set; } = new ChartValues<double>();
+        public ChartValues<double> F7ChartValues { get; set; } = new ChartValues<double>();
+        public ChartValues<double> F3ChartValues { get; set; } = new ChartValues<double>();
+        public ChartValues<double> FC5ChartValues { get; set; } = new ChartValues<double>();
+        public ChartValues<double> T7ChartValues { get; set; } = new ChartValues<double>();
+        public ChartValues<double> P7ChartValues { get; set; } = new ChartValues<double>();
+        public ChartValues<double> O1ChartValues { get; set; } = new ChartValues<double>();
 
-        public ChartValues<double> AF3ChartValues { get; set; }
-        public ChartValues<double> F7ChartValues { get; set; }
-        public ChartValues<double> F3ChartValues { get; set; }
-        public ChartValues<double> FC5ChartValues { get; set; }
-        public ChartValues<double> T7ChartValues { get; set; }
-        public ChartValues<double> P7ChartValues { get; set; }
-        public ChartValues<double> O1ChartValues { get; set; }
-
-        public ChartValues<double> O2ChartValues { get; set; }
-        public ChartValues<double> P8ChartValues { get; set; }
-        public ChartValues<double> T8ChartValues { get; set; }
-        public ChartValues<double> FC6ChartValues { get; set; }
-        public ChartValues<double> F4ChartValues { get; set; }
-        public ChartValues<double> F8ChartValues { get; set; }
-        public ChartValues<double> AF4ChartValues { get; set; }
+        public ChartValues<double> O2ChartValues { get; set; } = new ChartValues<double>();
+        public ChartValues<double> P8ChartValues { get; set; } = new ChartValues<double>();
+        public ChartValues<double> T8ChartValues { get; set; } = new ChartValues<double>();
+        public ChartValues<double> FC6ChartValues { get; set; } = new ChartValues<double>();
+        public ChartValues<double> F4ChartValues { get; set; } = new ChartValues<double>();
+        public ChartValues<double> F8ChartValues { get; set; } = new ChartValues<double>();
+        public ChartValues<double> AF4ChartValues { get; set; } = new ChartValues<double>();
 
         #endregion
 
         #region Public Methods
 
-        public void OnGraphPointReceived(EEGDataPoint point)
+        public void OnGraphPointReceived(IList<IList<double>> values)
         {
-            if(Buffer.Count < 128)
-            {
-                Buffer.Add(point);
-            }
-            else
-            {
-                AddPointsToChart();
-                Buffer.Clear();
-                CleanUpChart();
-            }
+            PlotNewData(values);
+            CleanUpChart();
         }
 
         #endregion
 
         #region Helper Methods
 
-        private void AddPointsToChart()
+        private void PlotNewData(IList<IList<double>> values)
         {
             Application.Current.Dispatcher.Invoke(new Action(() => { }), DispatcherPriority.ContextIdle, null);
 
-            AF3ChartValues.AddRange(Buffer.Select(p => p.AF3));
-            F7ChartValues.AddRange(Buffer.Select(p => p.F7));
-            F3ChartValues.AddRange(Buffer.Select(p => p.F3));
-            FC5ChartValues.AddRange(Buffer.Select(p => p.FC5));
-            T7ChartValues.AddRange(Buffer.Select(p => p.T7));
-            P7ChartValues.AddRange(Buffer.Select(p => p.P7));
-            O1ChartValues.AddRange(Buffer.Select(p => p.O1));
+            AF3ChartValues.AddRange(values[0]);
+            F7ChartValues.AddRange(values[1]);
+            F3ChartValues.AddRange(values[2]);
+            FC5ChartValues.AddRange(values[3]);
+            T7ChartValues.AddRange(values[4]);
+            P7ChartValues.AddRange(values[5]);
+            O1ChartValues.AddRange(values[6]);
 
-            O2ChartValues.AddRange(Buffer.Select(p => p.O2));
-            P8ChartValues.AddRange(Buffer.Select(p => p.P8));
-            T8ChartValues.AddRange(Buffer.Select(p => p.T8));
-            FC6ChartValues.AddRange(Buffer.Select(p => p.FC6));
-            F4ChartValues.AddRange(Buffer.Select(p => p.F4));
-            F8ChartValues.AddRange(Buffer.Select(p => p.F8));
-            AF4ChartValues.AddRange(Buffer.Select(p => p.AF4));
+            O2ChartValues.AddRange(values[7]);
+            P8ChartValues.AddRange(values[8]);
+            T8ChartValues.AddRange(values[9]);
+            FC6ChartValues.AddRange(values[10]);
+            F4ChartValues.AddRange(values[11]);
+            F8ChartValues.AddRange(values[12]);
+            AF4ChartValues.AddRange(values[13]);
         }
 
         private void CleanUpChart()
@@ -103,67 +83,6 @@ namespace SimulationApp.ViewModels
                 AF4ChartValues = new ChartValues<double>(AF4ChartValues.Skip(128));
             }
         }
-
-        #endregion
-
-        #region Data Mocking
-
-        private const double TimePeriod = 1000.0/128.0;
-
-        private void LoadMockData()
-        {
-            // Read text file
-            TextReader textReader = File.OpenText("Resources/EEG.csv");
-
-            // Load and map CSV records
-            var csv = new CsvReader(textReader);
-            csv.Configuration.RegisterClassMap<EEGDataMap>();
-            csv.Configuration.IgnoreHeaderWhiteSpace = true;
-            var records = csv.GetRecords<EEGDataPoint>();
-
-            MockPoints = new Queue<EEGDataPoint>(records);
-
-
-            AF3ChartValues = new ChartValues<double>();
-            F7ChartValues = new ChartValues<double>();
-            F3ChartValues = new ChartValues<double>();
-            FC5ChartValues = new ChartValues<double>();
-            T7ChartValues = new ChartValues<double>();
-            P7ChartValues = new ChartValues<double>();
-            O1ChartValues = new ChartValues<double>();
-
-            O2ChartValues = new ChartValues<double>();
-            P8ChartValues = new ChartValues<double>();
-            T8ChartValues = new ChartValues<double>();
-            FC6ChartValues = new ChartValues<double>();
-            F4ChartValues = new ChartValues<double>();
-            F8ChartValues = new ChartValues<double>();
-            AF4ChartValues = new ChartValues<double>();
-        }
-
-        public void SendMockData()
-        {
-            Timer = new Timer
-            {
-                Interval = TimePeriod
-            };
-            Timer.Elapsed += new ElapsedEventHandler(SendNextPoint);
-
-            Timer.Start();
-        }
-
-        private void SendNextPoint(object sender, EventArgs eventArgs)
-        {
-            if (MockPoints.Count > 0)
-            {
-                var nextPoint = MockPoints.Dequeue();
-
-                Application.Current?.Dispatcher?.Invoke(() => OnGraphPointReceived(nextPoint));           
-            }
-        }
-
-        private Timer Timer { get; set; }
-        private Queue<EEGDataPoint> MockPoints { get; set; }
 
         #endregion
     }

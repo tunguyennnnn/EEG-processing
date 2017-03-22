@@ -6,7 +6,8 @@ using Interop;
 
 using SimulationApp.Models;
 using SimulationApp.ViewModels;
-
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SimulationApp.Services
 {
@@ -15,7 +16,7 @@ namespace SimulationApp.Services
         private const int Port = 50051;
         private readonly Server _server;
 
-        public FrontEndServer(TrainingVM vm)
+        public FrontEndServer(MainVM vm)
         {
             _server = new Server
             {
@@ -37,20 +38,39 @@ namespace SimulationApp.Services
 
     public class FrontEndImpl : FrontEnd.FrontEndBase
     {
-        private readonly TrainingVM _vm;
+        private readonly TrainingVM _trainingVM;
+        private readonly GraphVM _graphVM;
 
-        public FrontEndImpl(TrainingVM vm)
+        public FrontEndImpl(MainVM vm)
         {
-            _vm = vm;
+            _trainingVM = vm.Training;
+            _graphVM = vm.Graph;
         }
 
         public override Task<StatusReply> ExecuteMentalCommand(CommandRequest request, ServerCallContext context)
         {
             var command = (DroneCommand) request.CommandType;
 
-            Application.Current?.Dispatcher?.Invoke(() => _vm.ExecuteDroneCommand(DroneCommand.Reset));
-            Application.Current?.Dispatcher?.Invoke(() => _vm.ExecuteDroneCommand(command));
+            Application.Current?.Dispatcher?.Invoke(() => _trainingVM.ExecuteDroneCommand(DroneCommand.Reset));
+            Application.Current?.Dispatcher?.Invoke(() => _trainingVM.ExecuteDroneCommand(command));
 
+            return Task.FromResult(new StatusReply() { Code = 0 });
+        }
+
+        public override Task<StatusReply> UpdateBCIData(BCIDataRequest request, ServerCallContext context)
+        {
+            var dataArray = request.BCIData;
+
+            var BCIData = new List<IList<double>>();
+            
+            foreach(var channelData in dataArray)
+            {
+                var channelDataDouble = channelData.Values.Select(v => (double)v).ToList();
+                BCIData.Add(channelDataDouble);
+            }
+
+            _graphVM.OnGraphPointReceived(BCIData);
+  
             return Task.FromResult(new StatusReply() { Code = 0 });
         }
     }

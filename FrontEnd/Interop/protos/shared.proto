@@ -18,3 +18,5 @@ enum CommandType {
 message StatusReply {
   int32 code = 1;
 }
+
+message EmptyRequest {}

@@ -4,6 +4,8 @@ from grpc.framework.interfaces.face import utilities as face_utilities
 
 import front_end_pb2 as front__end__pb2
 import shared_pb2 as shared__pb2
+import front_end_pb2 as front__end__pb2
+import shared_pb2 as shared__pb2
 
 
 class FrontEndStub(object):
@@ -19,11 +21,21 @@ class FrontEndStub(object):
         request_serializer=front__end__pb2.CommandRequest.SerializeToString,
         response_deserializer=shared__pb2.StatusReply.FromString,
         )
+    self.UpdateBCIData = channel.unary_unary(
+        '/interop.FrontEnd/UpdateBCIData',
+        request_serializer=front__end__pb2.BCIDataRequest.SerializeToString,
+        response_deserializer=shared__pb2.StatusReply.FromString,
+        )
 
 
 class FrontEndServicer(object):
 
   def ExecuteMentalCommand(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def UpdateBCIData(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -34,6 +46,11 @@ def add_FrontEndServicer_to_server(servicer, server):
       'ExecuteMentalCommand': grpc.unary_unary_rpc_method_handler(
           servicer.ExecuteMentalCommand,
           request_deserializer=front__end__pb2.CommandRequest.FromString,
+          response_serializer=shared__pb2.StatusReply.SerializeToString,
+      ),
+      'UpdateBCIData': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateBCIData,
+          request_deserializer=front__end__pb2.BCIDataRequest.FromString,
           response_serializer=shared__pb2.StatusReply.SerializeToString,
       ),
   }

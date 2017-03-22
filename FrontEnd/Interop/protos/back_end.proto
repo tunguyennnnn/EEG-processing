@@ -23,6 +23,9 @@ service BackEnd {
 
   rpc DroneTakeoff(EmptyRequest) returns (StatusReply) {}
   rpc DroneLand(EmptyRequest) returns (StatusReply) {}
+
+  rpc EnableDataStreaming (EmptyRequest) returns (StatusReply) {}
+  rpc DisableDataStreaming (EmptyRequest) returns (StatusReply) {}
 }
 
 message AquireDataRequest {
@@ -47,8 +50,6 @@ message RecognizeCommandsRequest {
 message UserProfileOperationRequest {
 	string username = 1;
 }
-
-message EmptyRequest {}
 
 message ProfileDataReply {
 	map<int32, int32>  profile_data = 1;

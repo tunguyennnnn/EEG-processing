@@ -30,35 +30,38 @@ namespace Interop {
             "c2VybmFtZRgBIAEoCRIqCgxjb21tYW5kX2xpc3QYAiADKA4yFC5pbnRlcm9w",
             "LkNvbW1hbmRUeXBlIiwKGFJlY29nbml6ZUNvbW1hbmRzUmVxdWVzdBIQCgh1",
             "c2VybmFtZRgBIAEoCSIvChtVc2VyUHJvZmlsZU9wZXJhdGlvblJlcXVlc3QS",
-            "EAoIdXNlcm5hbWUYASABKAkiDgoMRW1wdHlSZXF1ZXN0IogBChBQcm9maWxl",
-            "RGF0YVJlcGx5EkAKDHByb2ZpbGVfZGF0YRgBIAMoCzIqLmludGVyb3AuUHJv",
-            "ZmlsZURhdGFSZXBseS5Qcm9maWxlRGF0YUVudHJ5GjIKEFByb2ZpbGVEYXRh",
-            "RW50cnkSCwoDa2V5GAEgASgFEg0KBXZhbHVlGAIgASgFOgI4ASKjAQoQUHJv",
-            "ZmlsZUxpc3RSZXBseRJACgxwcm9maWxlX2xpc3QYASADKAsyKi5pbnRlcm9w",
-            "LlByb2ZpbGVMaXN0UmVwbHkuUHJvZmlsZUxpc3RFbnRyeRpNChBQcm9maWxl",
-            "TGlzdEVudHJ5EgsKA2tleRgBIAEoCRIoCgV2YWx1ZRgCIAEoCzIZLmludGVy",
-            "b3AuUHJvZmlsZURhdGFSZXBseToCOAEiLgoXVXBkYXRlU2Vuc29yRGF0YVJl",
-            "cXVlc3QSEwoLc2Vuc29yX2RhdGEYASADKAUyiQcKB0JhY2tFbmQSSwoVQWNx",
-            "dWlyZURhdGFGb3JDb21tYW5kEhouaW50ZXJvcC5BcXVpcmVEYXRhUmVxdWVz",
-            "dBoULmludGVyb3AuU3RhdHVzUmVwbHkiABJIChNSZXNldERhdGFGb3JDb21t",
-            "YW5kEhkuaW50ZXJvcC5SZXNldERhdGFSZXF1ZXN0GhQuaW50ZXJvcC5TdGF0",
-            "dXNSZXBseSIAEkoKD1RyYWluQ2xhc3NpZmllchIfLmludGVyb3AuVHJhaW5D",
-            "bGFzc2lmaWVyUmVxdWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHkiABJOChFS",
-            "ZWNvZ25pemVDb21tYW5kcxIhLmludGVyb3AuUmVjb2duaXplQ29tbWFuZHNS",
-            "ZXF1ZXN0GhQuaW50ZXJvcC5TdGF0dXNSZXBseSIAEkAKD1N0b3BSZWNvZ25p",
-            "emlvbhIVLmludGVyb3AuRW1wdHlSZXF1ZXN0GhQuaW50ZXJvcC5TdGF0dXNS",
-            "ZXBseSIAElEKEUNyZWF0ZVVzZXJQcm9maWxlEiQuaW50ZXJvcC5Vc2VyUHJv",
-            "ZmlsZU9wZXJhdGlvblJlcXVlc3QaFC5pbnRlcm9wLlN0YXR1c1JlcGx5IgAS",
-            "UQoRRGVsZXRlVXNlclByb2ZpbGUSJC5pbnRlcm9wLlVzZXJQcm9maWxlT3Bl",
-            "cmF0aW9uUmVxdWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHkiABJTCg5HZXRV",
-            "c2VyUHJvZmlsZRIkLmludGVyb3AuVXNlclByb2ZpbGVPcGVyYXRpb25SZXF1",
-            "ZXN0GhkuaW50ZXJvcC5Qcm9maWxlRGF0YVJlcGx5IgASRQoPR2V0VXNlclBy",
-            "b2ZpbGVzEhUuaW50ZXJvcC5FbXB0eVJlcXVlc3QaGS5pbnRlcm9wLlByb2Zp",
-            "bGVMaXN0UmVwbHkiABJMChBVcGRhdGVTZW5zb3JEYXRhEiAuaW50ZXJvcC5V",
-            "cGRhdGVTZW5zb3JEYXRhUmVxdWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHki",
-            "ABI9CgxEcm9uZVRha2VvZmYSFS5pbnRlcm9wLkVtcHR5UmVxdWVzdBoULmlu",
-            "dGVyb3AuU3RhdHVzUmVwbHkiABI6CglEcm9uZUxhbmQSFS5pbnRlcm9wLkVt",
-            "cHR5UmVxdWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHkiAGIGcHJvdG8z"));
+            "EAoIdXNlcm5hbWUYASABKAkiiAEKEFByb2ZpbGVEYXRhUmVwbHkSQAoMcHJv",
+            "ZmlsZV9kYXRhGAEgAygLMiouaW50ZXJvcC5Qcm9maWxlRGF0YVJlcGx5LlBy",
+            "b2ZpbGVEYXRhRW50cnkaMgoQUHJvZmlsZURhdGFFbnRyeRILCgNrZXkYASAB",
+            "KAUSDQoFdmFsdWUYAiABKAU6AjgBIqMBChBQcm9maWxlTGlzdFJlcGx5EkAK",
+            "DHByb2ZpbGVfbGlzdBgBIAMoCzIqLmludGVyb3AuUHJvZmlsZUxpc3RSZXBs",
+            "eS5Qcm9maWxlTGlzdEVudHJ5Gk0KEFByb2ZpbGVMaXN0RW50cnkSCwoDa2V5",
+            "GAEgASgJEigKBXZhbHVlGAIgASgLMhkuaW50ZXJvcC5Qcm9maWxlRGF0YVJl",
+            "cGx5OgI4ASIuChdVcGRhdGVTZW5zb3JEYXRhUmVxdWVzdBITCgtzZW5zb3Jf",
+            "ZGF0YRgBIAMoBTKWCAoHQmFja0VuZBJLChVBY3F1aXJlRGF0YUZvckNvbW1h",
+            "bmQSGi5pbnRlcm9wLkFxdWlyZURhdGFSZXF1ZXN0GhQuaW50ZXJvcC5TdGF0",
+            "dXNSZXBseSIAEkgKE1Jlc2V0RGF0YUZvckNvbW1hbmQSGS5pbnRlcm9wLlJl",
+            "c2V0RGF0YVJlcXVlc3QaFC5pbnRlcm9wLlN0YXR1c1JlcGx5IgASSgoPVHJh",
+            "aW5DbGFzc2lmaWVyEh8uaW50ZXJvcC5UcmFpbkNsYXNzaWZpZXJSZXF1ZXN0",
+            "GhQuaW50ZXJvcC5TdGF0dXNSZXBseSIAEk4KEVJlY29nbml6ZUNvbW1hbmRz",
+            "EiEuaW50ZXJvcC5SZWNvZ25pemVDb21tYW5kc1JlcXVlc3QaFC5pbnRlcm9w",
+            "LlN0YXR1c1JlcGx5IgASQAoPU3RvcFJlY29nbml6aW9uEhUuaW50ZXJvcC5F",
+            "bXB0eVJlcXVlc3QaFC5pbnRlcm9wLlN0YXR1c1JlcGx5IgASUQoRQ3JlYXRl",
+            "VXNlclByb2ZpbGUSJC5pbnRlcm9wLlVzZXJQcm9maWxlT3BlcmF0aW9uUmVx",
+            "dWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHkiABJRChFEZWxldGVVc2VyUHJv",
+            "ZmlsZRIkLmludGVyb3AuVXNlclByb2ZpbGVPcGVyYXRpb25SZXF1ZXN0GhQu",
+            "aW50ZXJvcC5TdGF0dXNSZXBseSIAElMKDkdldFVzZXJQcm9maWxlEiQuaW50",
+            "ZXJvcC5Vc2VyUHJvZmlsZU9wZXJhdGlvblJlcXVlc3QaGS5pbnRlcm9wLlBy",
+            "b2ZpbGVEYXRhUmVwbHkiABJFCg9HZXRVc2VyUHJvZmlsZXMSFS5pbnRlcm9w",
+            "LkVtcHR5UmVxdWVzdBoZLmludGVyb3AuUHJvZmlsZUxpc3RSZXBseSIAEkwK",
+            "EFVwZGF0ZVNlbnNvckRhdGESIC5pbnRlcm9wLlVwZGF0ZVNlbnNvckRhdGFS",
+            "ZXF1ZXN0GhQuaW50ZXJvcC5TdGF0dXNSZXBseSIAEj0KDERyb25lVGFrZW9m",
+            "ZhIVLmludGVyb3AuRW1wdHlSZXF1ZXN0GhQuaW50ZXJvcC5TdGF0dXNSZXBs",
+            "eSIAEjoKCURyb25lTGFuZBIVLmludGVyb3AuRW1wdHlSZXF1ZXN0GhQuaW50",
+            "ZXJvcC5TdGF0dXNSZXBseSIAEkQKE0VuYWJsZURhdGFTdHJlYW1pbmcSFS5p",
+            "bnRlcm9wLkVtcHR5UmVxdWVzdBoULmludGVyb3AuU3RhdHVzUmVwbHkiABJF",
+            "ChREaXNhYmxlRGF0YVN0cmVhbWluZxIVLmludGVyb3AuRW1wdHlSZXF1ZXN0",
+            "GhQuaW50ZXJvcC5TdGF0dXNSZXBseSIAYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Interop.SharedReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -67,7 +70,6 @@ namespace Interop {
             new pbr::GeneratedClrTypeInfo(typeof(global::Interop.TrainClassifierRequest), global::Interop.TrainClassifierRequest.Parser, new[]{ "Username", "CommandList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Interop.RecognizeCommandsRequest), global::Interop.RecognizeCommandsRequest.Parser, new[]{ "Username" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Interop.UserProfileOperationRequest), global::Interop.UserProfileOperationRequest.Parser, new[]{ "Username" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Interop.EmptyRequest), global::Interop.EmptyRequest.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Interop.ProfileDataReply), global::Interop.ProfileDataReply.Parser, new[]{ "ProfileData" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Interop.ProfileListReply), global::Interop.ProfileListReply.Parser, new[]{ "ProfileList" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Interop.UpdateSensorDataRequest), global::Interop.UpdateSensorDataRequest.Parser, new[]{ "SensorData" }, null, null, null)
@@ -739,95 +741,6 @@ namespace Interop {
 
   }
 
-  public sealed partial class EmptyRequest : pb::IMessage<EmptyRequest> {
-    private static readonly pb::MessageParser<EmptyRequest> _parser = new pb::MessageParser<EmptyRequest>(() => new EmptyRequest());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<EmptyRequest> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Interop.BackEndReflection.Descriptor.MessageTypes[5]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EmptyRequest() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EmptyRequest(EmptyRequest other) : this() {
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EmptyRequest Clone() {
-      return new EmptyRequest(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as EmptyRequest);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(EmptyRequest other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(EmptyRequest other) {
-      if (other == null) {
-        return;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-        }
-      }
-    }
-
-  }
-
   public sealed partial class ProfileDataReply : pb::IMessage<ProfileDataReply> {
     private static readonly pb::MessageParser<ProfileDataReply> _parser = new pb::MessageParser<ProfileDataReply>(() => new ProfileDataReply());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -835,7 +748,7 @@ namespace Interop {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Interop.BackEndReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Interop.BackEndReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -944,7 +857,7 @@ namespace Interop {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Interop.BackEndReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Interop.BackEndReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1053,7 +966,7 @@ namespace Interop {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Interop.BackEndReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Interop.BackEndReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

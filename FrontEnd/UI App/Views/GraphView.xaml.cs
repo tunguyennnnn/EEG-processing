@@ -9,10 +9,10 @@ namespace SimulationApp.Views
         {
             InitializeComponent();
 
-            var vm = new GraphVM();
-            DataContext = vm;
+            //var vm = new GraphVM();
+            //DataContext = vm;
 
-            vm.SendMockData();
+            //vm.SendMockData();
         }
     }
 }

@@ -23,14 +23,16 @@ namespace Interop {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CgxzaGFyZWQucHJvdG8SB2ludGVyb3AiGwoLU3RhdHVzUmVwbHkSDAoEY29k",
-            "ZRgBIAEoBSqTAQoLQ29tbWFuZFR5cGUSEAoMTU9WRV9GT1JXQVJEEAASDQoJ",
-            "TU9WRV9CQUNLEAESDgoKTU9WRV9SSUdIVBACEg0KCU1PVkVfTEVGVBADEgsK",
-            "B01PVkVfVVAQBBINCglNT1ZFX0RPV04QBRIOCgpUVVJOX1JJR0hUEAYSDQoJ",
-            "VFVSTl9MRUZUEAcSCQoFUkVTRVQQCGIGcHJvdG8z"));
+            "ZRgBIAEoBSIOCgxFbXB0eVJlcXVlc3QqkwEKC0NvbW1hbmRUeXBlEhAKDE1P",
+            "VkVfRk9SV0FSRBAAEg0KCU1PVkVfQkFDSxABEg4KCk1PVkVfUklHSFQQAhIN",
+            "CglNT1ZFX0xFRlQQAxILCgdNT1ZFX1VQEAQSDQoJTU9WRV9ET1dOEAUSDgoK",
+            "VFVSTl9SSUdIVBAGEg0KCVRVUk5fTEVGVBAHEgkKBVJFU0VUEAhiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Interop.CommandType), }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Interop.StatusReply), global::Interop.StatusReply.Parser, new[]{ "Code" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Interop.StatusReply), global::Interop.StatusReply.Parser, new[]{ "Code" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Interop.EmptyRequest), global::Interop.EmptyRequest.Parser, null, null, null, null)
           }));
     }
     #endregion
@@ -163,6 +165,95 @@ namespace Interop {
             Code = input.ReadInt32();
             break;
           }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class EmptyRequest : pb::IMessage<EmptyRequest> {
+    private static readonly pb::MessageParser<EmptyRequest> _parser = new pb::MessageParser<EmptyRequest>(() => new EmptyRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<EmptyRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Interop.SharedReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EmptyRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EmptyRequest(EmptyRequest other) : this() {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EmptyRequest Clone() {
+      return new EmptyRequest(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as EmptyRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(EmptyRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(EmptyRequest other) {
+      if (other == null) {
+        return;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
         }
       }
     }

@@ -174,6 +174,7 @@ def train(id, list_of_commands):
 class RecognitionState:
     def __init__(self):
         self.stop = False
+        self.stream_data = False
         self.is_reading = False
         self.buffer = [[] for i in range(14)]
         self.header = {'AF3': 0, 'F7': 1, 'F3': 2, 'FC5': 3, 'T7': 4, 'P7': 5,
@@ -200,7 +201,13 @@ class RecognitionState:
 
 recognition_state = RecognitionState()
 
+def enable_data_streaming():
+    global recognition_state
+    recognition_state.stream_data = True
 
+def disable_data_streaming():
+    global recognition_state
+    recognition_state.stream_data = False
 
 def stop_recognition():
     global recognition_state
@@ -245,6 +252,7 @@ def acquire_data_for_executing():
                             recognition_state.store_time(arr[sampleIdx])
                         print >>f,arr[sampleIdx],",",
                     print >>f,'\n'
+                    
         time.sleep(0.2)
         recognition_state.is_reading = True
 
@@ -295,6 +303,14 @@ class CommandOnData:
         self.clfs = classifiers
 
     def add_data(self, buffer, time_info):
+        global recognition_state
+
+        if recognition_state.stream_data:
+          try:
+            FRONT_END.UpdateBCIData(buffer)
+          except:
+            pass
+
         self.buffer.append(buffer)
         self.time_info.append(time_info)
 
@@ -486,7 +502,7 @@ def get_user_profile(username):
         create_user_profile(username)
     return profile
 
-def launch_the_drone:
+def launch_the_drone():
     ''' launch the drone '''
     FINAL_COMMAND.lanch_the_drone()
 

@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             DataContext="{Binding Graph}">
 
     <StackPanel>
         <Label Margin="0 0 0 20">EEG Graphs</Label>
@@ -41,7 +42,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis MinValue="4160" MaxValue="4120" DisableAnimations="True"/>
+                        <lvc:Axis MinValue="4300" MaxValue="4000" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -57,7 +58,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                        <lvc:Axis  MaxValue="4000" MinValue="4300" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -73,7 +74,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                        <lvc:Axis  MaxValue="4000" MinValue="4300" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -89,7 +90,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                        <lvc:Axis  MaxValue="4000" MinValue="4300" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -105,7 +106,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                        <lvc:Axis  MaxValue="4000" MinValue="4300" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -121,7 +122,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                        <lvc:Axis  MaxValue="4000" MinValue="4300" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -137,7 +138,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                        <lvc:Axis  MaxValue="4000" MinValue="4300" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -153,7 +154,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                        <lvc:Axis  MaxValue="4000" MinValue="4300" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -169,7 +170,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                        <lvc:Axis  MaxValue="4000" MinValue="4300" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -185,7 +186,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                        <lvc:Axis  MaxValue="4000" MinValue="4300" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -201,7 +202,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis  MaxValue="4050" MinValue="4140" DisableAnimations="True"/>
+                        <lvc:Axis  MaxValue="4000" MinValue="4200" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -217,7 +218,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis MinValue="3500" MaxValue="3320"  DisableAnimations="True"/>
+                        <lvc:Axis MinValue="3500" MaxValue="3200"  DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -233,7 +234,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                        <lvc:Axis  MaxValue="4000" MinValue="4300" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
 
@@ -249,7 +250,7 @@
                         </lvc:Axis>
                     </lvc:CartesianChart.AxisX>
                     <lvc:CartesianChart.AxisY>
-                        <lvc:Axis  MaxValue="4120" MinValue="4160" DisableAnimations="True"/>
+                        <lvc:Axis  MaxValue="4000" MinValue="4300" DisableAnimations="True"/>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
             </Grid>

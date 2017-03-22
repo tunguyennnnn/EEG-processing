@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='back_end.proto',
   package='interop',
   syntax='proto3',
-  serialized_pb=_b('\n\x0e\x62\x61\x63k_end.proto\x12\x07interop\x1a\x0cshared.proto\"L\n\x11\x41quireDataRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12%\n\x07\x63ommand\x18\x02 \x01(\x0e\x32\x14.interop.CommandType\"K\n\x10ResetDataRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12%\n\x07\x63ommand\x18\x02 \x01(\x0e\x32\x14.interop.CommandType\"V\n\x16TrainClassifierRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12*\n\x0c\x63ommand_list\x18\x02 \x03(\x0e\x32\x14.interop.CommandType\",\n\x18RecognizeCommandsRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"/\n\x1bUserProfileOperationRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"\x0e\n\x0c\x45mptyRequest\"\x88\x01\n\x10ProfileDataReply\x12@\n\x0cprofile_data\x18\x01 \x03(\x0b\x32*.interop.ProfileDataReply.ProfileDataEntry\x1a\x32\n\x10ProfileDataEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"\xa3\x01\n\x10ProfileListReply\x12@\n\x0cprofile_list\x18\x01 \x03(\x0b\x32*.interop.ProfileListReply.ProfileListEntry\x1aM\n\x10ProfileListEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12(\n\x05value\x18\x02 \x01(\x0b\x32\x19.interop.ProfileDataReply:\x02\x38\x01\".\n\x17UpdateSensorDataRequest\x12\x13\n\x0bsensor_data\x18\x01 \x03(\x05\x32\x89\x07\n\x07\x42\x61\x63kEnd\x12K\n\x15\x41\x63quireDataForCommand\x12\x1a.interop.AquireDataRequest\x1a\x14.interop.StatusReply\"\x00\x12H\n\x13ResetDataForCommand\x12\x19.interop.ResetDataRequest\x1a\x14.interop.StatusReply\"\x00\x12J\n\x0fTrainClassifier\x12\x1f.interop.TrainClassifierRequest\x1a\x14.interop.StatusReply\"\x00\x12N\n\x11RecognizeCommands\x12!.interop.RecognizeCommandsRequest\x1a\x14.interop.StatusReply\"\x00\x12@\n\x0fStopRecognizion\x12\x15.interop.EmptyRequest\x1a\x14.interop.StatusReply\"\x00\x12Q\n\x11\x43reateUserProfile\x12$.interop.UserProfileOperationRequest\x1a\x14.interop.StatusReply\"\x00\x12Q\n\x11\x44\x65leteUserProfile\x12$.interop.UserProfileOperationRequest\x1a\x14.interop.StatusReply\"\x00\x12S\n\x0eGetUserProfile\x12$.interop.UserProfileOperationRequest\x1a\x19.interop.ProfileDataReply\"\x00\x12\x45\n\x0fGetUserProfiles\x12\x15.interop.EmptyRequest\x1a\x19.interop.ProfileListReply\"\x00\x12L\n\x10UpdateSensorData\x12 .interop.UpdateSensorDataRequest\x1a\x14.interop.StatusReply\"\x00\x12=\n\x0c\x44roneTakeoff\x12\x15.interop.EmptyRequest\x1a\x14.interop.StatusReply\"\x00\x12:\n\tDroneLand\x12\x15.interop.EmptyRequest\x1a\x14.interop.StatusReply\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x0e\x62\x61\x63k_end.proto\x12\x07interop\x1a\x0cshared.proto\"L\n\x11\x41quireDataRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12%\n\x07\x63ommand\x18\x02 \x01(\x0e\x32\x14.interop.CommandType\"K\n\x10ResetDataRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12%\n\x07\x63ommand\x18\x02 \x01(\x0e\x32\x14.interop.CommandType\"V\n\x16TrainClassifierRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12*\n\x0c\x63ommand_list\x18\x02 \x03(\x0e\x32\x14.interop.CommandType\",\n\x18RecognizeCommandsRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"/\n\x1bUserProfileOperationRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"\x88\x01\n\x10ProfileDataReply\x12@\n\x0cprofile_data\x18\x01 \x03(\x0b\x32*.interop.ProfileDataReply.ProfileDataEntry\x1a\x32\n\x10ProfileDataEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12\r\n\x05value\x18\x02 \x01(\x05:\x02\x38\x01\"\xa3\x01\n\x10ProfileListReply\x12@\n\x0cprofile_list\x18\x01 \x03(\x0b\x32*.interop.ProfileListReply.ProfileListEntry\x1aM\n\x10ProfileListEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12(\n\x05value\x18\x02 \x01(\x0b\x32\x19.interop.ProfileDataReply:\x02\x38\x01\".\n\x17UpdateSensorDataRequest\x12\x13\n\x0bsensor_data\x18\x01 \x03(\x05\x32\x96\x08\n\x07\x42\x61\x63kEnd\x12K\n\x15\x41\x63quireDataForCommand\x12\x1a.interop.AquireDataRequest\x1a\x14.interop.StatusReply\"\x00\x12H\n\x13ResetDataForCommand\x12\x19.interop.ResetDataRequest\x1a\x14.interop.StatusReply\"\x00\x12J\n\x0fTrainClassifier\x12\x1f.interop.TrainClassifierRequest\x1a\x14.interop.StatusReply\"\x00\x12N\n\x11RecognizeCommands\x12!.interop.RecognizeCommandsRequest\x1a\x14.interop.StatusReply\"\x00\x12@\n\x0fStopRecognizion\x12\x15.interop.EmptyRequest\x1a\x14.interop.StatusReply\"\x00\x12Q\n\x11\x43reateUserProfile\x12$.interop.UserProfileOperationRequest\x1a\x14.interop.StatusReply\"\x00\x12Q\n\x11\x44\x65leteUserProfile\x12$.interop.UserProfileOperationRequest\x1a\x14.interop.StatusReply\"\x00\x12S\n\x0eGetUserProfile\x12$.interop.UserProfileOperationRequest\x1a\x19.interop.ProfileDataReply\"\x00\x12\x45\n\x0fGetUserProfiles\x12\x15.interop.EmptyRequest\x1a\x19.interop.ProfileListReply\"\x00\x12L\n\x10UpdateSensorData\x12 .interop.UpdateSensorDataRequest\x1a\x14.interop.StatusReply\"\x00\x12=\n\x0c\x44roneTakeoff\x12\x15.interop.EmptyRequest\x1a\x14.interop.StatusReply\"\x00\x12:\n\tDroneLand\x12\x15.interop.EmptyRequest\x1a\x14.interop.StatusReply\"\x00\x12\x44\n\x13\x45nableDataStreaming\x12\x15.interop.EmptyRequest\x1a\x14.interop.StatusReply\"\x00\x12\x45\n\x14\x44isableDataStreaming\x12\x15.interop.EmptyRequest\x1a\x14.interop.StatusReply\"\x00\x62\x06proto3')
   ,
   dependencies=[shared__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -204,30 +204,6 @@ _USERPROFILEOPERATIONREQUEST = _descriptor.Descriptor(
 )
 
 
-_EMPTYREQUEST = _descriptor.Descriptor(
-  name='EmptyRequest',
-  full_name='interop.EmptyRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=379,
-  serialized_end=393,
-)
-
-
 _PROFILEDATAREPLY_PROFILEDATAENTRY = _descriptor.Descriptor(
   name='ProfileDataEntry',
   full_name='interop.ProfileDataReply.ProfileDataEntry',
@@ -261,8 +237,8 @@ _PROFILEDATAREPLY_PROFILEDATAENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=482,
-  serialized_end=532,
+  serialized_start=466,
+  serialized_end=516,
 )
 
 _PROFILEDATAREPLY = _descriptor.Descriptor(
@@ -291,8 +267,8 @@ _PROFILEDATAREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=396,
-  serialized_end=532,
+  serialized_start=380,
+  serialized_end=516,
 )
 
 
@@ -329,8 +305,8 @@ _PROFILELISTREPLY_PROFILELISTENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=621,
-  serialized_end=698,
+  serialized_start=605,
+  serialized_end=682,
 )
 
 _PROFILELISTREPLY = _descriptor.Descriptor(
@@ -359,8 +335,8 @@ _PROFILELISTREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=535,
-  serialized_end=698,
+  serialized_start=519,
+  serialized_end=682,
 )
 
 
@@ -390,8 +366,8 @@ _UPDATESENSORDATAREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=700,
-  serialized_end=746,
+  serialized_start=684,
+  serialized_end=730,
 )
 
 _AQUIREDATAREQUEST.fields_by_name['command'].enum_type = shared__pb2._COMMANDTYPE
@@ -407,7 +383,6 @@ DESCRIPTOR.message_types_by_name['ResetDataRequest'] = _RESETDATAREQUEST
 DESCRIPTOR.message_types_by_name['TrainClassifierRequest'] = _TRAINCLASSIFIERREQUEST
 DESCRIPTOR.message_types_by_name['RecognizeCommandsRequest'] = _RECOGNIZECOMMANDSREQUEST
 DESCRIPTOR.message_types_by_name['UserProfileOperationRequest'] = _USERPROFILEOPERATIONREQUEST
-DESCRIPTOR.message_types_by_name['EmptyRequest'] = _EMPTYREQUEST
 DESCRIPTOR.message_types_by_name['ProfileDataReply'] = _PROFILEDATAREPLY
 DESCRIPTOR.message_types_by_name['ProfileListReply'] = _PROFILELISTREPLY
 DESCRIPTOR.message_types_by_name['UpdateSensorDataRequest'] = _UPDATESENSORDATAREQUEST
@@ -446,13 +421,6 @@ UserProfileOperationRequest = _reflection.GeneratedProtocolMessageType('UserProf
   # @@protoc_insertion_point(class_scope:interop.UserProfileOperationRequest)
   ))
 _sym_db.RegisterMessage(UserProfileOperationRequest)
-
-EmptyRequest = _reflection.GeneratedProtocolMessageType('EmptyRequest', (_message.Message,), dict(
-  DESCRIPTOR = _EMPTYREQUEST,
-  __module__ = 'back_end_pb2'
-  # @@protoc_insertion_point(class_scope:interop.EmptyRequest)
-  ))
-_sym_db.RegisterMessage(EmptyRequest)
 
 ProfileDataReply = _reflection.GeneratedProtocolMessageType('ProfileDataReply', (_message.Message,), dict(
 
@@ -536,7 +504,7 @@ try:
           )
       self.StopRecognizion = channel.unary_unary(
           '/interop.BackEnd/StopRecognizion',
-          request_serializer=EmptyRequest.SerializeToString,
+          request_serializer=shared__pb2.EmptyRequest.SerializeToString,
           response_deserializer=shared__pb2.StatusReply.FromString,
           )
       self.CreateUserProfile = channel.unary_unary(
@@ -556,7 +524,7 @@ try:
           )
       self.GetUserProfiles = channel.unary_unary(
           '/interop.BackEnd/GetUserProfiles',
-          request_serializer=EmptyRequest.SerializeToString,
+          request_serializer=shared__pb2.EmptyRequest.SerializeToString,
           response_deserializer=ProfileListReply.FromString,
           )
       self.UpdateSensorData = channel.unary_unary(
@@ -566,12 +534,22 @@ try:
           )
       self.DroneTakeoff = channel.unary_unary(
           '/interop.BackEnd/DroneTakeoff',
-          request_serializer=EmptyRequest.SerializeToString,
+          request_serializer=shared__pb2.EmptyRequest.SerializeToString,
           response_deserializer=shared__pb2.StatusReply.FromString,
           )
       self.DroneLand = channel.unary_unary(
           '/interop.BackEnd/DroneLand',
-          request_serializer=EmptyRequest.SerializeToString,
+          request_serializer=shared__pb2.EmptyRequest.SerializeToString,
+          response_deserializer=shared__pb2.StatusReply.FromString,
+          )
+      self.EnableDataStreaming = channel.unary_unary(
+          '/interop.BackEnd/EnableDataStreaming',
+          request_serializer=shared__pb2.EmptyRequest.SerializeToString,
+          response_deserializer=shared__pb2.StatusReply.FromString,
+          )
+      self.DisableDataStreaming = channel.unary_unary(
+          '/interop.BackEnd/DisableDataStreaming',
+          request_serializer=shared__pb2.EmptyRequest.SerializeToString,
           response_deserializer=shared__pb2.StatusReply.FromString,
           )
 
@@ -638,6 +616,16 @@ try:
       context.set_details('Method not implemented!')
       raise NotImplementedError('Method not implemented!')
 
+    def EnableDataStreaming(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
+    def DisableDataStreaming(self, request, context):
+      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+      context.set_details('Method not implemented!')
+      raise NotImplementedError('Method not implemented!')
+
 
   def add_BackEndServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -663,7 +651,7 @@ try:
         ),
         'StopRecognizion': grpc.unary_unary_rpc_method_handler(
             servicer.StopRecognizion,
-            request_deserializer=EmptyRequest.FromString,
+            request_deserializer=shared__pb2.EmptyRequest.FromString,
             response_serializer=shared__pb2.StatusReply.SerializeToString,
         ),
         'CreateUserProfile': grpc.unary_unary_rpc_method_handler(
@@ -683,7 +671,7 @@ try:
         ),
         'GetUserProfiles': grpc.unary_unary_rpc_method_handler(
             servicer.GetUserProfiles,
-            request_deserializer=EmptyRequest.FromString,
+            request_deserializer=shared__pb2.EmptyRequest.FromString,
             response_serializer=ProfileListReply.SerializeToString,
         ),
         'UpdateSensorData': grpc.unary_unary_rpc_method_handler(
@@ -693,12 +681,22 @@ try:
         ),
         'DroneTakeoff': grpc.unary_unary_rpc_method_handler(
             servicer.DroneTakeoff,
-            request_deserializer=EmptyRequest.FromString,
+            request_deserializer=shared__pb2.EmptyRequest.FromString,
             response_serializer=shared__pb2.StatusReply.SerializeToString,
         ),
         'DroneLand': grpc.unary_unary_rpc_method_handler(
             servicer.DroneLand,
-            request_deserializer=EmptyRequest.FromString,
+            request_deserializer=shared__pb2.EmptyRequest.FromString,
+            response_serializer=shared__pb2.StatusReply.SerializeToString,
+        ),
+        'EnableDataStreaming': grpc.unary_unary_rpc_method_handler(
+            servicer.EnableDataStreaming,
+            request_deserializer=shared__pb2.EmptyRequest.FromString,
+            response_serializer=shared__pb2.StatusReply.SerializeToString,
+        ),
+        'DisableDataStreaming': grpc.unary_unary_rpc_method_handler(
+            servicer.DisableDataStreaming,
+            request_deserializer=shared__pb2.EmptyRequest.FromString,
             response_serializer=shared__pb2.StatusReply.SerializeToString,
         ),
     }
@@ -736,6 +734,10 @@ try:
     def DroneTakeoff(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
     def DroneLand(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def EnableDataStreaming(self, request, context):
+      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+    def DisableDataStreaming(self, request, context):
       context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
@@ -781,6 +783,12 @@ try:
     def DroneLand(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
       raise NotImplementedError()
     DroneLand.future = None
+    def EnableDataStreaming(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    EnableDataStreaming.future = None
+    def DisableDataStreaming(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+      raise NotImplementedError()
+    DisableDataStreaming.future = None
 
 
   def beta_create_BackEnd_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
@@ -793,13 +801,15 @@ try:
       ('interop.BackEnd', 'AcquireDataForCommand'): AquireDataRequest.FromString,
       ('interop.BackEnd', 'CreateUserProfile'): UserProfileOperationRequest.FromString,
       ('interop.BackEnd', 'DeleteUserProfile'): UserProfileOperationRequest.FromString,
-      ('interop.BackEnd', 'DroneLand'): EmptyRequest.FromString,
-      ('interop.BackEnd', 'DroneTakeoff'): EmptyRequest.FromString,
+      ('interop.BackEnd', 'DisableDataStreaming'): shared__pb2.EmptyRequest.FromString,
+      ('interop.BackEnd', 'DroneLand'): shared__pb2.EmptyRequest.FromString,
+      ('interop.BackEnd', 'DroneTakeoff'): shared__pb2.EmptyRequest.FromString,
+      ('interop.BackEnd', 'EnableDataStreaming'): shared__pb2.EmptyRequest.FromString,
       ('interop.BackEnd', 'GetUserProfile'): UserProfileOperationRequest.FromString,
-      ('interop.BackEnd', 'GetUserProfiles'): EmptyRequest.FromString,
+      ('interop.BackEnd', 'GetUserProfiles'): shared__pb2.EmptyRequest.FromString,
       ('interop.BackEnd', 'RecognizeCommands'): RecognizeCommandsRequest.FromString,
       ('interop.BackEnd', 'ResetDataForCommand'): ResetDataRequest.FromString,
-      ('interop.BackEnd', 'StopRecognizion'): EmptyRequest.FromString,
+      ('interop.BackEnd', 'StopRecognizion'): shared__pb2.EmptyRequest.FromString,
       ('interop.BackEnd', 'TrainClassifier'): TrainClassifierRequest.FromString,
       ('interop.BackEnd', 'UpdateSensorData'): UpdateSensorDataRequest.FromString,
     }
@@ -807,8 +817,10 @@ try:
       ('interop.BackEnd', 'AcquireDataForCommand'): shared__pb2.StatusReply.SerializeToString,
       ('interop.BackEnd', 'CreateUserProfile'): shared__pb2.StatusReply.SerializeToString,
       ('interop.BackEnd', 'DeleteUserProfile'): shared__pb2.StatusReply.SerializeToString,
+      ('interop.BackEnd', 'DisableDataStreaming'): shared__pb2.StatusReply.SerializeToString,
       ('interop.BackEnd', 'DroneLand'): shared__pb2.StatusReply.SerializeToString,
       ('interop.BackEnd', 'DroneTakeoff'): shared__pb2.StatusReply.SerializeToString,
+      ('interop.BackEnd', 'EnableDataStreaming'): shared__pb2.StatusReply.SerializeToString,
       ('interop.BackEnd', 'GetUserProfile'): ProfileDataReply.SerializeToString,
       ('interop.BackEnd', 'GetUserProfiles'): ProfileListReply.SerializeToString,
       ('interop.BackEnd', 'RecognizeCommands'): shared__pb2.StatusReply.SerializeToString,
@@ -821,8 +833,10 @@ try:
       ('interop.BackEnd', 'AcquireDataForCommand'): face_utilities.unary_unary_inline(servicer.AcquireDataForCommand),
       ('interop.BackEnd', 'CreateUserProfile'): face_utilities.unary_unary_inline(servicer.CreateUserProfile),
       ('interop.BackEnd', 'DeleteUserProfile'): face_utilities.unary_unary_inline(servicer.DeleteUserProfile),
+      ('interop.BackEnd', 'DisableDataStreaming'): face_utilities.unary_unary_inline(servicer.DisableDataStreaming),
       ('interop.BackEnd', 'DroneLand'): face_utilities.unary_unary_inline(servicer.DroneLand),
       ('interop.BackEnd', 'DroneTakeoff'): face_utilities.unary_unary_inline(servicer.DroneTakeoff),
+      ('interop.BackEnd', 'EnableDataStreaming'): face_utilities.unary_unary_inline(servicer.EnableDataStreaming),
       ('interop.BackEnd', 'GetUserProfile'): face_utilities.unary_unary_inline(servicer.GetUserProfile),
       ('interop.BackEnd', 'GetUserProfiles'): face_utilities.unary_unary_inline(servicer.GetUserProfiles),
       ('interop.BackEnd', 'RecognizeCommands'): face_utilities.unary_unary_inline(servicer.RecognizeCommands),
@@ -845,13 +859,15 @@ try:
       ('interop.BackEnd', 'AcquireDataForCommand'): AquireDataRequest.SerializeToString,
       ('interop.BackEnd', 'CreateUserProfile'): UserProfileOperationRequest.SerializeToString,
       ('interop.BackEnd', 'DeleteUserProfile'): UserProfileOperationRequest.SerializeToString,
-      ('interop.BackEnd', 'DroneLand'): EmptyRequest.SerializeToString,
-      ('interop.BackEnd', 'DroneTakeoff'): EmptyRequest.SerializeToString,
+      ('interop.BackEnd', 'DisableDataStreaming'): shared__pb2.EmptyRequest.SerializeToString,
+      ('interop.BackEnd', 'DroneLand'): shared__pb2.EmptyRequest.SerializeToString,
+      ('interop.BackEnd', 'DroneTakeoff'): shared__pb2.EmptyRequest.SerializeToString,
+      ('interop.BackEnd', 'EnableDataStreaming'): shared__pb2.EmptyRequest.SerializeToString,
       ('interop.BackEnd', 'GetUserProfile'): UserProfileOperationRequest.SerializeToString,
-      ('interop.BackEnd', 'GetUserProfiles'): EmptyRequest.SerializeToString,
+      ('interop.BackEnd', 'GetUserProfiles'): shared__pb2.EmptyRequest.SerializeToString,
       ('interop.BackEnd', 'RecognizeCommands'): RecognizeCommandsRequest.SerializeToString,
       ('interop.BackEnd', 'ResetDataForCommand'): ResetDataRequest.SerializeToString,
-      ('interop.BackEnd', 'StopRecognizion'): EmptyRequest.SerializeToString,
+      ('interop.BackEnd', 'StopRecognizion'): shared__pb2.EmptyRequest.SerializeToString,
       ('interop.BackEnd', 'TrainClassifier'): TrainClassifierRequest.SerializeToString,
       ('interop.BackEnd', 'UpdateSensorData'): UpdateSensorDataRequest.SerializeToString,
     }
@@ -859,8 +875,10 @@ try:
       ('interop.BackEnd', 'AcquireDataForCommand'): shared__pb2.StatusReply.FromString,
       ('interop.BackEnd', 'CreateUserProfile'): shared__pb2.StatusReply.FromString,
       ('interop.BackEnd', 'DeleteUserProfile'): shared__pb2.StatusReply.FromString,
+      ('interop.BackEnd', 'DisableDataStreaming'): shared__pb2.StatusReply.FromString,
       ('interop.BackEnd', 'DroneLand'): shared__pb2.StatusReply.FromString,
       ('interop.BackEnd', 'DroneTakeoff'): shared__pb2.StatusReply.FromString,
+      ('interop.BackEnd', 'EnableDataStreaming'): shared__pb2.StatusReply.FromString,
       ('interop.BackEnd', 'GetUserProfile'): ProfileDataReply.FromString,
       ('interop.BackEnd', 'GetUserProfiles'): ProfileListReply.FromString,
       ('interop.BackEnd', 'RecognizeCommands'): shared__pb2.StatusReply.FromString,
@@ -873,8 +891,10 @@ try:
       'AcquireDataForCommand': cardinality.Cardinality.UNARY_UNARY,
       'CreateUserProfile': cardinality.Cardinality.UNARY_UNARY,
       'DeleteUserProfile': cardinality.Cardinality.UNARY_UNARY,
+      'DisableDataStreaming': cardinality.Cardinality.UNARY_UNARY,
       'DroneLand': cardinality.Cardinality.UNARY_UNARY,
       'DroneTakeoff': cardinality.Cardinality.UNARY_UNARY,
+      'EnableDataStreaming': cardinality.Cardinality.UNARY_UNARY,
       'GetUserProfile': cardinality.Cardinality.UNARY_UNARY,
       'GetUserProfiles': cardinality.Cardinality.UNARY_UNARY,
       'RecognizeCommands': cardinality.Cardinality.UNARY_UNARY,

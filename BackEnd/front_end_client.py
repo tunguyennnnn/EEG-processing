@@ -3,7 +3,7 @@ Provides an API for calling procedures on the front end through RPC.
 """
 import grpc
 
-from front_end_pb2 import FrontEndStub, CommandRequest
+from front_end_pb2 import FrontEndStub, CommandRequest, BCIDataRequest, ChannelData
 import shared_pb2
 
 class FrontEndClient:
@@ -54,6 +54,16 @@ class FrontEndClient:
         command_request = CommandRequest(command_type=command)
         response = self.stub.ExecuteMentalCommand(command_request)
         print("Front End responded with " + str(response.code))
+
+    def UpdateBCIData(self, array):
+        channel_data = []
+
+        for row in array:
+          channel_values = ChannelData(values=row)
+          channel_data.append(channel_values)
+
+        request = BCIDataRequest(BCIData=channel_data)
+        response = self.stub.UpdateBCIData(request)
 
     def call_method(self, name):
         getattr(self, name)();

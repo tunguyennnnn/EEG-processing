@@ -107,6 +107,20 @@ namespace Interop {
         __Marshaller_EmptyRequest,
         __Marshaller_StatusReply);
 
+    static readonly Method<global::Interop.EmptyRequest, global::Interop.StatusReply> __Method_EnableDataStreaming = new Method<global::Interop.EmptyRequest, global::Interop.StatusReply>(
+        MethodType.Unary,
+        __ServiceName,
+        "EnableDataStreaming",
+        __Marshaller_EmptyRequest,
+        __Marshaller_StatusReply);
+
+    static readonly Method<global::Interop.EmptyRequest, global::Interop.StatusReply> __Method_DisableDataStreaming = new Method<global::Interop.EmptyRequest, global::Interop.StatusReply>(
+        MethodType.Unary,
+        __ServiceName,
+        "DisableDataStreaming",
+        __Marshaller_EmptyRequest,
+        __Marshaller_StatusReply);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -327,6 +341,38 @@ namespace Interop {
       public virtual AsyncUnaryCall<global::Interop.StatusReply> DroneLandAsync(global::Interop.EmptyRequest request, CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_DroneLand, null, options, request);
+      }
+      public virtual global::Interop.StatusReply EnableDataStreaming(global::Interop.EmptyRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return EnableDataStreaming(request, new CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Interop.StatusReply EnableDataStreaming(global::Interop.EmptyRequest request, CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_EnableDataStreaming, null, options, request);
+      }
+      public virtual AsyncUnaryCall<global::Interop.StatusReply> EnableDataStreamingAsync(global::Interop.EmptyRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return EnableDataStreamingAsync(request, new CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual AsyncUnaryCall<global::Interop.StatusReply> EnableDataStreamingAsync(global::Interop.EmptyRequest request, CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_EnableDataStreaming, null, options, request);
+      }
+      public virtual global::Interop.StatusReply DisableDataStreaming(global::Interop.EmptyRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DisableDataStreaming(request, new CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Interop.StatusReply DisableDataStreaming(global::Interop.EmptyRequest request, CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DisableDataStreaming, null, options, request);
+      }
+      public virtual AsyncUnaryCall<global::Interop.StatusReply> DisableDataStreamingAsync(global::Interop.EmptyRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DisableDataStreamingAsync(request, new CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual AsyncUnaryCall<global::Interop.StatusReply> DisableDataStreamingAsync(global::Interop.EmptyRequest request, CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DisableDataStreaming, null, options, request);
       }
       protected override BackEndClient NewInstance(ClientBaseConfiguration configuration)
       {

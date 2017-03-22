@@ -24,13 +24,18 @@ namespace Interop {
           string.Concat(
             "Cg9mcm9udF9lbmQucHJvdG8SB2ludGVyb3AaDHNoYXJlZC5wcm90byI8Cg5D",
             "b21tYW5kUmVxdWVzdBIqCgxjb21tYW5kX3R5cGUYASABKA4yFC5pbnRlcm9w",
-            "LkNvbW1hbmRUeXBlMlMKCEZyb250RW5kEkcKFEV4ZWN1dGVNZW50YWxDb21t",
-            "YW5kEhcuaW50ZXJvcC5Db21tYW5kUmVxdWVzdBoULmludGVyb3AuU3RhdHVz",
-            "UmVwbHkiAGIGcHJvdG8z"));
+            "LkNvbW1hbmRUeXBlIjcKDkJDSURhdGFSZXF1ZXN0EiUKB0JDSURhdGEYASAD",
+            "KAsyFC5pbnRlcm9wLkNoYW5uZWxEYXRhIh0KC0NoYW5uZWxEYXRhEg4KBnZh",
+            "bHVlcxgBIAMoAjKVAQoIRnJvbnRFbmQSRwoURXhlY3V0ZU1lbnRhbENvbW1h",
+            "bmQSFy5pbnRlcm9wLkNvbW1hbmRSZXF1ZXN0GhQuaW50ZXJvcC5TdGF0dXNS",
+            "ZXBseSIAEkAKDVVwZGF0ZUJDSURhdGESFy5pbnRlcm9wLkJDSURhdGFSZXF1",
+            "ZXN0GhQuaW50ZXJvcC5TdGF0dXNSZXBseSIAYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Interop.SharedReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Interop.CommandRequest), global::Interop.CommandRequest.Parser, new[]{ "CommandType" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Interop.CommandRequest), global::Interop.CommandRequest.Parser, new[]{ "CommandType" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Interop.BCIDataRequest), global::Interop.BCIDataRequest.Parser, new[]{ "BCIData" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Interop.ChannelData), global::Interop.ChannelData.Parser, new[]{ "Values" }, null, null, null)
           }));
     }
     #endregion
@@ -146,6 +151,225 @@ namespace Interop {
             break;
           case 8: {
             commandType_ = (global::Interop.CommandType) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class BCIDataRequest : pb::IMessage<BCIDataRequest> {
+    private static readonly pb::MessageParser<BCIDataRequest> _parser = new pb::MessageParser<BCIDataRequest>(() => new BCIDataRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<BCIDataRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Interop.FrontEndReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BCIDataRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BCIDataRequest(BCIDataRequest other) : this() {
+      bCIData_ = other.bCIData_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BCIDataRequest Clone() {
+      return new BCIDataRequest(this);
+    }
+
+    /// <summary>Field number for the "BCIData" field.</summary>
+    public const int BCIDataFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Interop.ChannelData> _repeated_bCIData_codec
+        = pb::FieldCodec.ForMessage(10, global::Interop.ChannelData.Parser);
+    private readonly pbc::RepeatedField<global::Interop.ChannelData> bCIData_ = new pbc::RepeatedField<global::Interop.ChannelData>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Interop.ChannelData> BCIData {
+      get { return bCIData_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as BCIDataRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(BCIDataRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!bCIData_.Equals(other.bCIData_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= bCIData_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      bCIData_.WriteTo(output, _repeated_bCIData_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += bCIData_.CalculateSize(_repeated_bCIData_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(BCIDataRequest other) {
+      if (other == null) {
+        return;
+      }
+      bCIData_.Add(other.bCIData_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            bCIData_.AddEntriesFrom(input, _repeated_bCIData_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ChannelData : pb::IMessage<ChannelData> {
+    private static readonly pb::MessageParser<ChannelData> _parser = new pb::MessageParser<ChannelData>(() => new ChannelData());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ChannelData> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Interop.FrontEndReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ChannelData() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ChannelData(ChannelData other) : this() {
+      values_ = other.values_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ChannelData Clone() {
+      return new ChannelData(this);
+    }
+
+    /// <summary>Field number for the "values" field.</summary>
+    public const int ValuesFieldNumber = 1;
+    private static readonly pb::FieldCodec<float> _repeated_values_codec
+        = pb::FieldCodec.ForFloat(10);
+    private readonly pbc::RepeatedField<float> values_ = new pbc::RepeatedField<float>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<float> Values {
+      get { return values_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ChannelData);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ChannelData other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!values_.Equals(other.values_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= values_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      values_.WriteTo(output, _repeated_values_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += values_.CalculateSize(_repeated_values_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ChannelData other) {
+      if (other == null) {
+        return;
+      }
+      values_.Add(other.values_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10:
+          case 13: {
+            values_.AddEntriesFrom(input, _repeated_values_codec);
             break;
           }
         }

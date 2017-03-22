@@ -102,6 +102,7 @@
       <DependentUpon>ProfileSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DroneCommand.cs" />
+    <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\SensorListener.cs" />
     <Compile Include="ViewModels\UserProfileVM.cs" />
     <Compile Include="Services\BackEndClient.cs" />

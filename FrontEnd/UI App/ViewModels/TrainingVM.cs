@@ -16,9 +16,6 @@ namespace SimulationApp.ViewModels
     {
         public TrainingVM()
         {
-            _server = new FrontEndServer(this);
-            _server.Start();
-
             _client = new BackEndClient();
 
             _sensorListener = new SensorListener(this, _client);
@@ -61,17 +58,21 @@ namespace SimulationApp.ViewModels
             set { SetValue(ref _modeSensor, value); }
         }
 
-        private string _enableSensor = "Off";
-        private string _lockSensor = "Off";
-        private string _modeSensor = "Forward/Backward";
-
         public string ToggleRecognitionLabel
         {
             get { return _toggleRecognitionLabel; }
             set { SetValue(ref _toggleRecognitionLabel, value); }
         }
 
-        private string _toggleRecognitionLabel = "Start Recognition";
+        public bool IsStreamingEnabled
+        {
+            get { return _isStreamingEnabled; }
+            set
+            {
+                SetValue(ref _isStreamingEnabled, value);
+                _client.EnableDataStreaming(value);
+            }
+        }
 
         #endregion
 
@@ -101,6 +102,11 @@ namespace SimulationApp.ViewModels
         #endregion
 
         #region Public Methods
+
+        public void SetFrontEndServer(FrontEndServer server)
+        {
+            _server = server;
+        }
 
         public void ExecuteDroneCommand(DroneCommand droneCommand)
         {
@@ -305,13 +311,21 @@ namespace SimulationApp.ViewModels
 
         #region Private Variables
 
-        private readonly FrontEndServer _server;
+        private FrontEndServer _server;
         private readonly BackEndClient _client;
         private bool _isTrainingInProgress;
 
         private SensorListener _sensorListener;
 
         private UserProfileVM _activeProfileVM;
+
+        private string _enableSensor = "Off";
+        private string _lockSensor = "Off";
+        private string _modeSensor = "Forward/Backward";
+
+        private string _toggleRecognitionLabel = "Start Recognition";
+
+        private bool _isStreamingEnabled = false;
 
         #endregion
     }

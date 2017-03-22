@@ -10,7 +10,7 @@ import back_end_pb2 as back__end__pb2
 import shared_pb2 as shared__pb2
 import back_end_pb2 as back__end__pb2
 import shared_pb2 as shared__pb2
-import back_end_pb2 as back__end__pb2
+import shared_pb2 as shared__pb2
 import shared_pb2 as shared__pb2
 import back_end_pb2 as back__end__pb2
 import shared_pb2 as shared__pb2
@@ -18,13 +18,17 @@ import back_end_pb2 as back__end__pb2
 import shared_pb2 as shared__pb2
 import back_end_pb2 as back__end__pb2
 import back_end_pb2 as back__end__pb2
-import back_end_pb2 as back__end__pb2
+import shared_pb2 as shared__pb2
 import back_end_pb2 as back__end__pb2
 import back_end_pb2 as back__end__pb2
 import shared_pb2 as shared__pb2
-import back_end_pb2 as back__end__pb2
 import shared_pb2 as shared__pb2
-import back_end_pb2 as back__end__pb2
+import shared_pb2 as shared__pb2
+import shared_pb2 as shared__pb2
+import shared_pb2 as shared__pb2
+import shared_pb2 as shared__pb2
+import shared_pb2 as shared__pb2
+import shared_pb2 as shared__pb2
 import shared_pb2 as shared__pb2
 
 
@@ -58,7 +62,7 @@ class BackEndStub(object):
         )
     self.StopRecognizion = channel.unary_unary(
         '/interop.BackEnd/StopRecognizion',
-        request_serializer=back__end__pb2.EmptyRequest.SerializeToString,
+        request_serializer=shared__pb2.EmptyRequest.SerializeToString,
         response_deserializer=shared__pb2.StatusReply.FromString,
         )
     self.CreateUserProfile = channel.unary_unary(
@@ -78,7 +82,7 @@ class BackEndStub(object):
         )
     self.GetUserProfiles = channel.unary_unary(
         '/interop.BackEnd/GetUserProfiles',
-        request_serializer=back__end__pb2.EmptyRequest.SerializeToString,
+        request_serializer=shared__pb2.EmptyRequest.SerializeToString,
         response_deserializer=back__end__pb2.ProfileListReply.FromString,
         )
     self.UpdateSensorData = channel.unary_unary(
@@ -88,12 +92,22 @@ class BackEndStub(object):
         )
     self.DroneTakeoff = channel.unary_unary(
         '/interop.BackEnd/DroneTakeoff',
-        request_serializer=back__end__pb2.EmptyRequest.SerializeToString,
+        request_serializer=shared__pb2.EmptyRequest.SerializeToString,
         response_deserializer=shared__pb2.StatusReply.FromString,
         )
     self.DroneLand = channel.unary_unary(
         '/interop.BackEnd/DroneLand',
-        request_serializer=back__end__pb2.EmptyRequest.SerializeToString,
+        request_serializer=shared__pb2.EmptyRequest.SerializeToString,
+        response_deserializer=shared__pb2.StatusReply.FromString,
+        )
+    self.EnableDataStreaming = channel.unary_unary(
+        '/interop.BackEnd/EnableDataStreaming',
+        request_serializer=shared__pb2.EmptyRequest.SerializeToString,
+        response_deserializer=shared__pb2.StatusReply.FromString,
+        )
+    self.DisableDataStreaming = channel.unary_unary(
+        '/interop.BackEnd/DisableDataStreaming',
+        request_serializer=shared__pb2.EmptyRequest.SerializeToString,
         response_deserializer=shared__pb2.StatusReply.FromString,
         )
 
@@ -160,6 +174,16 @@ class BackEndServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def EnableDataStreaming(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def DisableDataStreaming(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_BackEndServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -185,7 +209,7 @@ def add_BackEndServicer_to_server(servicer, server):
       ),
       'StopRecognizion': grpc.unary_unary_rpc_method_handler(
           servicer.StopRecognizion,
-          request_deserializer=back__end__pb2.EmptyRequest.FromString,
+          request_deserializer=shared__pb2.EmptyRequest.FromString,
           response_serializer=shared__pb2.StatusReply.SerializeToString,
       ),
       'CreateUserProfile': grpc.unary_unary_rpc_method_handler(
@@ -205,7 +229,7 @@ def add_BackEndServicer_to_server(servicer, server):
       ),
       'GetUserProfiles': grpc.unary_unary_rpc_method_handler(
           servicer.GetUserProfiles,
-          request_deserializer=back__end__pb2.EmptyRequest.FromString,
+          request_deserializer=shared__pb2.EmptyRequest.FromString,
           response_serializer=back__end__pb2.ProfileListReply.SerializeToString,
       ),
       'UpdateSensorData': grpc.unary_unary_rpc_method_handler(
@@ -215,12 +239,22 @@ def add_BackEndServicer_to_server(servicer, server):
       ),
       'DroneTakeoff': grpc.unary_unary_rpc_method_handler(
           servicer.DroneTakeoff,
-          request_deserializer=back__end__pb2.EmptyRequest.FromString,
+          request_deserializer=shared__pb2.EmptyRequest.FromString,
           response_serializer=shared__pb2.StatusReply.SerializeToString,
       ),
       'DroneLand': grpc.unary_unary_rpc_method_handler(
           servicer.DroneLand,
-          request_deserializer=back__end__pb2.EmptyRequest.FromString,
+          request_deserializer=shared__pb2.EmptyRequest.FromString,
+          response_serializer=shared__pb2.StatusReply.SerializeToString,
+      ),
+      'EnableDataStreaming': grpc.unary_unary_rpc_method_handler(
+          servicer.EnableDataStreaming,
+          request_deserializer=shared__pb2.EmptyRequest.FromString,
+          response_serializer=shared__pb2.StatusReply.SerializeToString,
+      ),
+      'DisableDataStreaming': grpc.unary_unary_rpc_method_handler(
+          servicer.DisableDataStreaming,
+          request_deserializer=shared__pb2.EmptyRequest.FromString,
           response_serializer=shared__pb2.StatusReply.SerializeToString,
       ),
   }

@@ -234,6 +234,27 @@ namespace SimulationApp.Services
             }
         }
 
+        public void EnableDataStreaming(bool value)
+        {
+            var request = new EmptyRequest();
+
+            try
+            {
+                if(value)
+                {
+                    var status = _client.EnableDataStreaming(request);
+                }
+                else
+                {
+                    var status = _client.DisableDataStreaming(request);
+                }             
+            }
+            catch (Grpc.Core.RpcException e)
+            {
+                Dialog.ShowMessageBox("Error", "Exception on the callee side: " + e.Message);
+            }
+        }
+
         private readonly Channel _channel;
         private readonly Client _client;
     }
