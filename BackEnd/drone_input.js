@@ -12,7 +12,7 @@ client.takeoff(function(){
 })
 client.stop();
 
-const commandMapper = {"0": client.stop, "1": client.up, "2": client.down, "3": client.left, "4": client.right, "5": client.front, "6": client.back, "7": client.clockwise, "8": client.counterClockwise}
+const commandMapper = {"0": client.stop, "1": client.up, "2": client.down, "3": client.left, "4": client.right, "5": client.front, "6": client.back, "8": client.clockwise, "7": client.counterClockwise}
 
 const speed = 0.2;
 process.stdin.on('data', function (command) {
@@ -44,12 +44,12 @@ process.stdin.on('data', function (command) {
       client.back(speed);
 
       break;
-    case "7":
-      client.clockwise(speed);
+    case "8":
+      client.clockwise(0.5);
 
       break;
-    case "8":
-      client.counterClockwise(speed);
+    case "7":
+      client.counterClockwise(0.5);
 
       break;
     default:
