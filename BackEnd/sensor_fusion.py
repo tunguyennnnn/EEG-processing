@@ -5,22 +5,27 @@ import os
 from threading import Thread
 import subprocess as sb
 class CommandToDrone:
-    def __init__(self, start_states="move_forward-move_backward", to_drone = True):
+    def __init__(self, start_states="move_forward-move_backward"):
         self.state_set = ["move_forward-move_backward", 'move_left-move_right', 'turn_left-turn_right']
         self.command_mapping = {"neutral": 0, "move_up": 1, "move_down": 2, "move_left": 3, "move_right": 4, "move_forward": 5, "move_backward": 6, "turn_left": 7, "turn_right": 8}
         self.state = start_states
         self.allowed_to_execute = False
         self.front_end = FrontEndClient()
-        self.to_drone = to_drone
+        self.to_drone = False
         self.command = 0
         self.final_command = self.command
         self.speak_state = 'recognizing'
         self.is_executing = False
-        if to_drone:
-            self.drone_process = sb.Popen(['node', 'drone_input.js'], stdin=sb.PIPE, stdout=sb.PIPE)
         if not self.state in self.state_set:
             self.state = self.state_set[0]
 
+    def launch_the_drone(self):
+        self.to_drone = True
+        self.drone_process = sb.Popen(['node', 'drone_input.js'], stdin=sb.PIPE, stdout=sb.PIPE)
+
+    def land_the_drone(self):
+        if self.to_drone:
+            self.drone_process.stdin.write('quit')
     def next_state(self):
         state_index = self.state_set.index(self.state)
         next_index = (len(self.state_set) + state_index + 1) % len(self.state_set)
@@ -82,6 +87,8 @@ class CommandToDrone:
     def execute_command(self):
         command = self.state.split("-")[self.command]
         self.send(command, self.command_mapping[command], True)
+
+
 
     def update_final_command(self):
         if self.speak_state == 'selecting':
@@ -172,7 +179,11 @@ class SensorFusion:
             index, value = valid_result
             list_of_sensors[index].update_data(value)
 
+    def launch_the_drone(self):
+        self.drone_command.launch_the_drone()
 
+    def land_the_drone(self):
+        self.drone_command.land_the_drone()
 
     def sensor_1_callback(self, signal_type):
         if signal_type == 'high-signal'or signal_type == 'medium-signal':
